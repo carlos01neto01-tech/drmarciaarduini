@@ -17,6 +17,7 @@
 
   --paper:#E7E3DC;
   --ink:#3B4E57;
+
   --header-h:104px;
 }
 
@@ -33,6 +34,24 @@ body{
 }
 img{max-width:100%;display:block}
 a{text-decoration:none}
+
+/* ===== animação fade-in com blur ===== */
+.reveal{
+  opacity:0;
+  filter: blur(10px);
+  transform: translateY(14px);
+  transition: opacity .65s ease, filter .65s ease, transform .65s ease;
+  will-change: opacity, filter, transform;
+}
+.reveal.is-visible{
+  opacity:1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+.delay-1{ transition-delay: .08s; }
+.delay-2{ transition-delay: .16s; }
+.delay-3{ transition-delay: .24s; }
+.delay-4{ transition-delay: .32s; }
 
 /* ================= HEADER ================= */
 .m-header{
@@ -51,10 +70,7 @@ a{text-decoration:none}
   justify-content:space-between;
 }
 
-.m-logo img{
-  height:64px;
-  width:auto;
-}
+.m-logo img{ height:64px; width:auto; }
 
 .m-menuBtn{
   width:56px;
@@ -68,7 +84,6 @@ a{text-decoration:none}
   cursor:pointer;
   padding:0;
 }
-
 .m-menuBtn img{ width:26px; height:26px; }
 
 /* MENU */
@@ -103,7 +118,7 @@ a{text-decoration:none}
 
 .m-wa{
   margin-top:10px;
-  background:var(--ink);
+  background:#3B4E57;
   color:#fff !important;
   text-align:center;
   border-radius:16px;
@@ -131,7 +146,7 @@ a{text-decoration:none}
   overflow:hidden;
 }
 
-/* fundo com blur */
+/* fundo com blur leve */
 .m-hero__bg{
   position:absolute;
   inset:0;
@@ -165,12 +180,11 @@ a{text-decoration:none}
 .m-hero__doc{
   width:min(390px,92vw);
   height:auto;
-  margin-bottom:-135px; /* mais colada */
+  margin-bottom:-135px;
   transform-origin:center bottom;
   animation:mFloat 4.5s ease-in-out infinite;
   filter:drop-shadow(0 20px 30px rgba(0,0,0,.22));
 }
-
 @keyframes mFloat{
   0%,100%{transform:translateY(0)}
   50%{transform:translateY(-10px)}
@@ -178,45 +192,47 @@ a{text-decoration:none}
 
 /* @ maior e mais alto */
 .m-hero__handle{
-  margin-top:-42px;          /* sobe mais */
-  width:min(320px,86vw);     /* aumenta */
+  margin-top:-42px;
+  width:min(320px,86vw);
   height:auto;
   filter:drop-shadow(0 18px 28px rgba(0,0,0,.18));
 }
 
-/* texto */
+/* bloco de texto igual ao Figma */
 .m-hero__text{
-  margin-top:10px;
+  margin-top:12px;
   text-align:center;
   display:flex;
   flex-direction:column;
   align-items:center;
 }
 
-/* titulo em caixa alta */
+/* TÍTULO: 4 linhas controladas + espaçamento semelhante ao print */
 .m-hero__title{
   margin:0;
   font-family:var(--title);
   font-weight:700;
-  font-size:40px;
-  line-height:1.05;
+  font-size:44px;           /* ajuste fino */
+  line-height:1.04;
   color:#111;
   text-transform:uppercase;
-  letter-spacing:.5px;
+  letter-spacing:.10em;     /* “aberto” como no Figma */
 }
+.m-hero__title .line{ display:block; }
 
-/* subtitulo 2 linhas */
+/* SUBTÍTULO: exatamente 4 linhas (como no print) */
 .m-hero__subtitle{
-  margin:14px 0 20px;
-  max-width:34ch;
+  margin:18px 0 24px;
   font-family:var(--body);
   font-weight:300;
-  font-size:15px;
-  line-height:1.6;
-  color:rgba(17,17,17,.78);
+  font-size:18px;           /* no print parece maior que 15 */
+  line-height:1.75;
+  color:rgba(17,17,17,.62);
+  letter-spacing:.02em;
 }
+.m-hero__subtitle .line{ display:block; }
 
-/* botão na cor #3B4E57 */
+/* BOTÃO cor #3B4E57 */
 .m-hero__cta{
   width:min(92vw,420px);
   height:64px;
@@ -229,16 +245,20 @@ a{text-decoration:none}
   font-family:var(--body);
   font-weight:300;
   font-size:20px;
-  letter-spacing:.2px;
+  letter-spacing:.02em;
   box-shadow:0 10px 22px rgba(0,0,0,.12);
+  -webkit-tap-highlight-color:transparent;
 }
 .m-hero__cta:active{transform:translateY(1px)}
 
-@media (max-width:380px){
-  .m-logo img{height:58px}
-  .m-hero__title{font-size:36px}
-  .m-hero__doc{margin-bottom:-150px}
-  .m-hero__handle{width:min(320px,92vw); margin-top:-46px;}
+@media (max-width:390px){
+  .m-hero__title{ font-size:40px; letter-spacing:.095em; }
+  .m-hero__subtitle{ font-size:17px; }
+}
+
+@media (max-width:360px){
+  .m-hero__title{ font-size:38px; letter-spacing:.09em; }
+  .m-hero__subtitle{ font-size:16px; }
 }
 </style>
 </head>
@@ -278,18 +298,27 @@ a{text-decoration:none}
   <div class="m-hero__wrap">
     <div class="m-hero__figure">
       <img class="m-hero__doc" src="assets/DOUTORA%20MOBILE.webp" alt="Dra. Márcia Arduini">
-      <img class="m-hero__handle" src="assets/@dramarcia.arduini.svg" alt="@dramarcia.arduini">
+      <img class="m-hero__handle reveal delay-1" src="assets/@dramarcia.arduini.svg" alt="@dramarcia.arduini">
     </div>
 
     <div class="m-hero__text">
-      <h1 class="m-hero__title">Precisão técnica.<br>Sensibilidade estética.</h1>
+      <!-- TÍTULO IGUAL AO FIGMA (4 linhas) -->
+      <h1 class="m-hero__title reveal delay-2">
+        <span class="line">Precisão</span>
+        <span class="line">técnica.</span>
+        <span class="line">sensibilidade</span>
+        <span class="line">estética.</span>
+      </h1>
 
-      <p class="m-hero__subtitle">
-        Harmonização facial e estética avançada<br>
-        com foco em naturalidade, segurança e planejamento individual.
+      <!-- SUBTÍTULO IGUAL AO FIGMA (4 linhas) -->
+      <p class="m-hero__subtitle reveal delay-3">
+        <span class="line">Harmonização facial e estética</span>
+        <span class="line">avançada</span>
+        <span class="line">com foco em naturalidade, segurança e</span>
+        <span class="line">planejamento individual.</span>
       </p>
 
-      <a class="m-hero__cta"
+      <a class="m-hero__cta reveal delay-4"
          href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
          target="_blank" rel="noopener">
          Quero agendar
@@ -298,12 +327,13 @@ a{text-decoration:none}
   </div>
 </section>
 
-<!-- placeholders (depois você substitui) -->
+<!-- placeholders -->
 <section id="quem-sou" style="padding:40px 18px;background:#fff;"></section>
 <section id="procedimentos" style="padding:40px 18px;background:#fff;"></section>
 <section id="contato" style="padding:40px 18px;background:#fff;"></section>
 
 <script>
+/* menu */
 const btn = document.getElementById("menuBtn");
 const nav = document.getElementById("mNav");
 const overlay = document.getElementById("overlay");
@@ -312,14 +342,25 @@ function closeMenu(){
   nav.classList.remove("open");
   overlay.classList.remove("show");
 }
-
 btn.addEventListener("click",()=>{
   nav.classList.toggle("open");
   overlay.classList.toggle("show");
 });
-
 overlay.addEventListener("click", closeMenu);
 nav.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+
+/* reveal: fade-in + blur */
+const revealEls = document.querySelectorAll(".reveal");
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (e.isIntersecting) {
+      e.target.classList.add("is-visible");
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.25 });
+
+revealEls.forEach(el => io.observe(el));
 </script>
 
 </body>
