@@ -1,4 +1,132 @@
+/* ========== INICIO MOBILE (header + hero) ========== */
 
+/* tipografia conforme você pediu */
+:root{
+  --m-title: "Cormorant Garamond", serif;  /* 40px bold */
+  --m-body: "Cora", "Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; /* 15px light */
+  --m-ink: #3B4E57;
+  --m-paper: #E7E3DC;
+  --m-header-h: 104px; /* ajuste fino caso no seu print esteja mais alto/baixo */
+}
+
+/* HEADER fixo */
+.m-header{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9999;
+  background: var(--m-paper);
+}
+
+.m-header__inner{
+  height: var(--m-header-h);
+  padding: 18px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.m-brand{
+  font-family: var(--m-body);
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 1.05;
+  color: #111;
+}
+
+.m-brand__line{ display:block; }
+
+/* botão igual ao visual (pill grande) */
+.m-cta{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 58px;
+  padding: 0 26px;
+  border-radius: 18px;
+  background: var(--m-ink);
+  color: #fff;
+  font-family: var(--m-body);
+  font-weight: 300;
+  font-size: 20px;
+  letter-spacing: .2px;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.m-cta:active{ transform: translateY(1px); }
+
+/* HERO */
+.m-hero{
+  /* empurra o conteúdo pra não ficar embaixo do header */
+  padding-top: var(--m-header-h);
+  min-height: calc(100svh - var(--m-header-h));
+  position: relative;
+  overflow: hidden;
+}
+
+/* fundo separado (sem animação) */
+.m-hero__bg{
+  position: absolute;
+  inset: 0;
+  background: url("assets/FUNDO MOBILE.webp") center / cover no-repeat;
+  transform: translateZ(0);
+}
+
+/* wrapper */
+.m-hero__wrap{
+  position: relative;
+  z-index: 2;
+  padding: 22px 18px 26px;
+}
+
+/* título */
+.m-hero__title{
+  margin: 0;
+  text-align: center;
+  font-family: var(--m-title);
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1.05;
+  color: #111;
+}
+
+/* bloco da doutora */
+.m-hero__figure{
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* doutora (anima somente ela) */
+.m-hero__doc{
+  width: min(360px, 86vw);
+  height: auto;
+  transform-origin: center bottom;
+  animation: mFloat 4.5s ease-in-out infinite;
+  filter: drop-shadow(0 18px 28px rgba(0,0,0,.20));
+}
+
+/* @ bem destacado embaixo */
+.m-hero__handle{
+  margin-top: 10px;
+  width: min(220px, 62vw);
+  height: auto;
+  filter: drop-shadow(0 10px 16px rgba(0,0,0,.12));
+}
+
+@keyframes mFloat{
+  0%,100%{ transform: translateY(0); }
+  50%{ transform: translateY(-10px); }
+}
+
+/* ajuste pra telas muito pequenas */
+@media (max-width: 380px){
+  .m-brand{ font-size: 22px; }
+  .m-cta{ height: 54px; font-size: 18px; padding: 0 18px; }
+  .m-hero__title{ font-size: 36px; }
+}
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400&display=swap');
 
