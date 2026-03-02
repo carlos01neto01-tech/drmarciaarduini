@@ -1,425 +1,261 @@
 <!doctype html>
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dra. Márcia Arduini</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dra. Márcia Arduini</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --title:"Cormorant Garamond", serif;
-      --body:"Cora","Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+<style>
+:root{
+  --title:"Cormorant Garamond", serif;
+  --body:"Source Sans 3", sans-serif;
+  --paper:#E7E3DC;
+  --cta:#3B4E57;
+  --header-h:104px;
+}
 
-      --paper:#E7E3DC;
-      --ink:#3B4E57;
-      --cta:#3B4E57;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:var(--body);
+  background:#fff;
+  color:#111;
+}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
 
-      --header-h:104px;
-    }
+/* ================= HEADER ================= */
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:var(--body);
-      font-weight:300;
-      font-size:15px;
-      line-height:1.55;
-      color:#111;
-      background:#fff;
-    }
-    img{max-width:100%;display:block}
-    a{text-decoration:none;color:inherit}
+header{
+  position:fixed;
+  top:0; left:0; right:0;
+  height:var(--header-h);
+  background:var(--paper);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+  z-index:999;
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
 
-    /* ===== Fade-in + blur (textos e botões) ===== */
-    .reveal{
-      opacity:0;
-      filter: blur(10px);
-      transform: translateY(14px);
-      transition: opacity .65s ease, filter .65s ease, transform .65s ease;
-      will-change: opacity, filter, transform;
-    }
-    .reveal.is-visible{
-      opacity:1;
-      filter: blur(0);
-      transform: translateY(0);
-    }
-    .d1{transition-delay:.08s}
-    .d2{transition-delay:.16s}
-    .d3{transition-delay:.24s}
-    .d4{transition-delay:.32s}
+header img.logo{height:64px}
 
-    /* ================= HEADER FIXO + MENU ================= */
-    .m-header{
-      position:fixed;
-      top:0; left:0; right:0;
-      z-index:9999;
-      background:var(--paper);
-      border-bottom:1px solid rgba(0,0,0,.08);
-    }
+.menu-btn{
+  width:56px;
+  height:56px;
+  border-radius:18px;
+  border:1px solid rgba(0,0,0,.1);
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
 
-    .m-header__inner{
-      height:var(--header-h);
-      padding:18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-    }
+/* ================= HERO ================= */
 
-    .m-logo img{
-      height:64px;
-      width:auto;
-    }
+.hero{
+  padding-top:var(--header-h);
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+}
 
-    .m-menuBtn{
-      width:56px;
-      height:56px;
-      border-radius:18px;
-      border:1px solid rgba(0,0,0,.10);
-      background:rgba(255,255,255,.45);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      padding:0;
-      -webkit-tap-highlight-color:transparent;
-    }
-    .m-menuBtn img{width:26px;height:26px}
+.hero-bg{
+  position:absolute;
+  inset:0;
+  background:url("assets/FUNDO%20MOBILE.webp") center/cover no-repeat;
+  filter:blur(2px);
+  transform:scale(1.05);
+  z-index:0;
+}
 
-    .m-nav{
-      position:absolute;
-      top:calc(var(--header-h) - 6px);
-      right:18px;
-      width:min(320px, calc(100vw - 36px));
-      background:rgba(255,255,255,.95);
-      backdrop-filter:blur(12px);
-      border:1px solid rgba(0,0,0,.10);
-      border-radius:20px;
-      padding:14px;
-      box-shadow:0 20px 50px rgba(0,0,0,.15);
+.hero-content{
+  position:relative;
+  z-index:2;
+  padding:0 28px 60px 28px;
+}
 
-      opacity:0;
-      transform:translateY(-10px);
-      pointer-events:none;
-      transition:.2s ease;
-    }
-    .m-nav.open{opacity:1;transform:translateY(0);pointer-events:auto}
+/* BLOCO IMAGEM */
+.image-wrap{
+  position:relative;
+  max-width:390px;
+  margin:0 auto;
+}
 
-    .m-nav a{
-      display:block;
-      padding:14px 16px;
-      font-size:18px;
-      font-weight:300;
-      color:#111;
-      border-radius:14px;
-    }
-    .m-nav a:active{background:rgba(0,0,0,.05)}
+/* DOUTORA */
+.image-wrap img.doutora{
+  width:100%;
+  animation:floaty 4s ease-in-out infinite;
+  filter:drop-shadow(0 20px 30px rgba(0,0,0,.22));
+}
 
-    .m-wa{
-      margin-top:10px;
-      background:var(--ink);
-      color:#fff !important;
-      text-align:center;
-      border-radius:16px;
-      padding:16px;
-      font-size:18px;
-      box-shadow:0 10px 22px rgba(0,0,0,.12);
-    }
+@keyframes floaty{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
 
-    .m-overlay{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.20);
-      opacity:0;
-      pointer-events:none;
-      transition:.2s ease;
-    }
-    .m-overlay.show{opacity:1;pointer-events:auto}
+/* @ POSICIONADO NO QUADRIL */
+.image-wrap img.handle{
+  position:absolute;
+  bottom:32%;   /* AJUSTE FINO DO QUADRIL */
+  left:50%;
+  transform:translateX(-50%);
+  width:290px;
+  filter:drop-shadow(0 18px 28px rgba(0,0,0,.18));
+}
 
-    /* ================= HERO ================= */
-    .hero{
-      padding-top:var(--header-h);
-      min-height:calc(100svh - var(--header-h));
-      position:relative;
-      overflow:hidden;
-    }
+/* ================= TEXTO ================= */
 
-    /* fundo */
-    .hero-bg{
-      position:absolute;
-      inset:0;
-      background-color:var(--paper);
-      background-image:url("assets/FUNDO%20MOBILE.webp");
-      background-size:cover;
-      background-position:center;
-      background-repeat:no-repeat;
-      filter: blur(2px) brightness(.98);
-      transform: scale(1.05);
-      z-index:0;
-    }
+.text-block{
+  margin-top:30px;
+  max-width:520px;
+}
 
-    .hero-content{
-      position:relative;
-      z-index:2;
-      padding:0 28px 60px 28px;
-    }
+.text-block h1{
+  font-family:var(--title);
+  font-weight:700;
+  font-size:46px;
+  line-height:1.05;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+  margin:0;
+  text-align:left;
+}
 
-    /* doutora (anima só ela) */
-    .hero img.doutora{
-      width:100%;
-      max-width:390px;
-      display:block;
-      margin:0 auto;
-      margin-bottom:-120px;
-      transform-origin:center bottom;
-      animation: floaty 4.5s ease-in-out infinite;
-      filter:drop-shadow(0 20px 30px rgba(0,0,0,.22));
-    }
-    @keyframes floaty{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-10px)}
-    }
+.text-block p{
+  margin-top:20px;
+  font-size:18px;
+  line-height:1.75;
+  color:rgba(0,0,0,.6);
+  text-align:left;
+}
 
-    /* @ central e mais pra cima */
-    .handle-wrap{
-      display:flex;
-      justify-content:center;
-      margin-top:-90px;  /* sobe */
-      margin-bottom:12px;
-    }
-    .hero img.handle{
-      width:min(320px,86vw);
-      height:auto;
-      filter:drop-shadow(0 18px 28px rgba(0,0,0,.18));
-    }
+/* ================= BOTÃO ================= */
 
-    /* texto alinhado à esquerda (igual seu pedido) e mais largo */
-    .text-block{
-      margin-top:8px;
-      max-width:520px;   /* aumenta largura do bloco */
-    }
+.cta{
+  margin-top:35px;
+  position:relative;
+  overflow:hidden;
+  height:64px;
+  width:100%;
+  border-radius:18px;
+  background:var(--cta);
+  color:#fff;
+  font-size:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 12px 25px rgba(0,0,0,.18);
+  transition:.2s ease;
+}
 
-    .text-block h1{
-      font-family:var(--title);
-      font-weight:700;
-      font-size:46px;
-      line-height:1.05;
-      letter-spacing:.02em;
-      margin:0;
-      text-transform:uppercase;
-      text-align:left;
-    }
+.cta::after{
+  content:"";
+  position:absolute;
+  top:-40%;
+  left:-60%;
+  width:50%;
+  height:180%;
+  background:linear-gradient(90deg,
+    rgba(255,255,255,0),
+    rgba(255,255,255,.4),
+    rgba(255,255,255,0)
+  );
+  transform:skewX(-20deg);
+  opacity:0;
+}
 
-    .text-block p{
-      margin:20px 0 26px;
-      font-size:18px;
-      line-height:1.75;
-      color:rgba(0,0,0,.60);
-      text-align:left;
-    }
+.cta:hover{
+  transform:translateY(-2px);
+}
 
-    /* botão Quero agendar (#3B4E57) + degradê + light sweep suave */
-    .cta{
-      position:relative;
-      overflow:hidden;
-      width:100%;
-      height:64px;
-      border-radius:18px;
-      background:var(--cta);
-      color:#fff;
-      font-size:20px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-decoration:none;
-      box-shadow:0 10px 20px rgba(0,0,0,.15);
-      -webkit-tap-highlight-color:transparent;
-      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
-    }
+.cta:hover::after{
+  opacity:1;
+  animation:light 1.2s ease-in-out;
+}
 
-    /* camada de degradê suave */
-    .cta::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background: linear-gradient(135deg,
-        rgba(255,255,255,.14),
-        rgba(255,255,255,0) 35%,
-        rgba(255,255,255,.10) 70%,
-        rgba(255,255,255,0)
-      );
-      opacity:.22;
-      pointer-events:none;
-    }
+@keyframes light{
+  0%{left:-60%}
+  100%{left:140%}
+}
 
-    /* light sweep */
-    .cta::after{
-      content:"";
-      position:absolute;
-      top:-30%;
-      left:-70%;
-      width:55%;
-      height:160%;
-      background: linear-gradient(90deg,
-        rgba(255,255,255,0),
-        rgba(255,255,255,.40),
-        rgba(255,255,255,0)
-      );
-      transform: skewX(-18deg);
-      opacity:0;
-      pointer-events:none;
-    }
+/* ================= ANIMAÇÃO FADE ================= */
 
-    .cta:hover{
-      transform:translateY(-1px);
-      box-shadow:0 16px 30px rgba(0,0,0,.18);
-      filter:brightness(1.02);
-    }
-    .cta:hover::after{
-      opacity:1;
-      animation: lightSweep 1.25s ease-in-out;
-    }
-
-    @keyframes lightSweep{
-      0%{ left:-70%; }
-      100%{ left:140%; }
-    }
-
-    /* placeholders para as seções (menu não quebra) */
-    .section{padding:56px 28px;background:#fff}
-    .section h2{font-family:var(--title);font-size:32px;margin:0 0 12px}
-    .section p{margin:0;color:rgba(0,0,0,.60)}
-
-    @media (max-width:380px){
-      :root{--header-h:96px}
-      .m-logo img{height:58px}
-      .text-block{max-width:100%}
-      .text-block h1{font-size:40px}
-      .text-block p{font-size:17px}
-      .handle-wrap{margin-top:-100px}
-    }
-  </style>
+.reveal{
+  opacity:0;
+  filter:blur(10px);
+  transform:translateY(20px);
+  transition:.6s ease;
+}
+.reveal.visible{
+  opacity:1;
+  filter:blur(0);
+  transform:translateY(0);
+}
+</style>
 </head>
 
 <body>
 
-  <!-- HEADER FIXO -->
-  <header class="m-header">
-    <div class="m-header__inner">
-      <a href="#inicio" class="m-logo" aria-label="Ir para o início">
-        <img src="assets/LOGO.svg" alt="Dra. Márcia Arduini">
-      </a>
+<header>
+  <img src="assets/LOGO.svg" class="logo">
+  <div class="menu-btn">
+    <img src="assets/CLICAVEL.svg" width="22">
+  </div>
+</header>
 
-      <button class="m-menuBtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" type="button">
-        <img src="assets/CLICAVEL.svg" alt="">
-      </button>
+<section class="hero" id="inicio">
+
+  <div class="hero-bg"></div>
+
+  <div class="hero-content">
+
+    <div class="image-wrap">
+      <img src="assets/DOUTORA%20MOBILE.webp" class="doutora">
+      <img src="assets/@dramarcia.arduini.svg" class="handle">
     </div>
 
-    <nav class="m-nav" id="mNav" aria-label="Menu">
-      <a href="#inicio">Início</a>
-      <a href="#quem-sou">Quem sou</a>
-      <a href="#procedimentos">Procedimentos</a>
-      <a href="#contato">Contato</a>
+    <div class="text-block">
+      <h1 class="reveal">
+        PRECISÃO<br>
+        TÉCNICA.<br>
+        SENSIBILIDADE<br>
+        ESTÉTICA.
+      </h1>
 
-      <a class="m-wa"
-         href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
-         target="_blank" rel="noopener">
-        WhatsApp — Quero agendar
+      <p class="reveal">
+        Harmonização facial e estética<br>
+        avançada<br><br>
+        com foco em naturalidade, segurança e<br>
+        planejamento individual.
+      </p>
+
+      <a href="https://wa.me/5544991212969"
+         target="_blank"
+         class="cta reveal">
+         Quero agendar
       </a>
-    </nav>
-
-    <div class="m-overlay" id="overlay" aria-hidden="true"></div>
-  </header>
-
-  <!-- HERO / INÍCIO -->
-  <section class="hero" id="inicio" aria-label="Início">
-    <div class="hero-bg" aria-hidden="true"></div>
-
-    <div class="hero-content">
-      <img src="assets/DOUTORA%20MOBILE.webp" class="doutora" alt="Dra. Márcia Arduini">
-
-      <div class="handle-wrap">
-        <img src="assets/@dramarcia.arduini.svg" class="handle reveal d1" alt="@dramarcia.arduini">
-      </div>
-
-      <div class="text-block">
-        <h1 class="reveal d2">
-          PRECISÃO<br>
-          TÉCNICA.<br>
-          SENSIBILIDADE<br>
-          ESTÉTICA.
-        </h1>
-
-        <p class="reveal d3">
-          Harmonização facial e estética<br>
-          avançada<br><br>
-          com foco em naturalidade, segurança e<br>
-          planejamento individual.
-        </p>
-
-        <a class="cta reveal d4"
-           href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
-           target="_blank" rel="noopener">
-          Quero agendar
-        </a>
-      </div>
     </div>
-  </section>
 
-  <!-- placeholders (substitua depois) -->
-  <section class="section" id="quem-sou" aria-label="Quem sou">
-    <h2>Quem sou</h2><p>(próxima seção)</p>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="procedimentos" aria-label="Procedimentos">
-    <h2>Procedimentos</h2><p>(próxima seção)</p>
-  </section>
-
-  <section class="section" id="contato" aria-label="Contato">
-    <h2>Contato</h2><p>(próxima seção)</p>
-  </section>
-
-  <script>
-    // menu
-    const btn = document.getElementById("menuBtn");
-    const nav = document.getElementById("mNav");
-    const overlay = document.getElementById("overlay");
-
-    function closeMenu(){
-      nav.classList.remove("open");
-      overlay.classList.remove("show");
-      btn.setAttribute("aria-expanded","false");
+<script>
+const elements=document.querySelectorAll(".reveal");
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible");
     }
-
-    btn.addEventListener("click", () => {
-      const willOpen = !nav.classList.contains("open");
-      nav.classList.toggle("open");
-      overlay.classList.toggle("show");
-      btn.setAttribute("aria-expanded", willOpen ? "true" : "false");
-    });
-
-    overlay.addEventListener("click", closeMenu);
-    nav.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
-
-    // reveal (fade + blur) ao carregar
-    const revealEls = document.querySelectorAll(".reveal");
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("is-visible");
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.25 });
-
-    revealEls.forEach(el => io.observe(el));
-  </script>
+  });
+});
+elements.forEach(el=>obs.observe(el));
+</script>
 
 </body>
 </html>
