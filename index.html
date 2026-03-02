@@ -1,366 +1,215 @@
 <!doctype html>
 <html lang="pt-br">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dra. Márcia Arduini</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 :root{
   --title:"Cormorant Garamond", serif;
-  --body:"Cora","Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-
+  --body:"Source Sans 3", sans-serif;
   --paper:#E7E3DC;
-  --ink:#3B4E57;
-
-  --header-h:104px;
+  --cta:#3B4E57;
+  --header-h:100px;
 }
 
 *{box-sizing:border-box}
-html,body{height:100%}
 body{
   margin:0;
   font-family:var(--body);
-  font-weight:300;
-  font-size:15px;
-  line-height:1.55;
-  color:#111;
   background:#fff;
+  color:#111;
 }
-img{max-width:100%;display:block}
-a{text-decoration:none}
-
-/* ===== animação fade-in com blur ===== */
-.reveal{
-  opacity:0;
-  filter: blur(10px);
-  transform: translateY(14px);
-  transition: opacity .65s ease, filter .65s ease, transform .65s ease;
-  will-change: opacity, filter, transform;
-}
-.reveal.is-visible{
-  opacity:1;
-  filter: blur(0);
-  transform: translateY(0);
-}
-.delay-1{ transition-delay: .08s; }
-.delay-2{ transition-delay: .16s; }
-.delay-3{ transition-delay: .24s; }
-.delay-4{ transition-delay: .32s; }
 
 /* ================= HEADER ================= */
-.m-header{
-  position:fixed;
-  top:0; left:0; right:0;
-  z-index:9999;
-  background:var(--paper);
-  border-bottom:1px solid rgba(0,0,0,.08);
-}
 
-.m-header__inner{
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
   height:var(--header-h);
-  padding:18px;
+  background:var(--paper);
   display:flex;
   align-items:center;
   justify-content:space-between;
+  padding:0 20px;
+  z-index:999;
+  border-bottom:1px solid rgba(0,0,0,.05);
 }
 
-.m-logo img{ height:64px; width:auto; }
+header img.logo{
+  height:60px;
+}
 
-.m-menuBtn{
-  width:56px;
-  height:56px;
-  border-radius:18px;
-  border:1px solid rgba(0,0,0,.10);
-  background:rgba(255,255,255,.45);
+.menu-btn{
+  width:52px;
+  height:52px;
+  border-radius:16px;
+  background:#fff;
+  border:1px solid rgba(0,0,0,.1);
   display:flex;
   align-items:center;
   justify-content:center;
-  cursor:pointer;
-  padding:0;
 }
-.m-menuBtn img{ width:26px; height:26px; }
-
-/* MENU */
-.m-nav{
-  position:absolute;
-  top:calc(var(--header-h) - 6px);
-  right:18px;
-  width:min(320px, calc(100vw - 36px));
-  background:rgba(255,255,255,.95);
-  backdrop-filter:blur(12px);
-  border:1px solid rgba(0,0,0,.10);
-  border-radius:20px;
-  padding:14px;
-  box-shadow:0 20px 50px rgba(0,0,0,.15);
-
-  opacity:0;
-  transform:translateY(-10px);
-  pointer-events:none;
-  transition:.2s ease;
-}
-.m-nav.open{ opacity:1; transform:translateY(0); pointer-events:auto; }
-
-.m-nav a{
-  display:block;
-  padding:14px 16px;
-  font-size:18px;
-  font-weight:300;
-  color:#111;
-  border-radius:14px;
-}
-.m-nav a:active{ background:rgba(0,0,0,.05); }
-
-.m-wa{
-  margin-top:10px;
-  background:#3B4E57;
-  color:#fff !important;
-  text-align:center;
-  border-radius:16px;
-  padding:16px;
-  font-size:18px;
-  box-shadow:0 10px 22px rgba(0,0,0,.12);
-}
-
-/* overlay */
-.m-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.20);
-  opacity:0;
-  pointer-events:none;
-  transition:.2s ease;
-}
-.m-overlay.show{ opacity:1; pointer-events:auto; }
 
 /* ================= HERO ================= */
-.m-hero{
+
+.hero{
   padding-top:var(--header-h);
-  min-height:calc(100svh - var(--header-h));
+  min-height:100vh;
   position:relative;
   overflow:hidden;
 }
 
-/* fundo com blur leve */
-.m-hero__bg{
+/* Fundo */
+.hero-bg{
   position:absolute;
   inset:0;
-  background-color:var(--paper);
-  background-image:url("assets/FUNDO%20MOBILE.webp");
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-  filter:blur(2px) brightness(.98);
+  background:url("assets/FUNDO%20MOBILE.webp") center/cover no-repeat;
+  filter:blur(2px);
   transform:scale(1.05);
   z-index:0;
 }
 
-.m-hero__wrap{
+/* Conteúdo */
+.hero-content{
   position:relative;
   z-index:2;
-  padding:18px 18px 40px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+  padding:0 28px 60px 28px;
 }
 
-.m-hero__figure{
+/* Doutora */
+.hero img.doutora{
   width:100%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+  max-width:390px;
+  display:block;
+  margin:0 auto;
+  margin-bottom:-120px;
+  filter:drop-shadow(0 20px 30px rgba(0,0,0,.2));
 }
 
-/* doutora */
-.m-hero__doc{
-  width:min(390px,92vw);
-  height:auto;
-  margin-bottom:-135px;
-  transform-origin:center bottom;
-  animation:mFloat 4.5s ease-in-out infinite;
-  filter:drop-shadow(0 20px 30px rgba(0,0,0,.22));
-}
-@keyframes mFloat{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-10px)}
+/* @ */
+.hero img.handle{
+  width:290px;
+  margin-top:-40px;
+  margin-bottom:10px;
 }
 
-/* @ maior e mais alto */
-.m-hero__handle{
-  margin-top:-42px;
-  width:min(320px,86vw);
-  height:auto;
-  filter:drop-shadow(0 18px 28px rgba(0,0,0,.18));
+/* BLOCO TEXTO */
+.text-block{
+  margin-top:10px;
 }
 
-/* bloco de texto igual ao Figma */
-.m-hero__text{
-  margin-top:12px;
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-
-/* TÍTULO: 4 linhas controladas + espaçamento semelhante ao print */
-.m-hero__title{
-  margin:0;
+/* TÍTULO */
+.text-block h1{
   font-family:var(--title);
   font-weight:700;
-  font-size:44px;           /* ajuste fino */
-  line-height:1.04;
-  color:#111;
-  text-transform:uppercase;
-  letter-spacing:.10em;     /* “aberto” como no Figma */
-}
-.m-hero__title .line{ display:block; }
-
-/* SUBTÍTULO: exatamente 4 linhas (como no print) */
-.m-hero__subtitle{
-  margin:18px 0 24px;
-  font-family:var(--body);
-  font-weight:300;
-  font-size:18px;           /* no print parece maior que 15 */
-  line-height:1.75;
-  color:rgba(17,17,17,.62);
+  font-size:46px;
+  line-height:1.05;
   letter-spacing:.02em;
+  margin:0;
 }
-.m-hero__subtitle .line{ display:block; }
 
-/* BOTÃO cor #3B4E57 */
-.m-hero__cta{
-  width:min(92vw,420px);
+/* SUBTÍTULO */
+.text-block p{
+  margin-top:20px;
+  font-size:18px;
+  line-height:1.75;
+  color:rgba(0,0,0,.6);
+}
+
+/* BOTÃO */
+.cta{
+  margin-top:35px;
   height:64px;
+  width:100%;
   border-radius:18px;
-  background:#3B4E57;
+  background:var(--cta);
   color:#fff;
+  font-size:20px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-family:var(--body);
-  font-weight:300;
-  font-size:20px;
-  letter-spacing:.02em;
-  box-shadow:0 10px 22px rgba(0,0,0,.12);
-  -webkit-tap-highlight-color:transparent;
-}
-.m-hero__cta:active{transform:translateY(1px)}
-
-@media (max-width:390px){
-  .m-hero__title{ font-size:40px; letter-spacing:.095em; }
-  .m-hero__subtitle{ font-size:17px; }
+  text-decoration:none;
+  box-shadow:0 10px 20px rgba(0,0,0,.15);
 }
 
-@media (max-width:360px){
-  .m-hero__title{ font-size:38px; letter-spacing:.09em; }
-  .m-hero__subtitle{ font-size:16px; }
+/* ================= ANIMAÇÃO ================= */
+
+.reveal{
+  opacity:0;
+  filter:blur(10px);
+  transform:translateY(20px);
+  transition:all .6s ease;
+}
+
+.reveal.visible{
+  opacity:1;
+  filter:blur(0);
+  transform:translateY(0);
 }
 </style>
 </head>
 
 <body>
 
-<header class="m-header">
-  <div class="m-header__inner">
-    <a href="#inicio" class="m-logo" aria-label="Ir para o início">
-      <img src="assets/LOGO.svg" alt="Dra. Márcia Arduini">
-    </a>
-
-    <button class="m-menuBtn" id="menuBtn" aria-label="Abrir menu">
-      <img src="assets/CLICAVEL.svg" alt="">
-    </button>
+<header>
+  <img src="assets/LOGO.svg" class="logo">
+  <div class="menu-btn">
+    <img src="assets/CLICAVEL.svg" width="22">
   </div>
-
-  <nav class="m-nav" id="mNav" aria-label="Menu">
-    <a href="#inicio">Início</a>
-    <a href="#quem-sou">Quem sou</a>
-    <a href="#procedimentos">Procedimentos</a>
-    <a href="#contato">Contato</a>
-
-    <a class="m-wa"
-       href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
-       target="_blank" rel="noopener">
-       WhatsApp — Quero agendar
-    </a>
-  </nav>
-
-  <div class="m-overlay" id="overlay" aria-hidden="true"></div>
 </header>
 
-<section class="m-hero" id="inicio" aria-label="Início">
-  <div class="m-hero__bg" aria-hidden="true"></div>
+<section class="hero">
 
-  <div class="m-hero__wrap">
-    <div class="m-hero__figure">
-      <img class="m-hero__doc" src="assets/DOUTORA%20MOBILE.webp" alt="Dra. Márcia Arduini">
-      <img class="m-hero__handle reveal delay-1" src="assets/@dramarcia.arduini.svg" alt="@dramarcia.arduini">
-    </div>
+  <div class="hero-bg"></div>
 
-    <div class="m-hero__text">
-      <!-- TÍTULO IGUAL AO FIGMA (4 linhas) -->
-      <h1 class="m-hero__title reveal delay-2">
-        <span class="line">Precisão</span>
-        <span class="line">técnica.</span>
-        <span class="line">sensibilidade</span>
-        <span class="line">estética.</span>
+  <div class="hero-content">
+
+    <img src="assets/DOUTORA%20MOBILE.webp" class="doutora">
+
+    <img src="assets/@dramarcia.arduini.svg" class="handle reveal">
+
+    <div class="text-block">
+      <h1 class="reveal">
+        PRECISÃO<br>
+        TÉCNICA.<br>
+        SENSIBILIDADE<br>
+        ESTÉTICA.
       </h1>
 
-      <!-- SUBTÍTULO IGUAL AO FIGMA (4 linhas) -->
-      <p class="m-hero__subtitle reveal delay-3">
-        <span class="line">Harmonização facial e estética</span>
-        <span class="line">avançada</span>
-        <span class="line">com foco em naturalidade, segurança e</span>
-        <span class="line">planejamento individual.</span>
+      <p class="reveal">
+        Harmonização facial e estética<br>
+        avançada<br><br>
+        com foco em naturalidade, segurança e<br>
+        planejamento individual.
       </p>
 
-      <a class="m-hero__cta reveal delay-4"
-         href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
-         target="_blank" rel="noopener">
-         Quero agendar
+      <a href="https://wa.me/5544991212969" target="_blank" class="cta reveal">
+        Quero agendar
       </a>
     </div>
+
   </div>
 </section>
 
-<!-- placeholders -->
-<section id="quem-sou" style="padding:40px 18px;background:#fff;"></section>
-<section id="procedimentos" style="padding:40px 18px;background:#fff;"></section>
-<section id="contato" style="padding:40px 18px;background:#fff;"></section>
-
 <script>
-/* menu */
-const btn = document.getElementById("menuBtn");
-const nav = document.getElementById("mNav");
-const overlay = document.getElementById("overlay");
+const elements = document.querySelectorAll(".reveal");
 
-function closeMenu(){
-  nav.classList.remove("open");
-  overlay.classList.remove("show");
-}
-btn.addEventListener("click",()=>{
-  nav.classList.toggle("open");
-  overlay.classList.toggle("show");
-});
-overlay.addEventListener("click", closeMenu);
-nav.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
-
-/* reveal: fade-in + blur */
-const revealEls = document.querySelectorAll(".reveal");
-const io = new IntersectionObserver((entries) => {
-  entries.forEach((e) => {
-    if (e.isIntersecting) {
-      e.target.classList.add("is-visible");
-      io.unobserve(e.target);
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible");
     }
   });
-}, { threshold: 0.25 });
+});
 
-revealEls.forEach(el => io.observe(el));
+elements.forEach(el=>observer.observe(el));
 </script>
 
 </body>
