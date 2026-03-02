@@ -37,50 +37,159 @@
     a{text-decoration:none}
 
     /* HEADER FIXO */
-    .m-header{
-      position:fixed;
-      top:0; left:0; right:0;
-      z-index:9999;
-      background:var(--paper);
-      border-bottom:1px solid rgba(0,0,0,.06);
-    }
-    .m-header__inner{
-      height:var(--header-h);
-      padding:18px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-    }
-    .m-brand{
-      font-family:var(--body);
-      font-weight:300;
-      font-size:26px;
-      line-height:1.05;
-      color:#111;
-    }
-    .m-brand span{display:block}
+    <header class="m-header">
 
-    /* menu fake só pra ficar igual ao layout (você pode ligar depois) */
-    .m-menu{
-      width:48px;
-      height:48px;
-      border-radius:14px;
-      border:1px solid rgba(0,0,0,.12);
-      background:rgba(255,255,255,.45);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:4px;
-      cursor:pointer;
-    }
-    .m-menu i{
-      display:block;
-      width:18px;height:2px;
-      background:var(--ink);
-      border-radius:2px;
-    }
+  <div class="m-header__inner">
+    <a href="#inicio" class="m-logo">
+      <img src="assets/LOGO.svg" alt="Dra. Márcia Arduini">
+    </a>
 
+    <button class="m-menuBtn" id="menuBtn">
+      <img src="assets/CLICAVEL.svg" alt="Abrir menu">
+    </button>
+  </div>
+
+  <nav class="m-nav" id="mNav">
+    <a href="#inicio">Início</a>
+    <a href="#quem-sou">Quem sou</a>
+    <a href="#procedimentos">Procedimentos</a>
+    <a href="#contato">Contato</a>
+
+    <a class="m-wa"
+       href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
+       target="_blank">
+       Quero agendar no WhatsApp
+    </a>
+  </nav>
+
+  <div class="m-overlay" id="overlay"></div>
+
+</header>
+
+<style>
+:root{
+  --paper:#E7E3DC;
+  --ink:#3B4E57;
+  --green:#2E7D32;
+  --header-h:104px;
+}
+
+.m-header{
+  position:fixed;
+  top:0; left:0; right:0;
+  background:var(--paper);
+  border-bottom:1px solid rgba(0,0,0,.08);
+  z-index:9999;
+}
+
+.m-header__inner{
+  height:var(--header-h);
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.m-logo img{
+  height:46px;
+}
+
+.m-menuBtn{
+  width:54px;
+  height:54px;
+  border-radius:16px;
+  border:1px solid rgba(0,0,0,.10);
+  background:rgba(255,255,255,.4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+
+.m-menuBtn img{
+  width:26px;
+}
+
+/* MENU */
+.m-nav{
+  position:absolute;
+  top:calc(var(--header-h) - 8px);
+  right:18px;
+  width:280px;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(12px);
+  border-radius:20px;
+  padding:14px;
+  box-shadow:0 20px 50px rgba(0,0,0,.15);
+
+  opacity:0;
+  transform:translateY(-10px);
+  pointer-events:none;
+  transition:.2s ease;
+}
+
+.m-nav.open{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
+
+.m-nav a{
+  display:block;
+  padding:14px 16px;
+  font-size:18px;
+  font-weight:300;
+  color:#111;
+  border-radius:14px;
+  text-decoration:none;
+}
+
+.m-nav a:active{
+  background:rgba(0,0,0,.05);
+}
+
+.m-wa{
+  margin-top:10px;
+  background:var(--green);
+  color:#fff !important;
+  text-align:center;
+  border-radius:16px;
+  padding:16px;
+  font-size:18px;
+}
+
+/* overlay */
+.m-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.2);
+  opacity:0;
+  pointer-events:none;
+  transition:.2s ease;
+}
+
+.m-overlay.show{
+  opacity:1;
+  pointer-events:auto;
+}
+</style>
+
+<script>
+const btn = document.getElementById("menuBtn");
+const nav = document.getElementById("mNav");
+const overlay = document.getElementById("overlay");
+
+btn.addEventListener("click", () => {
+  nav.classList.toggle("open");
+  overlay.classList.toggle("show");
+});
+
+overlay.addEventListener("click", () => {
+  nav.classList.remove("open");
+  overlay.classList.remove("show");
+});
+</script>
+  
     /* HERO */
     .m-hero{
       padding-top:var(--header-h);
