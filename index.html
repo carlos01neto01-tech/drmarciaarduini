@@ -17,8 +17,6 @@
 
   --paper:#E7E3DC;
   --ink:#3B4E57;
-  --green:#2E7D32;
-
   --header-h:104px;
 }
 
@@ -54,7 +52,7 @@ a{text-decoration:none}
 }
 
 .m-logo img{
-  height:64px; /* LOGO MAIOR */
+  height:64px;
   width:auto;
 }
 
@@ -68,11 +66,10 @@ a{text-decoration:none}
   align-items:center;
   justify-content:center;
   cursor:pointer;
+  padding:0;
 }
 
-.m-menuBtn img{
-  width:26px;
-}
+.m-menuBtn img{ width:26px; height:26px; }
 
 /* MENU */
 .m-nav{
@@ -92,12 +89,7 @@ a{text-decoration:none}
   pointer-events:none;
   transition:.2s ease;
 }
-
-.m-nav.open{
-  opacity:1;
-  transform:translateY(0);
-  pointer-events:auto;
-}
+.m-nav.open{ opacity:1; transform:translateY(0); pointer-events:auto; }
 
 .m-nav a{
   display:block;
@@ -107,12 +99,11 @@ a{text-decoration:none}
   color:#111;
   border-radius:14px;
 }
-
 .m-nav a:active{ background:rgba(0,0,0,.05); }
 
 .m-wa{
   margin-top:10px;
-  background:var(--green);
+  background:var(--ink);
   color:#fff !important;
   text-align:center;
   border-radius:16px;
@@ -130,10 +121,7 @@ a{text-decoration:none}
   pointer-events:none;
   transition:.2s ease;
 }
-.m-overlay.show{
-  opacity:1;
-  pointer-events:auto;
-}
+.m-overlay.show{ opacity:1; pointer-events:auto; }
 
 /* ================= HERO ================= */
 .m-hero{
@@ -143,7 +131,7 @@ a{text-decoration:none}
   overflow:hidden;
 }
 
-/* FUNDO COM DESFOQUE */
+/* fundo com blur */
 .m-hero__bg{
   position:absolute;
   inset:0;
@@ -173,11 +161,11 @@ a{text-decoration:none}
   align-items:center;
 }
 
-/* DOUTORA */
+/* doutora */
 .m-hero__doc{
   width:min(390px,92vw);
   height:auto;
-  margin-bottom:-115px; /* MAIS COLADA */
+  margin-bottom:-135px; /* mais colada */
   transform-origin:center bottom;
   animation:mFloat 4.5s ease-in-out infinite;
   filter:drop-shadow(0 20px 30px rgba(0,0,0,.22));
@@ -188,23 +176,24 @@ a{text-decoration:none}
   50%{transform:translateY(-10px)}
 }
 
-/* @ MAIS ALTO */
+/* @ maior e mais alto */
 .m-hero__handle{
-  margin-top:-25px;
-  width:min(260px,68vw);
+  margin-top:-42px;          /* sobe mais */
+  width:min(320px,86vw);     /* aumenta */
   height:auto;
   filter:drop-shadow(0 18px 28px rgba(0,0,0,.18));
 }
 
-/* TEXTO */
+/* texto */
 .m-hero__text{
-  margin-top:8px;
+  margin-top:10px;
   text-align:center;
   display:flex;
   flex-direction:column;
   align-items:center;
 }
 
+/* titulo em caixa alta */
 .m-hero__title{
   margin:0;
   font-family:var(--title);
@@ -212,11 +201,14 @@ a{text-decoration:none}
   font-size:40px;
   line-height:1.05;
   color:#111;
+  text-transform:uppercase;
+  letter-spacing:.5px;
 }
 
+/* subtitulo 2 linhas */
 .m-hero__subtitle{
   margin:14px 0 20px;
-  max-width:36ch;
+  max-width:34ch;
   font-family:var(--body);
   font-weight:300;
   font-size:15px;
@@ -224,12 +216,12 @@ a{text-decoration:none}
   color:rgba(17,17,17,.78);
 }
 
-/* BOTÃO */
+/* botão na cor #3B4E57 */
 .m-hero__cta{
   width:min(92vw,420px);
   height:64px;
   border-radius:18px;
-  background:var(--green);
+  background:#3B4E57;
   color:#fff;
   display:flex;
   align-items:center;
@@ -245,7 +237,8 @@ a{text-decoration:none}
 @media (max-width:380px){
   .m-logo img{height:58px}
   .m-hero__title{font-size:36px}
-  .m-hero__doc{margin-bottom:-130px}
+  .m-hero__doc{margin-bottom:-150px}
+  .m-hero__handle{width:min(320px,92vw); margin-top:-46px;}
 }
 </style>
 </head>
@@ -254,16 +247,16 @@ a{text-decoration:none}
 
 <header class="m-header">
   <div class="m-header__inner">
-    <a href="#inicio" class="m-logo">
+    <a href="#inicio" class="m-logo" aria-label="Ir para o início">
       <img src="assets/LOGO.svg" alt="Dra. Márcia Arduini">
     </a>
 
-    <button class="m-menuBtn" id="menuBtn">
+    <button class="m-menuBtn" id="menuBtn" aria-label="Abrir menu">
       <img src="assets/CLICAVEL.svg" alt="">
     </button>
   </div>
 
-  <nav class="m-nav" id="mNav">
+  <nav class="m-nav" id="mNav" aria-label="Menu">
     <a href="#inicio">Início</a>
     <a href="#quem-sou">Quem sou</a>
     <a href="#procedimentos">Procedimentos</a>
@@ -271,16 +264,16 @@ a{text-decoration:none}
 
     <a class="m-wa"
        href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
-       target="_blank">
-       Quero agendar no WhatsApp
+       target="_blank" rel="noopener">
+       WhatsApp — Quero agendar
     </a>
   </nav>
 
-  <div class="m-overlay" id="overlay"></div>
+  <div class="m-overlay" id="overlay" aria-hidden="true"></div>
 </header>
 
-<section class="m-hero" id="inicio">
-  <div class="m-hero__bg"></div>
+<section class="m-hero" id="inicio" aria-label="Início">
+  <div class="m-hero__bg" aria-hidden="true"></div>
 
   <div class="m-hero__wrap">
     <div class="m-hero__figure">
@@ -292,33 +285,41 @@ a{text-decoration:none}
       <h1 class="m-hero__title">Precisão técnica.<br>Sensibilidade estética.</h1>
 
       <p class="m-hero__subtitle">
-        Harmonização facial e estética avançada com foco em naturalidade,
-        segurança e planejamento individual.
+        Harmonização facial e estética avançada<br>
+        com foco em naturalidade, segurança e planejamento individual.
       </p>
 
       <a class="m-hero__cta"
          href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
-         target="_blank">
+         target="_blank" rel="noopener">
          Quero agendar
       </a>
     </div>
   </div>
 </section>
 
+<!-- placeholders (depois você substitui) -->
+<section id="quem-sou" style="padding:40px 18px;background:#fff;"></section>
+<section id="procedimentos" style="padding:40px 18px;background:#fff;"></section>
+<section id="contato" style="padding:40px 18px;background:#fff;"></section>
+
 <script>
-const btn=document.getElementById("menuBtn");
-const nav=document.getElementById("mNav");
-const overlay=document.getElementById("overlay");
+const btn = document.getElementById("menuBtn");
+const nav = document.getElementById("mNav");
+const overlay = document.getElementById("overlay");
+
+function closeMenu(){
+  nav.classList.remove("open");
+  overlay.classList.remove("show");
+}
 
 btn.addEventListener("click",()=>{
   nav.classList.toggle("open");
   overlay.classList.toggle("show");
 });
 
-overlay.addEventListener("click",()=>{
-  nav.classList.remove("open");
-  overlay.classList.remove("show");
-});
+overlay.addEventListener("click", closeMenu);
+nav.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
 </script>
 
 </body>
