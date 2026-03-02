@@ -18,6 +18,7 @@
 
       --paper:#E7E3DC;
       --ink:#3B4E57;
+      --green:#2E7D32;
 
       --header-h: 104px;
     }
@@ -36,161 +37,109 @@
     img{max-width:100%;display:block}
     a{text-decoration:none}
 
-    /* HEADER FIXO */
-    <header class="m-header">
+    /* ================= HEADER FIXO + MENU ================= */
+    .m-header{
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:9999;
+      background:var(--paper);
+      border-bottom:1px solid rgba(0,0,0,.08);
+    }
 
-  <div class="m-header__inner">
-    <a href="#inicio" class="m-logo">
-      <img src="assets/LOGO.svg" alt="Dra. Márcia Arduini">
-    </a>
+    .m-header__inner{
+      height:var(--header-h);
+      padding:18px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
 
-    <button class="m-menuBtn" id="menuBtn">
-      <img src="assets/CLICAVEL.svg" alt="Abrir menu">
-    </button>
-  </div>
+    .m-logo img{
+      height:46px;
+      width:auto;
+    }
 
-  <nav class="m-nav" id="mNav">
-    <a href="#inicio">Início</a>
-    <a href="#quem-sou">Quem sou</a>
-    <a href="#procedimentos">Procedimentos</a>
-    <a href="#contato">Contato</a>
+    .m-menuBtn{
+      width:54px;
+      height:54px;
+      border-radius:16px;
+      border:1px solid rgba(0,0,0,.10);
+      background:rgba(255,255,255,.40);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      padding:0;
+    }
 
-    <a class="m-wa"
-       href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
-       target="_blank">
-       Quero agendar no WhatsApp
-    </a>
-  </nav>
+    .m-menuBtn img{
+      width:26px;
+      height:26px;
+    }
 
-  <div class="m-overlay" id="overlay"></div>
+    /* dropdown */
+    .m-nav{
+      position:absolute;
+      top:calc(var(--header-h) - 8px);
+      right:18px;
+      width:min(320px, calc(100vw - 36px));
+      background:rgba(255,255,255,.95);
+      backdrop-filter:blur(12px);
+      border:1px solid rgba(0,0,0,.10);
+      border-radius:20px;
+      padding:14px;
+      box-shadow:0 20px 50px rgba(0,0,0,.15);
 
-</header>
+      opacity:0;
+      transform:translateY(-10px);
+      pointer-events:none;
+      transition:.2s ease;
+    }
 
-<style>
-:root{
-  --paper:#E7E3DC;
-  --ink:#3B4E57;
-  --green:#2E7D32;
-  --header-h:104px;
-}
+    .m-nav.open{
+      opacity:1;
+      transform:translateY(0);
+      pointer-events:auto;
+    }
 
-.m-header{
-  position:fixed;
-  top:0; left:0; right:0;
-  background:var(--paper);
-  border-bottom:1px solid rgba(0,0,0,.08);
-  z-index:9999;
-}
+    .m-nav a{
+      display:block;
+      padding:14px 16px;
+      font-size:18px;
+      font-weight:300;
+      color:#111;
+      border-radius:14px;
+    }
 
-.m-header__inner{
-  height:var(--header-h);
-  padding:18px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
+    .m-nav a:active{ background:rgba(0,0,0,.05); }
 
-.m-logo img{
-  height:46px;
-}
+    .m-wa{
+      margin-top:10px;
+      background:var(--green);
+      color:#fff !important;
+      text-align:center;
+      border-radius:16px;
+      padding:16px;
+      font-size:18px;
+      box-shadow:0 10px 22px rgba(0,0,0,.12);
+    }
 
-.m-menuBtn{
-  width:54px;
-  height:54px;
-  border-radius:16px;
-  border:1px solid rgba(0,0,0,.10);
-  background:rgba(255,255,255,.4);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-}
+    /* overlay */
+    .m-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.20);
+      opacity:0;
+      pointer-events:none;
+      transition:.2s ease;
+    }
+    .m-overlay.show{
+      opacity:1;
+      pointer-events:auto;
+    }
 
-.m-menuBtn img{
-  width:26px;
-}
-
-/* MENU */
-.m-nav{
-  position:absolute;
-  top:calc(var(--header-h) - 8px);
-  right:18px;
-  width:280px;
-  background:rgba(255,255,255,.95);
-  backdrop-filter:blur(12px);
-  border-radius:20px;
-  padding:14px;
-  box-shadow:0 20px 50px rgba(0,0,0,.15);
-
-  opacity:0;
-  transform:translateY(-10px);
-  pointer-events:none;
-  transition:.2s ease;
-}
-
-.m-nav.open{
-  opacity:1;
-  transform:translateY(0);
-  pointer-events:auto;
-}
-
-.m-nav a{
-  display:block;
-  padding:14px 16px;
-  font-size:18px;
-  font-weight:300;
-  color:#111;
-  border-radius:14px;
-  text-decoration:none;
-}
-
-.m-nav a:active{
-  background:rgba(0,0,0,.05);
-}
-
-.m-wa{
-  margin-top:10px;
-  background:var(--green);
-  color:#fff !important;
-  text-align:center;
-  border-radius:16px;
-  padding:16px;
-  font-size:18px;
-}
-
-/* overlay */
-.m-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.2);
-  opacity:0;
-  pointer-events:none;
-  transition:.2s ease;
-}
-
-.m-overlay.show{
-  opacity:1;
-  pointer-events:auto;
-}
-</style>
-
-<script>
-const btn = document.getElementById("menuBtn");
-const nav = document.getElementById("mNav");
-const overlay = document.getElementById("overlay");
-
-btn.addEventListener("click", () => {
-  nav.classList.toggle("open");
-  overlay.classList.toggle("show");
-});
-
-overlay.addEventListener("click", () => {
-  nav.classList.remove("open");
-  overlay.classList.remove("show");
-});
-</script>
-  
-    /* HERO */
+    /* ================= HERO MOBILE ================= */
     .m-hero{
       padding-top:var(--header-h);
       min-height:calc(100svh - var(--header-h));
@@ -198,12 +147,11 @@ overlay.addEventListener("click", () => {
       overflow:hidden;
     }
 
-    /* FUNDO */
     .m-hero__bg{
       position:absolute;
       inset:0;
       background-color:var(--paper);
-      background-image:url("assets/FUNDO%20MOBILE.webp"); /* <- mantém assim pra funcionar com espaço */
+      background-image:url("assets/FUNDO%20MOBILE.webp");
       background-size:cover;
       background-position:center;
       background-repeat:no-repeat;
@@ -219,27 +167,22 @@ overlay.addEventListener("click", () => {
       align-items:center;
     }
 
-    /* FOTO PRIMEIRO */
     .m-hero__figure{
       width:100%;
       display:flex;
       flex-direction:column;
       align-items:center;
     }
+
     .m-hero__doc{
       width:min(390px, 92vw);
       height:auto;
-      margin-bottom:-85px; /* aproxima @ + texto */
+      margin-bottom:-85px; /* cola @ + texto */
       transform-origin:center bottom;
       animation:mFloat 4.5s ease-in-out infinite;
       filter:drop-shadow(0 18px 28px rgba(0,0,0,.18));
     }
-    @keyframes mFloat{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-10px)}
-    }
 
-    /* @ colado na base */
     .m-hero__handle{
       margin-top:-8px;
       width:min(240px, 66vw);
@@ -247,7 +190,11 @@ overlay.addEventListener("click", () => {
       filter:drop-shadow(0 10px 16px rgba(0,0,0,.10));
     }
 
-    /* TEXTO DEPOIS */
+    @keyframes mFloat{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-10px)}
+    }
+
     .m-hero__text{
       margin-top:6px;
       width:100%;
@@ -256,6 +203,7 @@ overlay.addEventListener("click", () => {
       flex-direction:column;
       align-items:center;
     }
+
     .m-hero__title{
       margin:0;
       font-family:var(--title);
@@ -264,6 +212,7 @@ overlay.addEventListener("click", () => {
       line-height:1.05;
       color:#111;
     }
+
     .m-hero__subtitle{
       margin:12px 0 18px;
       max-width:36ch;
@@ -274,12 +223,11 @@ overlay.addEventListener("click", () => {
       color:rgba(17,17,17,.78);
     }
 
-    /* BOTÃO VERDE */
     .m-hero__cta{
       width:min(92vw, 420px);
       height:64px;
       border-radius:18px;
-      background:#2E7D32;
+      background:var(--green);
       color:#fff;
       display:flex;
       align-items:center;
@@ -293,12 +241,24 @@ overlay.addEventListener("click", () => {
     }
     .m-hero__cta:active{transform:translateY(1px)}
 
+    /* placeholders das próximas sessões (pra não quebrar o menu) */
+    .m-section{
+      padding:38px 18px;
+      background:#fff;
+    }
+    .m-section h2{
+      font-family:var(--title);
+      font-size:32px;
+      margin:0 0 10px;
+    }
+    .m-section p{margin:0; opacity:.8}
+
     @media (max-width: 380px){
       :root{--header-h: 96px;}
-      .m-brand{font-size:22px}
       .m-hero__title{font-size:36px}
       .m-hero__cta{height:58px;font-size:18px}
       .m-hero__doc{margin-bottom:-95px}
+      .m-logo img{height:42px}
     }
   </style>
 </head>
@@ -308,18 +268,32 @@ overlay.addEventListener("click", () => {
   <!-- HEADER FIXO -->
   <header class="m-header">
     <div class="m-header__inner">
-      <div class="m-brand">
-        <span>Dra. Márcia</span>
-        <span>Arduini</span>
-      </div>
+      <a href="#inicio" class="m-logo" aria-label="Ir para o início">
+        <img src="assets/LOGO.svg" alt="Dra. Márcia Arduini">
+      </a>
 
-      <button class="m-menu" aria-label="Menu">
-        <i></i><i></i><i></i>
+      <button class="m-menuBtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">
+        <img src="assets/CLICAVEL.svg" alt="">
       </button>
     </div>
+
+    <nav class="m-nav" id="mNav" aria-label="Menu">
+      <a href="#inicio">Início</a>
+      <a href="#quem-sou">Quem sou</a>
+      <a href="#procedimentos">Procedimentos</a>
+      <a href="#contato">Contato</a>
+
+      <a class="m-wa"
+         href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
+         target="_blank" rel="noopener">
+        Quero agendar no WhatsApp
+      </a>
+    </nav>
+
+    <div class="m-overlay" id="overlay" aria-hidden="true"></div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO (INÍCIO) -->
   <section class="m-hero" id="inicio" aria-label="Início">
     <div class="m-hero__bg" aria-hidden="true"></div>
 
@@ -345,6 +319,48 @@ overlay.addEventListener("click", () => {
       </div>
     </div>
   </section>
+
+  <!-- placeholders das próximas seções (você vai substituir depois) -->
+  <section class="m-section" id="quem-sou">
+    <h2>Quem sou</h2>
+    <p>(próxima seção)</p>
+  </section>
+
+  <section class="m-section" id="procedimentos">
+    <h2>Procedimentos</h2>
+    <p>(próxima seção)</p>
+  </section>
+
+  <section class="m-section" id="contato">
+    <h2>Contato</h2>
+    <p>(próxima seção)</p>
+  </section>
+
+  <script>
+    const btn = document.getElementById("menuBtn");
+    const nav = document.getElementById("mNav");
+    const overlay = document.getElementById("overlay");
+
+    function closeMenu(){
+      nav.classList.remove("open");
+      overlay.classList.remove("show");
+      btn.setAttribute("aria-expanded", "false");
+    }
+
+    btn.addEventListener("click", () => {
+      const willOpen = !nav.classList.contains("open");
+      nav.classList.toggle("open");
+      overlay.classList.toggle("show");
+      btn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+    });
+
+    overlay.addEventListener("click", closeMenu);
+
+    // fecha ao clicar num link do menu
+    nav.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", closeMenu);
+    });
+  </script>
 
 </body>
 </html>
