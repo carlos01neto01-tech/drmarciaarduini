@@ -1,4 +1,4 @@
-<<!doctype html>
+<!doctype html>
 <html lang="pt-br">
 <head>
   <meta charset="utf-8">
@@ -17,12 +17,14 @@
 
       --paper:#E7E3DC;
       --ink:#3B4E57;
-
       --header-h:104px;
 
-      /* ajuste fino do @ na linha da imagem */
+      /* ========= AJUSTE ÚNICO =========
+         Altura do @ em relação à imagem da doutora
+         Aumenta => desce | Diminui => sobe
+      */
+      --handle-y: 72%;
       --handle-w: min(320px, 86vw);
-      --handle-line-shift: 0px;  /* se quiser 2px pra cima: -2px | pra baixo: 2px */
     }
 
     *{box-sizing:border-box}
@@ -166,7 +168,6 @@
       margin:0 auto;
     }
 
-    /* doutora */
     .image-wrap .doutora{
       width:100%;
       transform-origin:center bottom;
@@ -179,20 +180,20 @@
       50%{ transform: translateY(-8px); }
     }
 
-    /* @ na LINHA da imagem (base do recorte) */
+    /* @ preso na IMAGEM (altura controlada por %) */
     .image-wrap .handle{
       position:absolute;
       left:50%;
-      bottom: calc(0px + var(--handle-line-shift)); /* exatamente na linha inferior */
+      top: var(--handle-y);
       width: var(--handle-w);
-      transform: translate(-50%, 50%); /* o centro do @ "encaixa" na linha */
+      transform: translate(-50%, -50%);
       filter: drop-shadow(0 18px 28px rgba(0,0,0,.18));
       pointer-events:none;
     }
 
-    /* texto mais pra cima (porque o @ agora ocupa a faixa da linha) */
+    /* texto */
     .text-block{
-      margin-top: 44px;   /* controla a distância após o @ */
+      margin-top: 18px;
       max-width: 560px;
     }
 
@@ -289,7 +290,7 @@
       .m-logo img{ height:58px; }
       .text-block h1{ font-size:40px; }
       .text-block p{ font-size:17px; }
-      .text-block{ margin-top: 42px; }
+      .text-block{ margin-top: 14px; }
     }
   </style>
 </head>
@@ -356,20 +357,9 @@
     </div>
   </section>
 
-  <section class="section" id="quem-sou" aria-label="Quem sou">
-    <h2>Quem sou</h2>
-    <p>(próxima seção)</p>
-  </section>
-
-  <section class="section" id="procedimentos" aria-label="Procedimentos">
-    <h2>Procedimentos</h2>
-    <p>(próxima seção)</p>
-  </section>
-
-  <section class="section" id="contato" aria-label="Contato">
-    <h2>Contato</h2>
-    <p>(próxima seção)</p>
-  </section>
+  <section class="section" id="quem-sou"><h2>Quem sou</h2><p>(próxima seção)</p></section>
+  <section class="section" id="procedimentos"><h2>Procedimentos</h2><p>(próxima seção)</p></section>
+  <section class="section" id="contato"><h2>Contato</h2><p>(próxima seção)</p></section>
 
   <script>
     // MENU
