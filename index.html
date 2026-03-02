@@ -48,34 +48,54 @@
   <div class="spacer" aria-hidden="true"></div>
 
   <!-- 1) INÍCIO -->
-  <section class="inicio" id="inicio" aria-label="Início">
-    <div class="inicio__bg" aria-hidden="true"></div>
-    <div class="container">
-      <div class="inicio__wrap">
-        <div>
-          <h1>Precisão técnica. Sensibilidade estética.</h1>
-          <p>
-            Harmonizar não é transformar — é realçar com equilíbrio, respeitando a essência de cada paciente.
-            Atendimento cuidadoso, planejamento individual e foco em resultados naturais.
-          </p>
-
-          <div class="inicio__actions">
-            <a class="btn" href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener">
-              Quero agendar
-            </a>
-            <div class="pill">Avaliação + plano de tratamento</div>
-            <div class="pill">Segurança e naturalidade</div>
-          </div>
-        </div>
-
-        <div class="inicio__photo" aria-label="Destaque">
-          <img class="heroPiece" src="./assets/CABEÇALHO.svg" alt="Destaque visual">
-          <img class="instaBadge" src="./assets/@dramarcia.arduini.svg" alt="@dramarcia.arduini">
-        </div>
-      </div>
+  <!-- INICIO MOBILE: START -->
+<header class="m-header" role="banner">
+  <div class="m-header__inner">
+    <div class="m-brand">
+      <span class="m-brand__line">Dra. Márcia</span>
+      <span class="m-brand__line">Arduini</span>
     </div>
-  </section>
 
+    <a
+      class="m-cta"
+      href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
+      target="_blank"
+      rel="noopener"
+    >
+      Quero agendar
+    </a>
+  </div>
+</header>
+
+<section class="m-hero" id="inicio" aria-label="Início">
+  <!-- fundo (não anima) -->
+  <div class="m-hero__bg" aria-hidden="true"></div>
+
+  <!-- conteúdo -->
+  <div class="m-hero__wrap">
+    <!-- título (se no seu layout tiver nessa primeira dobra; se não tiver, me fala que removo) -->
+    <h1 class="m-hero__title">Precisão técnica.<br> Sensibilidade estética.</h1>
+
+    <!-- doutora (anima) -->
+    <div class="m-hero__figure" aria-label="Doutora">
+      <img
+        class="m-hero__doc"
+        src="assets/DOUTORA MOBILE.webp"
+        alt="Dra. Márcia Arduini"
+        loading="eager"
+        decoding="async"
+      />
+
+      <img
+        class="m-hero__handle"
+        src="assets/@dramarcia.arduini.svg"
+        alt="@dramarcia.arduini"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </div>
+</section>
   <!-- 2) QUEM SOU -->
   <section id="quem-sou" aria-label="Quem sou">
     <div class="container">
