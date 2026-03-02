@@ -1,366 +1,325 @@
 <!doctype html>
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=10" />
-  <title>Dra. Márcia Arduini</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dra. Márcia Arduini</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --title: "Cormorant Garamond", serif;
-      --body: "Cora", "Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+<style>
+:root{
+  --title:"Cormorant Garamond", serif;
+  --body:"Cora","Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
-      --paper:#E7E3DC;
-      --ink:#3B4E57;
-      --green:#2E7D32;
+  --paper:#E7E3DC;
+  --ink:#3B4E57;
+  --green:#2E7D32;
 
-      --header-h: 104px;
-    }
+  --header-h:104px;
+}
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:var(--body);
-      font-weight:300;
-      font-size:15px;
-      line-height:1.55;
-      color:#111;
-      background:#fff;
-    }
-    img{max-width:100%;display:block}
-    a{text-decoration:none}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:var(--body);
+  font-weight:300;
+  font-size:15px;
+  line-height:1.55;
+  color:#111;
+  background:#fff;
+}
+img{max-width:100%;display:block}
+a{text-decoration:none}
 
-    /* ================= HEADER FIXO + MENU ================= */
-    .m-header{
-      position:fixed;
-      top:0; left:0; right:0;
-      z-index:9999;
-      background:var(--paper);
-      border-bottom:1px solid rgba(0,0,0,.08);
-    }
+/* ================= HEADER ================= */
+.m-header{
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:9999;
+  background:var(--paper);
+  border-bottom:1px solid rgba(0,0,0,.08);
+}
 
-    .m-header__inner{
-      height:var(--header-h);
-      padding:18px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-    }
+.m-header__inner{
+  height:var(--header-h);
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
 
-    .m-logo img{
-      height:100px;
-      width:auto;
-    }
+.m-logo img{
+  height:64px; /* LOGO MAIOR */
+  width:auto;
+}
 
-    .m-menuBtn{
-      width:54px;
-      height:54px;
-      border-radius:16px;
-      border:1px solid rgba(0,0,0,.10);
-      background:rgba(255,255,255,.40);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      padding:0;
-    }
+.m-menuBtn{
+  width:56px;
+  height:56px;
+  border-radius:18px;
+  border:1px solid rgba(0,0,0,.10);
+  background:rgba(255,255,255,.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
 
-    .m-menuBtn img{
-      width:26px;
-      height:26px;
-    }
+.m-menuBtn img{
+  width:26px;
+}
 
-    /* dropdown */
-    .m-nav{
-      position:absolute;
-      top:calc(var(--header-h) - 8px);
-      right:18px;
-      width:min(320px, calc(100vw - 36px));
-      background:rgba(255,255,255,.95);
-      backdrop-filter:blur(12px);
-      border:1px solid rgba(0,0,0,.10);
-      border-radius:20px;
-      padding:14px;
-      box-shadow:0 20px 50px rgba(0,0,0,.15);
+/* MENU */
+.m-nav{
+  position:absolute;
+  top:calc(var(--header-h) - 6px);
+  right:18px;
+  width:min(320px, calc(100vw - 36px));
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(0,0,0,.10);
+  border-radius:20px;
+  padding:14px;
+  box-shadow:0 20px 50px rgba(0,0,0,.15);
 
-      opacity:0;
-      transform:translateY(-10px);
-      pointer-events:none;
-      transition:.2s ease;
-    }
+  opacity:0;
+  transform:translateY(-10px);
+  pointer-events:none;
+  transition:.2s ease;
+}
 
-    .m-nav.open{
-      opacity:1;
-      transform:translateY(0);
-      pointer-events:auto;
-    }
+.m-nav.open{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
 
-    .m-nav a{
-      display:block;
-      padding:14px 16px;
-      font-size:18px;
-      font-weight:300;
-      color:#111;
-      border-radius:14px;
-    }
+.m-nav a{
+  display:block;
+  padding:14px 16px;
+  font-size:18px;
+  font-weight:300;
+  color:#111;
+  border-radius:14px;
+}
 
-    .m-nav a:active{ background:rgba(0,0,0,.05); }
+.m-nav a:active{ background:rgba(0,0,0,.05); }
 
-    .m-wa{
-      margin-top:10px;
-      background:var(--green);
-      color:#fff !important;
-      text-align:center;
-      border-radius:16px;
-      padding:16px;
-      font-size:18px;
-      box-shadow:0 10px 22px rgba(0,0,0,.12);
-    }
+.m-wa{
+  margin-top:10px;
+  background:var(--green);
+  color:#fff !important;
+  text-align:center;
+  border-radius:16px;
+  padding:16px;
+  font-size:18px;
+  box-shadow:0 10px 22px rgba(0,0,0,.12);
+}
 
-    /* overlay */
-    .m-overlay{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.20);
-      opacity:0;
-      pointer-events:none;
-      transition:.2s ease;
-    }
-    .m-overlay.show{
-      opacity:1;
-      pointer-events:auto;
-    }
+/* overlay */
+.m-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.20);
+  opacity:0;
+  pointer-events:none;
+  transition:.2s ease;
+}
+.m-overlay.show{
+  opacity:1;
+  pointer-events:auto;
+}
 
-    /* ================= HERO MOBILE ================= */
-    .m-hero{
-      padding-top:var(--header-h);
-      min-height:calc(100svh - var(--header-h));
-      position:relative;
-      overflow:hidden;
-    }
+/* ================= HERO ================= */
+.m-hero{
+  padding-top:var(--header-h);
+  min-height:calc(100svh - var(--header-h));
+  position:relative;
+  overflow:hidden;
+}
 
-    .m-hero__bg{
-      position:absolute;
-      inset:0;
-      background-color:var(--paper);
-      background-image:url("assets/FUNDO%20MOBILE.webp");
-      background-size:cover;
-      background-position:center;
-      background-repeat:no-repeat;
-      z-index:0;
-    }
+/* FUNDO COM DESFOQUE */
+.m-hero__bg{
+  position:absolute;
+  inset:0;
+  background-color:var(--paper);
+  background-image:url("assets/FUNDO%20MOBILE.webp");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  filter:blur(2px) brightness(.98);
+  transform:scale(1.05);
+  z-index:0;
+}
 
-    .m-hero__wrap{
-      position:relative;
-      z-index:2;
-      padding:18px 18px 34px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-    }
+.m-hero__wrap{
+  position:relative;
+  z-index:2;
+  padding:18px 18px 40px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
 
-    .m-hero__figure{
-      width:100%;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-    }
+.m-hero__figure{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
 
-    .m-hero__doc{
-      width:min(390px, 92vw);
-      height:auto;
-      margin-bottom:-85px; /* cola @ + texto */
-      transform-origin:center bottom;
-      animation:mFloat 4.5s ease-in-out infinite;
-      filter:drop-shadow(0 18px 28px rgba(0,0,0,.18));
-    }
+/* DOUTORA */
+.m-hero__doc{
+  width:min(390px,92vw);
+  height:auto;
+  margin-bottom:-115px; /* MAIS COLADA */
+  transform-origin:center bottom;
+  animation:mFloat 4.5s ease-in-out infinite;
+  filter:drop-shadow(0 20px 30px rgba(0,0,0,.22));
+}
 
-    .m-hero__handle{
-      margin-top:-8px;
-      width:min(240px, 66vw);
-      height:auto;
-      filter:drop-shadow(0 10px 16px rgba(0,0,0,.10));
-    }
+@keyframes mFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
 
-    @keyframes mFloat{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-10px)}
-    }
+/* @ MAIS ALTO */
+.m-hero__handle{
+  margin-top:-25px;
+  width:min(260px,68vw);
+  height:auto;
+  filter:drop-shadow(0 18px 28px rgba(0,0,0,.18));
+}
 
-    .m-hero__text{
-      margin-top:6px;
-      width:100%;
-      text-align:center;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-    }
+/* TEXTO */
+.m-hero__text{
+  margin-top:8px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
 
-    .m-hero__title{
-      margin:0;
-      font-family:var(--title);
-      font-weight:700;
-      font-size:40px;
-      line-height:1.05;
-      color:#111;
-    }
+.m-hero__title{
+  margin:0;
+  font-family:var(--title);
+  font-weight:700;
+  font-size:40px;
+  line-height:1.05;
+  color:#111;
+}
 
-    .m-hero__subtitle{
-      margin:12px 0 18px;
-      max-width:36ch;
-      font-family:var(--body);
-      font-weight:300;
-      font-size:15px;
-      line-height:1.55;
-      color:rgba(17,17,17,.78);
-    }
+.m-hero__subtitle{
+  margin:14px 0 20px;
+  max-width:36ch;
+  font-family:var(--body);
+  font-weight:300;
+  font-size:15px;
+  line-height:1.6;
+  color:rgba(17,17,17,.78);
+}
 
-    .m-hero__cta{
-      width:min(92vw, 420px);
-      height:64px;
-      border-radius:18px;
-      background:var(--green);
-      color:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-family:var(--body);
-      font-weight:300;
-      font-size:20px;
-      letter-spacing:.2px;
-      box-shadow:0 10px 22px rgba(0,0,0,.12);
-      -webkit-tap-highlight-color:transparent;
-    }
-    .m-hero__cta:active{transform:translateY(1px)}
+/* BOTÃO */
+.m-hero__cta{
+  width:min(92vw,420px);
+  height:64px;
+  border-radius:18px;
+  background:var(--green);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--body);
+  font-weight:300;
+  font-size:20px;
+  letter-spacing:.2px;
+  box-shadow:0 10px 22px rgba(0,0,0,.12);
+}
+.m-hero__cta:active{transform:translateY(1px)}
 
-    /* placeholders das próximas sessões (pra não quebrar o menu) */
-    .m-section{
-      padding:38px 18px;
-      background:#fff;
-    }
-    .m-section h2{
-      font-family:var(--title);
-      font-size:32px;
-      margin:0 0 10px;
-    }
-    .m-section p{margin:0; opacity:.8}
-
-    @media (max-width: 380px){
-      :root{--header-h: 96px;}
-      .m-hero__title{font-size:36px}
-      .m-hero__cta{height:58px;font-size:18px}
-      .m-hero__doc{margin-bottom:-95px}
-      .m-logo img{height:42px}
-    }
-  </style>
+@media (max-width:380px){
+  .m-logo img{height:58px}
+  .m-hero__title{font-size:36px}
+  .m-hero__doc{margin-bottom:-130px}
+}
+</style>
 </head>
 
 <body>
 
-  <!-- HEADER FIXO -->
-  <header class="m-header">
-    <div class="m-header__inner">
-      <a href="#inicio" class="m-logo" aria-label="Ir para o início">
-        <img src="assets/LOGO.svg" alt="Dra. Márcia Arduini">
-      </a>
+<header class="m-header">
+  <div class="m-header__inner">
+    <a href="#inicio" class="m-logo">
+      <img src="assets/LOGO.svg" alt="Dra. Márcia Arduini">
+    </a>
 
-      <button class="m-menuBtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">
-        <img src="assets/CLICAVEL.svg" alt="">
-      </button>
+    <button class="m-menuBtn" id="menuBtn">
+      <img src="assets/CLICAVEL.svg" alt="">
+    </button>
+  </div>
+
+  <nav class="m-nav" id="mNav">
+    <a href="#inicio">Início</a>
+    <a href="#quem-sou">Quem sou</a>
+    <a href="#procedimentos">Procedimentos</a>
+    <a href="#contato">Contato</a>
+
+    <a class="m-wa"
+       href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
+       target="_blank">
+       Quero agendar no WhatsApp
+    </a>
+  </nav>
+
+  <div class="m-overlay" id="overlay"></div>
+</header>
+
+<section class="m-hero" id="inicio">
+  <div class="m-hero__bg"></div>
+
+  <div class="m-hero__wrap">
+    <div class="m-hero__figure">
+      <img class="m-hero__doc" src="assets/DOUTORA%20MOBILE.webp" alt="Dra. Márcia Arduini">
+      <img class="m-hero__handle" src="assets/@dramarcia.arduini.svg" alt="@dramarcia.arduini">
     </div>
 
-    <nav class="m-nav" id="mNav" aria-label="Menu">
-      <a href="#inicio">Início</a>
-      <a href="#quem-sou">Quem sou</a>
-      <a href="#procedimentos">Procedimentos</a>
-      <a href="#contato">Contato</a>
+    <div class="m-hero__text">
+      <h1 class="m-hero__title">Precisão técnica.<br>Sensibilidade estética.</h1>
 
-      <a class="m-wa"
+      <p class="m-hero__subtitle">
+        Harmonização facial e estética avançada com foco em naturalidade,
+        segurança e planejamento individual.
+      </p>
+
+      <a class="m-hero__cta"
          href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
-         target="_blank" rel="noopener">
-        Quero agendar no WhatsApp
+         target="_blank">
+         Quero agendar
       </a>
-    </nav>
-
-    <div class="m-overlay" id="overlay" aria-hidden="true"></div>
-  </header>
-
-  <!-- HERO (INÍCIO) -->
-  <section class="m-hero" id="inicio" aria-label="Início">
-    <div class="m-hero__bg" aria-hidden="true"></div>
-
-    <div class="m-hero__wrap">
-      <div class="m-hero__figure">
-        <img class="m-hero__doc" src="assets/DOUTORA%20MOBILE.webp" alt="Dra. Márcia Arduini">
-        <img class="m-hero__handle" src="assets/@dramarcia.arduini.svg" alt="@dramarcia.arduini">
-      </div>
-
-      <div class="m-hero__text">
-        <h1 class="m-hero__title">Precisão técnica.<br> Sensibilidade estética.</h1>
-
-        <p class="m-hero__subtitle">
-          Harmonização facial e estética avançada com foco em naturalidade,
-          segurança e planejamento individual.
-        </p>
-
-        <a class="m-hero__cta"
-           href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
-           target="_blank" rel="noopener">
-          Quero agendar
-        </a>
-      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- placeholders das próximas seções (você vai substituir depois) -->
-  <section class="m-section" id="quem-sou">
-    <h2>Quem sou</h2>
-    <p>(próxima seção)</p>
-  </section>
+<script>
+const btn=document.getElementById("menuBtn");
+const nav=document.getElementById("mNav");
+const overlay=document.getElementById("overlay");
 
-  <section class="m-section" id="procedimentos">
-    <h2>Procedimentos</h2>
-    <p>(próxima seção)</p>
-  </section>
+btn.addEventListener("click",()=>{
+  nav.classList.toggle("open");
+  overlay.classList.toggle("show");
+});
 
-  <section class="m-section" id="contato">
-    <h2>Contato</h2>
-    <p>(próxima seção)</p>
-  </section>
-
-  <script>
-    const btn = document.getElementById("menuBtn");
-    const nav = document.getElementById("mNav");
-    const overlay = document.getElementById("overlay");
-
-    function closeMenu(){
-      nav.classList.remove("open");
-      overlay.classList.remove("show");
-      btn.setAttribute("aria-expanded", "false");
-    }
-
-    btn.addEventListener("click", () => {
-      const willOpen = !nav.classList.contains("open");
-      nav.classList.toggle("open");
-      overlay.classList.toggle("show");
-      btn.setAttribute("aria-expanded", willOpen ? "true" : "false");
-    });
-
-    overlay.addEventListener("click", closeMenu);
-
-    // fecha ao clicar num link do menu
-    nav.querySelectorAll("a").forEach(a => {
-      a.addEventListener("click", closeMenu);
-    });
-  </script>
+overlay.addEventListener("click",()=>{
+  nav.classList.remove("open");
+  overlay.classList.remove("show");
+});
+</script>
 
 </body>
 </html>
