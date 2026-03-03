@@ -21,21 +21,21 @@
       --header-h:104px;
       --container:1200px;
 
-      /* ==========================
-         ✅ PADRÃO ÚNICO DO @ (TODAS AS TELAS)
-         Ajuste só estes 2:
-         - Y (altura): maior = desce
-         - X (lado):  negativo = esquerda | positivo = direita
-         ========================== */
-      --handle-y: 86%;      /* <<< abaixo do quadril (padrão) */
-      --handle-x: -50px;    /* <<< empurra um pouco pra esquerda (se quiser) */
+      /* =========================
+         ✅ TRAVA PADRÃO DO @ (todas as telas)
+         Ajuste só estes dois:
+         - Y maior = desce (mais abaixo do quadril)
+         - X negativo = esquerda | positivo = direita
+         ========================= */
+      --handle-y: 86%;
+      --handle-x: -18px;
 
       --handle-w-mobile: min(360px, 90vw);
       --handle-w-desktop: 380px;
 
-      /* texto */
-      --mobile-text-mt: -12px;
-      --desktop-text-top: 110px; /* desce texto no desktop */
+      /* Texto */
+      --mobile-text-mt: -12px;   /* aproxima texto da foto no mobile */
+      --desktop-text-top: 110px; /* desce texto no desktop (altura da cabeça) */
       --sub-to-btn: 62px;
     }
 
@@ -188,6 +188,7 @@
       box-shadow:0 10px 22px rgba(0,0,0,.12);
       overflow:hidden;
     }
+
     .m-overlay{
       position:fixed; inset:0;
       background:rgba(0,0,0,.20);
@@ -202,7 +203,6 @@
     .hero{
       padding-top:var(--header-h);
       min-height:100svh;
-      position:relative;
       display:flex;
       align-items:flex-start;
       background:url("assets/FUNDO%20MOBILE.webp") center/cover no-repeat;
@@ -213,18 +213,30 @@
       margin:0 auto;
       padding:20px 20px 64px;
       display:grid;
-      grid-template-areas: "media" "text";
+      grid-template-areas:"media" "text";
       gap:10px;
     }
 
-    .text{ grid-area:text; max-width:640px; margin-top:var(--mobile-text-mt); }
-    .media{ grid-area:media; width:100%; display:flex; justify-content:center; }
+    .text{
+      grid-area:text;
+      max-width:640px;
+      margin-top:var(--mobile-text-mt);
+    }
+
+    .media{
+      grid-area:media;
+      width:100%;
+      display:flex;
+      justify-content:center;
+    }
+
     .figure{
       position:relative;
       width:min(520px, 100%);
       display:flex;
       justify-content:center;
     }
+
     .figure::before{
       content:"";
       position:absolute;
@@ -238,6 +250,7 @@
       z-index:1;
       pointer-events:none;
     }
+
     .doutora{
       position:relative;
       z-index:2;
@@ -249,12 +262,12 @@
     }
     @keyframes floaty{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 
-    /* ✅ @ PADRONIZADO (todas as telas) */
+    /* ✅ @ travado e padronizado */
     .handle{
       position:absolute;
-      left:50%;
-      top:var(--handle-y);
-      transform:translate(-50%,-50%) translateX(var(--handle-x));
+      left:50% !important;
+      top:var(--handle-y) !important;
+      transform:translate(-50%,-50%) translateX(var(--handle-x)) !important;
       width:var(--handle-w-mobile);
       max-width:calc(100vw - 40px);
       z-index:3;
@@ -262,7 +275,7 @@
       filter:drop-shadow(0 18px 28px rgba(0,0,0,.18));
     }
 
-    /* MOBILE maior */
+    /* ✅ Mobile maior */
     .title{
       font-family:var(--title);
       font-weight:700;
@@ -281,6 +294,7 @@
       text-align:left;
       max-width:560px;
     }
+
     .cta{
       width:min(560px, 100%);
       height:76px;
@@ -314,7 +328,6 @@
 
     @media (min-width:768px){
       .hero .wrap{ padding:28px 20px 60px; }
-      /* mantém PADRÃO do @ (não muda nada aqui) */
     }
 
     @media (min-width:1024px){
@@ -324,21 +337,27 @@
 
       .hero{
         background:url("assets/FUNDO%20DESKTOP.webp") center/cover no-repeat;
-        align-items:flex-start;
         min-height:auto;
       }
+
       .hero .wrap{
         grid-template-areas:"text media";
         grid-template-columns:0.95fr 1.05fr;
         gap:42px;
         padding:44px 20px 0;
+        align-items:start;
       }
-      .text{ margin-top:var(--desktop-text-top); max-width:560px; }
+
+      /* ✅ DESKTOP: texto na altura da cabeça */
+      .text{
+        margin-top:var(--desktop-text-top);
+        max-width:560px;
+      }
+
       .media{ justify-content:flex-end; }
       .figure{ width:min(520px, 100%); }
       .figure::before{ bottom:7%; width:92%; height:36%; filter:blur(14px); }
 
-      /* @ PADRÃO também no desktop, só muda largura */
       .handle{
         width:var(--handle-w-desktop);
         max-width:420px;
@@ -431,6 +450,7 @@
       </div>
     </section>
 
+    <!-- âncoras (menu não quebra) -->
     <section id="quem-sou" style="height:1px;"></section>
     <section id="procedimentos" style="height:1px;"></section>
     <section id="contato" style="height:1px;"></section>
