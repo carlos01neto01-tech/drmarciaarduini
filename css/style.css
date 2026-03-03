@@ -94,7 +94,7 @@ header{
 /* @ CENTRALIZADO EMBAIXO */
 .handle{
   position:absolute;
-  left:50%;
+  left:10%;
   top:var(--handle-y-mobile);
   transform:translate(-50%,-50%);
 
