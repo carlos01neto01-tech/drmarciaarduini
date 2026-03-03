@@ -5,21 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dra. Márcia Arduini</title>
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Cora:wght@300;400&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --title:"Cormorant Garamond", serif;
-      --body:"Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      --body:"Cora", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
-      --paper:#E7E3DC;
+      --paper:#F7E3DC;
       --ink:#3B4E57;
+      --muted:rgba(59,78,87,.78);
 
+      --container:1120px;
       --header-h:104px;
-      --container:1200px;
+
+      /* ===== AJUSTE ÚNICO DO @ (HANDLE) =====
+         y = sobe/desce | x = esquerda/direita | w = tamanho */
+      --handle-y-mobile: 78%;
+      --handle-x-mobile: 0px;
+      --handle-w-mobile: min(340px, 92vw);
+
+      --handle-y-tablet: 82%;
+      --handle-x-tablet: 0px;
+      --handle-w-tablet: 360px;
+
+      --handle-y-desktop: 82%;
+      --handle-x-desktop: 0px;
+      --handle-w-desktop: 420px;
+
+      --cta-radius:20px;
     }
 
     *{box-sizing:border-box}
@@ -27,665 +44,699 @@
     body{
       margin:0;
       font-family:var(--body);
-      font-weight:300;
-      color:#111;
+      color:var(--ink);
       background:#fff;
-      overflow-x:hidden;
+      overflow-x:hidden; /* IMPORTANTÍSSIMO: evita “solto dos lados” */
     }
+    main{overflow-x:hidden}
+
+    a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
-    a{text-decoration:none;color:inherit}
-    button{font:inherit}
 
-    /* ===== Fade in + blur ===== */
-    .reveal{
-      opacity:0;
-      filter: blur(10px);
-      transform: translateY(14px);
-      transition: opacity .65s ease, filter .65s ease, transform .65s ease;
-      will-change: opacity, filter, transform;
-    }
-    .reveal.is-visible{ opacity:1; filter: blur(0); transform: translateY(0); }
-    .d1{ transition-delay:.08s; }
-    .d2{ transition-delay:.16s; }
-    .d3{ transition-delay:.24s; }
-    .d4{ transition-delay:.32s; }
-
-    /* ================= HEADER ================= */
-    .m-header{
-      position:fixed; top:0; left:0; right:0;
-      z-index:9999;
-      background:var(--paper);
-      border-bottom:1px solid rgba(0,0,0,.08);
-      display:flex;
-      justify-content:center;
-    }
-    .m-header__inner{
+    /* ===== Header ===== */
+    .header{
+      position:fixed; inset:0 0 auto 0;
       height:var(--header-h);
-      width:100%;
-      max-width:var(--container);
-      padding:18px 20px;
-      display:flex;
-      align-items:center;
-      gap:14px;
+      background:rgba(238,231,224,.95);
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid rgba(0,0,0,.06);
+      z-index:999;
     }
-    .m-logo img{ height:64px; width:auto; }
-
-    .nav-desktop{
-      display:none;
-      flex:1;
-      justify-content:center;
-      align-items:center;
-      gap:24px;
-    }
-    .nav-desktop a{
-      font-size:16px;
-      padding:10px 12px;
-      border-radius:12px;
-      white-space:nowrap;
-      transition: background .15s ease;
-    }
-    .nav-desktop a:hover{ background:rgba(0,0,0,.05); }
-
-    .cta-top{
-      display:none;
-      height:46px;
-      padding:0 18px;
-      border-radius:14px;
-      background:var(--ink);
-      color:#fff;
-      align-items:center;
-      justify-content:center;
-      box-shadow:0 12px 25px rgba(0,0,0,.16);
-      position:relative;
-      overflow:hidden;
-      white-space:nowrap;
-      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
-    }
-    .cta-top::after{
-      content:"";
-      position:absolute;
-      top:-40%;
-      left:-70%;
-      width:55%;
-      height:180%;
-      background: linear-gradient(90deg,
-        rgba(255,255,255,0),
-        rgba(255,255,255,.38),
-        rgba(255,255,255,0)
-      );
-      transform:skewX(-20deg);
-      opacity:0;
-      pointer-events:none;
-    }
-    .cta-top:hover{
-      transform:translateY(-1px);
-      box-shadow:0 16px 30px rgba(0,0,0,.18);
-      filter:brightness(1.02);
-    }
-    .cta-top:hover::after{ opacity:1; animation:sweep 1.1s ease-in-out; }
-    @keyframes sweep{ 0%{left:-70%} 100%{left:140%} }
-
-    .m-menuBtn{
-      margin-left:auto;
-      width:56px; height:56px;
-      border-radius:18px;
-      border:1px solid rgba(0,0,0,.10);
-      background:rgba(255,255,255,.45);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      padding:0;
-      -webkit-tap-highlight-color:transparent;
-    }
-    .m-menuBtn img{ width:26px; height:26px; }
-
-    .m-nav{
-      position:fixed;
-      top:calc(var(--header-h) - 6px);
-      right:18px;
-      width:min(360px, calc(100vw - 36px));
-      background:rgba(255,255,255,.96);
-      backdrop-filter:blur(12px);
-      border:1px solid rgba(0,0,0,.10);
-      border-radius:20px;
-      padding:14px;
-      box-shadow:0 20px 50px rgba(0,0,0,.15);
-      opacity:0;
-      transform:translateY(-10px);
-      pointer-events:none;
-      transition:.2s ease;
-      z-index:9999;
-    }
-    .m-nav.open{ opacity:1; transform:translateY(0); pointer-events:auto; }
-    .m-nav a{ display:block; padding:14px 16px; font-size:18px; border-radius:14px; }
-    .m-wa{
-      margin-top:10px;
-      background:var(--ink);
-      color:#fff !important;
-      text-align:center;
-      border-radius:16px;
-      padding:16px;
-      font-size:18px;
-      box-shadow:0 10px 22px rgba(0,0,0,.12);
-      overflow:hidden;
-    }
-
-    .m-overlay{
-      position:fixed; inset:0;
-      background:rgba(0,0,0,.20);
-      opacity:0;
-      pointer-events:none;
-      transition:.2s ease;
-      z-index:9998;
-    }
-    .m-overlay.show{ opacity:1; pointer-events:auto; }
-
-    /* ================= HERO (Sessão 1) ================= */
-    .hero{
-      padding-top:var(--header-h);
-      min-height:100svh;
-      display:flex;
-      align-items:flex-start;
-      background:url("assets/FUNDO%20MOBILE.webp") center/cover no-repeat;
-    }
-    .hero .wrap{
-      width:100%;
+    .header__inner{
+      height:100%;
       max-width:var(--container);
       margin:0 auto;
-      padding:20px 20px 64px;
-      display:grid;
-      grid-template-areas:"media" "text";
-      gap:10px;
-    }
-    .text{
-      grid-area:text;
-      max-width:640px;
-      margin-top:-12px;
-    }
-    .media{ grid-area:media; width:100%; display:flex; justify-content:center; }
-
-    .figure{
-      position:relative;
-      width:min(520px, 100%);
-      display:flex;
-      justify-content:center;
-    }
-    .figure::before{
-      content:"";
-      position:absolute;
-      left:50%;
-      bottom:9%;
-      transform:translateX(-50%);
-      width:86%;
-      height:30%;
-      background:radial-gradient(ellipse at center, rgba(0,0,0,.22), rgba(0,0,0,0) 70%);
-      filter:blur(12px);
-      z-index:1;
-      pointer-events:none;
-    }
-    .doutora{
-      position:relative;
-      z-index:2;
-      width:100%;
-      max-width:520px;
-      filter:drop-shadow(0 20px 30px rgba(0,0,0,.22));
-      transform-origin:center bottom;
-      animation: floaty 4.5s ease-in-out infinite;
-    }
-    @keyframes floaty{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-
-    /* ✅ @ (ajuste direto aqui) */
-    .handle{
-      position:absolute;
-      left:50% !important;
-      top:83% !important;               /* sobe/desce */
-      transform:translate(-50%,-50%) translateX(-18px) !important; /* esquerda/direita */
-      width:390px;                       /* tamanho */
-      max-width:92vw;
-      z-index:3;
-      pointer-events:none;
-      filter:drop-shadow(0 18px 28px rgba(0,0,0,.18));
-    }
-
-    .title{
-      font-family:var(--title);
-      font-weight:700;
-      font-size:54px;
-      line-height:1.02;
-      letter-spacing:.02em;
-      text-transform:uppercase;
-      margin:0;
-      text-align:left;
-    }
-    .subtitle{
-      margin:24px 0 62px;
-      font-size:22px;
-      line-height:1.65;
-      color:rgba(0,0,0,.62);
-      text-align:left;
-      max-width:560px;
-    }
-    .cta{
-      width:min(560px, 100%);
-      height:76px;
-      border-radius:18px;
-      background:var(--ink);
-      color:#fff;
-      font-size:22px;
+      padding:0 18px;
       display:flex;
       align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width:180px;
+    }
+    .brand img{height:54px;width:auto}
+    .nav{
+      display:flex; align-items:center; gap:38px;
+      font-size:16px;
+      color:rgba(0,0,0,.75);
       justify-content:center;
-      box-shadow:0 12px 25px rgba(0,0,0,.18);
+      flex:1;
+    }
+    .nav a{
+      position:relative;
+      padding:6px 0;
+      font-weight:500;
+    }
+    .nav a::after{
+      content:"";
+      position:absolute; left:0; bottom:-2px;
+      width:0; height:2px;
+      background:rgba(59,78,87,.7);
+      transition:width .25s ease;
+    }
+    .nav a:hover::after{width:100%}
+
+    .header__cta{
+      display:flex; align-items:center; gap:10px;
+      min-width:180px;
+      justify-content:flex-end;
+    }
+
+    .btn{
+      border:0;
+      cursor:pointer;
+      padding:16px 26px;
+      border-radius:999px;
+      background:var(--ink);
+      color:#fff;
+      font-family:var(--body);
+      font-weight:400;
+      font-size:16px;
+      letter-spacing:.2px;
       position:relative;
       overflow:hidden;
-      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      box-shadow:0 10px 26px rgba(0,0,0,.16);
+      transition: transform .15s ease, box-shadow .2s ease;
     }
-    .cta::after{
+    .btn:active{transform:translateY(1px)}
+    .btn:hover{
+      box-shadow:0 14px 34px rgba(0,0,0,.20);
+      transform: translateY(-1px);
+    }
+    /* light sweep + degrade suave */
+    .btn::before{
       content:"";
-      position:absolute;
-      top:-40%;
-      left:-70%;
-      width:55%;
-      height:180%;
-      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.40), rgba(255,255,255,0));
-      transform:skewX(-20deg);
-      opacity:0;
+      position:absolute; inset:-2px;
+      background:linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.16) 35%, rgba(255,255,255,0) 70%);
+      transform: translateX(-120%);
+      transition: transform .65s ease;
       pointer-events:none;
     }
-    .cta:hover{ transform:translateY(-2px); box-shadow:0 16px 30px rgba(0,0,0,.18); filter:brightness(1.02); }
-    .cta:hover::after{ opacity:1; animation:sweep2 1.2s ease-in-out; }
-    @keyframes sweep2{ 0%{left:-70%} 100%{left:140%} }
+    .btn:hover::before{transform: translateX(120%)}
 
-    /* ================= SESSÕES 2 e 3 (fundo igual figma) ================= */
-    #quem-sou{
-      background:url("assets/FUNDO%20DESKTOP.webp") center/cover no-repeat;
+    .btn--ghost{
+      background:transparent;
+      color:rgba(0,0,0,.70);
+      box-shadow:none;
+      border:1px solid rgba(0,0,0,.12);
     }
-    @media (max-width:1023px){
-      #quem-sou{ background:url("assets/FUNDO%20MOBILE.webp") center/cover no-repeat; }
-    }
+    .btn--ghost:hover{box-shadow:none;transform:none}
+    .btn--ghost::before{display:none}
 
-    /* ================= Section Base ================= */
-    .section{
+    .burger{
+      display:none;
+      width:54px; height:54px;
+      border-radius:16px;
+      border:1px solid rgba(0,0,0,.12);
+      background:rgba(255,255,255,.65);
+      display:grid; place-items:center;
+      cursor:pointer;
+    }
+    .burger span{
+      width:22px;height:2px;background:rgba(0,0,0,.55);
+      position:relative; display:block;
+    }
+    .burger span::before,.burger span::after{
+      content:"";
+      position:absolute; left:0;
+      width:22px; height:2px;
+      background:rgba(0,0,0,.55);
+    }
+    .burger span::before{top:-7px}
+    .burger span::after{top:7px}
+
+    /* Mobile menu panel */
+    .panel{
+      position:fixed;
+      top:var(--header-h);
+      right:16px;
+      width:min(320px, calc(100vw - 32px));
+      background:rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      border:1px solid rgba(0,0,0,.10);
+      border-radius:18px;
+      box-shadow:0 16px 42px rgba(0,0,0,.18);
+      padding:14px;
+      z-index:998;
+      display:none;
+    }
+    .panel a{
+      display:block;
+      padding:14px 12px;
+      border-radius:12px;
+      color:rgba(0,0,0,.78);
+    }
+    .panel a:hover{background:rgba(0,0,0,.05)}
+    .panel .panel__cta{margin-top:8px}
+    .panel .panel__cta .btn{width:100%}
+
+    /* ===== Layout geral ===== */
+    .spacer{height:var(--header-h)} /* empurra conteúdo abaixo do header */
+
+    /* FULL-BLEED section + INNER container */
+    .section{width:100%; max-width:none; margin:0; padding:0;}
+    .section .inner{
       width:100%;
       max-width:var(--container);
       margin:0 auto;
       padding:70px 20px;
     }
 
-    /* ============ SESSÃO 2 (texto) ============ */
-    .s2-title{
-      font-family:var(--title);
-      font-weight:700;
-      text-transform:uppercase;
-      letter-spacing:.02em;
-      color:var(--ink);
-      font-size:44px;
-      line-height:1.05;
-      text-align:center;
-      margin:0 0 18px;
-    }
-    .s2-text{
-      max-width:860px;
-      margin:0 auto;
-      font-size:18px;
-      line-height:1.65;
-      color:rgba(0,0,0,.62);
-      text-align:center;
+    /* ===== Sessão 1 (Hero) ===== */
+    .hero{
+      position:relative;
+      min-height: calc(100vh - var(--header-h));
+      display:flex;
+      align-items:stretch;
     }
 
-    /* ============ SESSÃO 3 (texto + carrossel) ============ */
-    .s3-grid{
+    /* fundo do hero (não anima) */
+    .hero__bg{
+      position:absolute; inset:0;
+      background:center/cover no-repeat;
+      z-index:0;
+    }
+    /* desktop */
+    .hero__bg{ background-image:url("assets/FUNDO%20DESKTOP.webp"); }
+    /* mobile */
+    @media (max-width: 768px){
+      .hero__bg{ background-image:url("assets/FUNDO%20MOBILE.webp"); }
+    }
+
+    .hero__inner{
+      position:relative;
+      z-index:1;
+      width:100%;
+      max-width:var(--container);
+      margin:0 auto;
+      padding:48px 20px 70px;
       display:grid;
-      grid-template-columns:1fr;
-      gap:30px;
-      align-items:center;
-      margin-top:70px;
+      grid-template-columns: 1.05fr .95fr;
+      gap:42px;
+      align-items:stretch;
     }
-    .s3-left h3{
-      font-family:var(--title);
-      font-weight:700;
-      text-transform:uppercase;
-      letter-spacing:.02em;
-      color:var(--ink);
-      font-size:46px;
-      line-height:1.02;
-      margin:0 0 16px;
-    }
-    .s3-left p{
-      margin:0;
-      font-size:18px;
-      line-height:1.65;
-      color:rgba(0,0,0,.62);
+
+    /* texto à esquerda (desktop) */
+    .hero__copy{
+      padding-top:140px; /* alinhado altura cabeça no desktop */
       max-width:560px;
     }
+    .kicker{
+      font-family:var(--title);
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:52px;
+      line-height:1.06;
+      margin:0 0 14px;
+      color:#111;
+    }
+    .sub{
+      margin:0 0 26px;
+      color:rgba(0,0,0,.55);
+      font-size:18px;
+      line-height:1.7;
+      max-width:480px;
+    }
+    .hero__cta{display:flex; gap:12px; align-items:center}
+    .hero__cta .btn{min-width:220px; border-radius:22px; padding:18px 28px}
 
-    .carousel{ position:relative; width:100%; display:flex; flex-direction:column; align-items:center; }
-    .carousel-viewport{ width:100%; overflow:hidden; padding:10px 0 0; }
+    /* bloco imagem à direita (desktop) */
+    .hero__visual{
+      position:relative;
+      display:flex;
+      align-items:flex-end;
+      justify-content:flex-end;
+      padding-top:40px;
+      min-height:600px;
+    }
+    .doctor{
+      position:relative;
+      width:min(520px, 42vw);
+      transform-origin: bottom center;
+      animation: floatIn .8s ease both;
+    }
+    .doctor img{width:100%; height:auto}
+    @keyframes floatIn{
+      from{opacity:0; transform:translateY(18px) scale(.98)}
+      to{opacity:1; transform:translateY(0) scale(1)}
+    }
+
+    /* @ handle (fica “encostado no quadril” por variáveis) */
+    .handle{
+      position:absolute;
+      left:50%;
+      top:var(--handle-y-desktop);
+      transform: translate(-50%,-50%) translateX(var(--handle-x-desktop));
+      width:var(--handle-w-desktop);
+      z-index:3;
+      pointer-events:none;
+      filter:drop-shadow(0 18px 28px rgba(0,0,0,.18));
+    }
+
+    /* ===== Animações fade-in blur (texto/botões) ===== */
+    .reveal{
+      opacity:0;
+      transform: translateY(14px);
+      filter: blur(10px);
+      transition: opacity .7s ease, transform .7s ease, filter .7s ease;
+    }
+    .reveal.is-in{
+      opacity:1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    /* ===== Sessão 2 (texto) ===== */
+    #quem-sou{ background:#fff; }
+    .centerTitle{
+      font-family:var(--title);
+      font-weight:700;
+      color:rgba(59,78,87,.92);
+      letter-spacing:.02em;
+      text-transform:uppercase;
+      text-align:center;
+      font-size:46px;
+      line-height:1.08;
+      margin:0 0 18px;
+    }
+    .centerText{
+      text-align:center;
+      margin:0 auto;
+      max-width:860px;
+      color:rgba(0,0,0,.50);
+      font-size:17px;
+      line-height:1.75;
+    }
+
+    /* ===== Sessão 3 (texto + carrossel) ===== */
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap:34px;
+      align-items:center;
+      margin-top:46px;
+    }
+    .leftTitle{
+      font-family:var(--title);
+      font-weight:700;
+      color:rgba(59,78,87,.92);
+      text-transform:uppercase;
+      font-size:44px;
+      line-height:1.06;
+      margin:0 0 16px;
+    }
+    .leftText{
+      margin:0;
+      color:rgba(0,0,0,.52);
+      font-size:18px;
+      line-height:1.75;
+      max-width:520px;
+      white-space:pre-line;
+    }
+
+    /* Carrossel */
+    .carousel{ position:relative; width:100%; }
+    .carousel-viewport{
+      width:100%;
+      overflow:hidden;
+      padding:14px 0 0;
+    }
     .carousel-track{
-      display:flex; gap:22px; align-items:center;
-      will-change:transform; transition:transform .55s ease;
-      padding:0 8px 16px;
+      display:flex;
+      gap:18px;
+      align-items:center;
+      will-change:transform;
+      transition:transform .55s ease;
+      padding:0 16px 18px;
     }
     .carousel-item{
       flex:0 0 auto;
-      width:min(360px, 78vw);
-      aspect-ratio:1/1;
-      border-radius:26px;
+      width:min(92vw, 520px);
+      aspect-ratio: 1 / 1;
+      border-radius:28px;
       overflow:hidden;
-      background:rgba(255,255,255,.35);
-      border:1px solid rgba(0,0,0,.08);
-      box-shadow:0 16px 40px rgba(0,0,0,.10);
-      transform:scale(.90);
-      filter:blur(3px) saturate(.95);
-      opacity:.60;
-      transition:transform .55s ease, filter .55s ease, opacity .55s ease;
-    }
-    .carousel-item img{ width:100%; height:100%; object-fit:cover; }
-    .carousel-item.is-active{ transform:scale(1); filter:blur(0) saturate(1); opacity:1; }
-
-    .carousel-dots{ display:flex; gap:10px; justify-content:center; margin-top:12px; }
-    .carousel-dots button{
-      width:10px; height:10px; border-radius:999px;
-      border:none; background:rgba(0,0,0,.18); cursor:pointer; padding:0;
-    }
-    .carousel-dots button.is-active{ background:rgba(0,0,0,.55); }
-
-    /* ================= SESSÃO 4 (Procedimentos) ================= */
-    #procedimentos{
-      background:#efefef;
-    }
-    .proc-title{
-      font-family:var(--title);
-      font-weight:700;
-      text-transform:uppercase;
-      letter-spacing:.02em;
-      color:var(--ink);
-      font-size:44px;
-      line-height:1.05;
-      text-align:left;
-      margin:0 0 22px;
-    }
-    .proc-grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:18px;
-    }
-    .proc-card{
       background:#fff;
       border:1px solid rgba(0,0,0,.08);
-      overflow:hidden;
-      box-shadow:0 10px 28px rgba(0,0,0,.08);
+      box-shadow:0 16px 40px rgba(0,0,0,.10);
+
+      transform:scale(.92);
+      filter: blur(5px) saturate(.95);
+      opacity:.55;
+
+      transition:transform .55s ease, filter .55s ease, opacity .55s ease;
     }
-    .proc-media{
+    .carousel-item img{
       width:100%;
-      aspect-ratio: 4 / 3;
-      overflow:hidden;
-      background:#f3f3f3;
+      height:100%;
+      object-fit:cover;
+      display:block;
     }
-    .proc-media img{ width:100%; height:100%; object-fit:cover; }
-    .proc-bottom{
-      background:#D9DADB;
-      padding:16px 16px 18px;
+    .carousel-item.is-active{
+      transform:scale(1);
+      filter: blur(0) saturate(1);
+      opacity:1;
+    }
+    .carousel-dots{
       display:flex;
-      flex-direction:column;
       gap:10px;
-    }
-    .proc-name{
-      font-size:20px;
-      line-height:1.15;
-      color:var(--ink);
-      font-weight:400;
-    }
-    .proc-cta{
-      width:100%;
-      height:44px;
-      border-radius:10px;
-      background:var(--ink);
-      color:#fff;
-      display:flex;
-      align-items:center;
       justify-content:center;
-      font-size:14px;
-      box-shadow:0 10px 20px rgba(0,0,0,.12);
-      transition:transform .18s ease, filter .18s ease, box-shadow .18s ease;
+      align-items:center;
+      margin-top:10px;
     }
-    .proc-cta:hover{ transform:translateY(-1px); filter:brightness(1.02); box-shadow:0 14px 26px rgba(0,0,0,.14); }
-
-    /* ===== Responsive ===== */
-    @media (min-width:768px){
-      .s2-title{ font-size:52px; }
-      .proc-grid{ grid-template-columns:repeat(2, 1fr); }
+    .carousel-dots button{
+      width:9px;height:9px;border-radius:999px;border:0;
+      background:rgba(0,0,0,.20);
+      cursor:pointer;
     }
-    @media (min-width:1024px){
-      .nav-desktop{ display:flex; }
-      .cta-top{ display:flex; }
-      .m-menuBtn,.m-nav,.m-overlay{ display:none; }
+    .carousel-dots button.is-active{background:rgba(0,0,0,.55)}
 
-      .hero{ background:url("assets/FUNDO%20DESKTOP.webp") center/cover no-repeat; min-height:auto; }
-      .hero .wrap{
-        grid-template-areas:"text media";
-        grid-template-columns:0.95fr 1.05fr;
-        gap:42px;
-        padding:44px 20px 0;
-        align-items:start;
+    /* ===== Sessão 4 (Procedimentos) ===== */
+    #procedimentos{ background:#fff; }
+    .procTitle{
+      font-family:var(--title);
+      font-weight:700;
+      color:rgba(59,78,87,.92);
+      text-transform:uppercase;
+      font-size:44px;
+      margin:0 0 18px;
+    }
+    .procGrid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:18px;
+      margin-top:18px;
+    }
+    .procCard{
+      background:#eee;
+      border-radius:0;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,.08);
+      box-shadow:0 10px 24px rgba(0,0,0,.08);
+    }
+    .procCard img{width:100%; height:auto; display:block}
+    .procCard .procActions{
+      padding:14px 14px 18px;
+      background:rgba(0,0,0,.06);
+      display:flex;
+      justify-content:center;
+    }
+    .procCard .btn{
+      width:100%;
+      border-radius:14px;
+      padding:14px 16px;
+      background:var(--ink);
+      box-shadow:none;
+    }
+
+    /* ===== Responsivo ===== */
+    @media (max-width: 1023px){
+      :root{ --header-h: 96px; }
+
+      .nav{display:none}
+      .burger{display:grid}
+      .header__cta .btn{display:none} /* tira “Agendar” no mobile/tablet do topo */
+
+      .hero__inner{
+        grid-template-columns:1fr;
+        gap:16px;
+        padding:24px 16px 44px;
       }
-      .text{ margin-top:110px; max-width:560px; }
-      .media{ justify-content:flex-end; }
+      .hero__copy{
+        order:2;
+        padding-top:10px;
+        max-width:none;
+      }
+      .hero__visual{
+        order:1;
+        min-height:unset;
+        padding-top:12px;
+        justify-content:center;
+      }
+      .doctor{
+        width:min(560px, 100%);
+      }
 
-      .handle{ width:410px; max-width:420px; } /* desktop um pouco maior */
-      .title{ font-size:64px; }
-      .subtitle{ font-size:18px; max-width:520px; margin-bottom:44px; }
-      .cta{ width:240px; height:56px; font-size:18px; border-radius:16px; }
+      /* handle no tablet/mobile */
+      .handle{
+        top:var(--handle-y-tablet);
+        transform: translate(-50%,-50%) translateX(var(--handle-x-tablet));
+        width:var(--handle-w-tablet);
+      }
 
-      .section{ padding:80px 20px; }
-      .s2-title{ font-size:58px; }
-      .s3-grid{ grid-template-columns:1fr 1.2fr; gap:40px; }
-      .carousel-item{ width:340px; }
-      .proc-title{ font-size:52px; }
-      .proc-grid{ grid-template-columns:repeat(4, 1fr); }
+      .kicker{font-size:44px}
+      .sub{font-size:17px; max-width:none}
+      .hero__cta .btn{min-width:unset; width:100%}
+      .hero__cta{flex-direction:column; align-items:stretch}
+
+      .split{
+        grid-template-columns:1fr;
+        gap:18px;
+      }
+      .leftText{max-width:none}
+      .procGrid{grid-template-columns:1fr; gap:18px}
     }
 
-    @media (max-width:380px){
-      :root{ --header-h:96px; }
-      .m-logo img{ height:58px; }
-      .title{ font-size:46px; }
-      .subtitle{ font-size:19px; }
-      .cta{ height:68px; font-size:20px; }
+    @media (max-width: 520px){
+      .brand img{height:58px} /* logo maior no mobile */
+      .kicker{font-size:48px} /* mobile maior como você pediu */
+      .sub{font-size:18px; line-height:1.75}
+      .hero__copy{padding-top:0}
+      .hero__cta .btn{padding:18px 18px}
+
+      .handle{
+        top:var(--handle-y-mobile);
+        transform: translate(-50%,-50%) translateX(var(--handle-x-mobile));
+        width:var(--handle-w-mobile);
+      }
+
+      .centerTitle{font-size:40px}
+      .leftTitle{font-size:40px}
+      .procTitle{font-size:40px}
     }
   </style>
 </head>
 
 <body>
-  <header class="m-header">
-    <div class="m-header__inner">
-      <a href="#inicio" class="m-logo" aria-label="Ir para o início">
+  <!-- HEADER -->
+  <header class="header" role="banner">
+    <div class="header__inner">
+      <a class="brand" href="#inicio" aria-label="Ir para início">
         <img src="assets/LOGO.svg" alt="Dra. Márcia Arduini">
       </a>
 
-      <nav class="nav-desktop" aria-label="Menu principal">
+      <nav class="nav" aria-label="Navegação principal">
         <a href="#inicio">Início</a>
         <a href="#quem-sou">Quem sou</a>
         <a href="#procedimentos">Procedimentos</a>
         <a href="#contato">Contato</a>
       </nav>
 
-      <a class="cta-top"
-         href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
-         target="_blank" rel="noopener">Agendar</a>
-
-      <button class="m-menuBtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" type="button">
-        <img src="assets/CLICAVEL.svg" alt="">
-      </button>
+      <div class="header__cta">
+        <a class="btn" id="topAgendar" href="#contato">Agendar</a>
+        <button class="burger" id="burger" aria-label="Abrir menu">
+          <span></span>
+        </button>
+      </div>
     </div>
-
-    <nav class="m-nav" id="mNav" aria-label="Menu">
-      <a href="#inicio">Início</a>
-      <a href="#quem-sou">Quem sou</a>
-      <a href="#procedimentos">Procedimentos</a>
-      <a href="#contato">Contato</a>
-
-      <a class="m-wa"
-         href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
-         target="_blank" rel="noopener">WhatsApp — Quero agendar</a>
-    </nav>
-
-    <div class="m-overlay" id="overlay" aria-hidden="true"></div>
   </header>
 
-  <main>
-    <!-- ================= SESSÃO 1 ================= -->
-    <section class="hero" id="inicio" aria-label="Início">
-      <div class="wrap">
-        <div class="text">
-          <h1 class="title reveal d1">
-            PRECISÃO TÉCNICA<br>
-            SENSIBILIDADE<br>
-            ESTÉTICA.
-          </h1>
+  <!-- Mobile panel -->
+  <div class="panel" id="panel" aria-label="Menu mobile">
+    <a href="#inicio" class="panel__link">Início</a>
+    <a href="#quem-sou" class="panel__link">Quem sou</a>
+    <a href="#procedimentos" class="panel__link">Procedimentos</a>
+    <a href="#contato" class="panel__link">Contato</a>
+    <div class="panel__cta">
+      <a class="btn" id="panelAgendar" href="#contato">Agendar no WhatsApp</a>
+    </div>
+  </div>
 
-          <p class="subtitle reveal d2">
-            Harmonização facial e estética avançada com foco em naturalidade,<br>
+  <div class="spacer" aria-hidden="true"></div>
+
+  <main>
+    <!-- SESSÃO 1 -->
+    <section id="inicio" class="section hero" aria-label="Início">
+      <div class="hero__bg" aria-hidden="true"></div>
+
+      <div class="hero__inner">
+        <!-- texto (desktop à esquerda | mobile embaixo) -->
+        <div class="hero__copy">
+          <h1 class="kicker reveal">PRECISÃO TÉCNICA<br/>SENSIBILIDADE ESTÉTICA.</h1>
+          <p class="sub reveal">
+            Harmonização facial e estética avançada com foco em naturalidade,
             segurança e planejamento individual.
           </p>
-
-          <a class="cta reveal d3"
-             href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
-             target="_blank" rel="noopener">Quero agendar</a>
+          <div class="hero__cta reveal">
+            <a class="btn" id="ctaHero" href="#contato">Quero agendar</a>
+          </div>
         </div>
 
-        <div class="media">
-          <div class="figure">
-            <img src="assets/DOUTORA%20MOBILE.webp" class="doutora" alt="Dra. Márcia Arduini">
-            <img src="assets/@dramarcia.arduini.svg" class="handle reveal d4" alt="@dramarcia.arduini">
+        <!-- visual (desktop à direita | mobile em cima) -->
+        <div class="hero__visual">
+          <div class="doctor" aria-label="Foto da doutora">
+            <!-- imagem da doutora (anima), em cima do fundo -->
+            <img src="assets/DOUTORA%20MOBILE.webp" alt="Dra. Márcia Arduini">
           </div>
+
+          <!-- @ handle -->
+          <img class="handle" src="assets/%40dramarcia.arduini.svg" alt="Dr. Marcia Arduini @dramarcia.arduini">
         </div>
       </div>
     </section>
 
-    <!-- ================= SESSÃO 2 + 3 (QUEM SOU) ================= -->
+    <!-- SESSÃO 2 (apenas texto - fundo branco full width) -->
     <section id="quem-sou" class="section" aria-label="Quem sou">
-      <!-- Sessão 2 -->
-      <div class="reveal d1">
-        <h2 class="s2-title">POR QUE ESCOLHER A DR. MÁRCIA PARA SUA HARMONIZAÇÃO FACIAL?</h2>
-        <p class="s2-text">
-          Porque harmonizar exige equilíbrio entre ciência e estética. A atuação da Dra. Márcia é baseada em planejamento individual,
-          técnica refinada e compromisso com naturalidade. Cada procedimento respeita as proporções faciais e busca resultados elegantes,
-          sem excessos. Mais do que procedimentos, o cuidado está na construção de confiança, autoestima e segurança.
+      <div class="inner">
+        <h2 class="centerTitle reveal">POR QUE ESCOLHER A DR. MÁRCIA<br/>PARA SUA HARMONIZAÇÃO FACIAL?</h2>
+
+        <p class="centerText reveal">
+          Porque harmonizar exige equilíbrio entre ciência e estética. A atuação da Dra. Márcia é baseada em
+          planejamento individual, técnica refinada e compromisso com naturalidade. Cada procedimento respeita
+          as proporções faciais e busca resultados elegantes, sem excessos. Mais do que procedimentos, o cuidado
+          está na construção de confiança, autoestima e segurança.
         </p>
-      </div>
 
-      <!-- Sessão 3 -->
-      <div class="s3-grid">
-        <div class="s3-left">
-          <h3 class="reveal d1">HARMONIA NÃO<br>É TENDÊNCIA, É<br>PROPORÇÃO!</h3>
-          <p class="reveal d2">
-            Cada rosto possui características únicas que merecem análise criteriosa e planejamento responsável.
-            O objetivo não é transformar traços, mas equilibrá-los com precisão técnica e sensibilidade estética.
-            A proposta é preservar expressões, respeitar a identidade e proporcionar resultados progressivos e naturais.
-          </p>
-        </div>
+        <!-- SESSÃO 3 (texto + carrossel) -->
+        <div class="split" aria-label="Carrossel de resultados">
+          <div>
+            <h3 class="leftTitle reveal">HARMONIA NÃO<br/>É TENDÊNCIA, É<br/>PROPORÇÃO!</h3>
+            <p class="leftText reveal">
+Cada rosto possui características únicas que merecem análise criteriosa e planejamento responsável. O objetivo
+não é transformar traços, mas equilibrá-los com precisão técnica e sensibilidade estética.
+A proposta é preservar expressões, respeitar a identidade e proporcionar resultados progressivos e naturais.
+            </p>
+          </div>
 
-        <div class="carousel reveal d3" aria-label="Carrossel de fotos">
-          <div class="carousel-viewport">
-            <div class="carousel-track" id="aboutTrack">
-              <div class="carousel-item is-active"><img src="assets/CARROSSEL%201.svg" alt=""></div>
-              <div class="carousel-item"><img src="assets/CARROSSEL%202.svg" alt=""></div>
-              <div class="carousel-item"><img src="assets/CARROSSEL%203.svg" alt=""></div>
-              <div class="carousel-item"><img src="assets/CARROSSEL%204.svg" alt=""></div>
+          <div class="carousel reveal">
+            <div class="carousel-viewport">
+              <div class="carousel-track" id="aboutTrack">
+                <div class="carousel-item is-active"><img src="assets/CARROSSEL%201.svg" alt="Resultado 1"></div>
+                <div class="carousel-item"><img src="assets/CARROSSEL%202.svg" alt="Resultado 2"></div>
+                <div class="carousel-item"><img src="assets/CARROSSEL%203.svg" alt="Resultado 3"></div>
+                <div class="carousel-item"><img src="assets/CARROSSEL%204.svg" alt="Resultado 4"></div>
+              </div>
+            </div>
+            <div class="carousel-dots" id="aboutDots" aria-label="Navegação do carrossel">
+              <button class="is-active" aria-label="Imagem 1"></button>
+              <button aria-label="Imagem 2"></button>
+              <button aria-label="Imagem 3"></button>
+              <button aria-label="Imagem 4"></button>
             </div>
           </div>
-
-          <div class="carousel-dots" id="aboutDots" aria-label="Indicadores do carrossel">
-            <button type="button" class="is-active" aria-label="Slide 1"></button>
-            <button type="button" aria-label="Slide 2"></button>
-            <button type="button" aria-label="Slide 3"></button>
-            <button type="button" aria-label="Slide 4"></button>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= SESSÃO 4 (PROCEDIMENTOS) ================= -->
+    <!-- SESSÃO 4 (procedimentos) -->
     <section id="procedimentos" class="section" aria-label="Procedimentos">
-      <h2 class="proc-title reveal d1">PROCEDIMENTOS</h2>
+      <div class="inner">
+        <h2 class="procTitle reveal">PROCEDIMENTOS</h2>
 
-      <div class="proc-grid">
-        <article class="proc-card reveal d2">
-          <div class="proc-media"><img src="assets/SERVI%C3%87O%201.svg" alt=""></div>
-          <div class="proc-bottom">
-            <div class="proc-name">Harmonização Facial</div>
-            <a class="proc-cta" target="_blank" rel="noopener"
-               href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20Harmoniza%C3%A7%C3%A3o%20Facial.">Quero Agendar</a>
-          </div>
-        </article>
+        <div class="procGrid">
+          <article class="procCard reveal">
+            <img src="assets/SERVI%C3%87O%201.svg" alt="Harmonização Facial">
+            <div class="procActions">
+              <a class="btn" data-wa="Harmonização Facial" href="#">Quero agendar</a>
+            </div>
+          </article>
 
-        <article class="proc-card reveal d2">
-          <div class="proc-media"><img src="assets/SERVI%C3%87O%202.svg" alt=""></div>
-          <div class="proc-bottom">
-            <div class="proc-name">Harmonização Facial</div>
-            <a class="proc-cta" target="_blank" rel="noopener"
-               href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20Harmoniza%C3%A7%C3%A3o%20Facial%20(com%20planejamento%20individual).">Quero Agendar</a>
-          </div>
-        </article>
+          <article class="procCard reveal">
+            <img src="assets/SERVI%C3%87O%202.svg" alt="Harmonização Facial">
+            <div class="procActions">
+              <a class="btn" data-wa="Harmonização Facial" href="#">Quero agendar</a>
+            </div>
+          </article>
 
-        <article class="proc-card reveal d2">
-          <div class="proc-media"><img src="assets/SERVI%C3%87O%203.svg" alt=""></div>
-          <div class="proc-bottom">
-            <div class="proc-name">Toxina Botulínica</div>
-            <a class="proc-cta" target="_blank" rel="noopener"
-               href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20Toxina%20Botul%C3%ADnica%20(Botox).">Quero Agendar</a>
-          </div>
-        </article>
+          <article class="procCard reveal">
+            <img src="assets/SERVI%C3%87O%203.svg" alt="Toxina Botulínica">
+            <div class="procActions">
+              <a class="btn" data-wa="Toxina Botulínica" href="#">Quero agendar</a>
+            </div>
+          </article>
 
-        <article class="proc-card reveal d2">
-          <div class="proc-media"><img src="assets/SERVI%C3%87O%204.svg" alt=""></div>
-          <div class="proc-bottom">
-            <div class="proc-name">Bioestimuladores de Colágeno</div>
-            <a class="proc-cta" target="_blank" rel="noopener"
-               href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20Bioestimuladores%20de%20Col%C3%A1geno.">Quero Agendar</a>
-          </div>
-        </article>
+          <article class="procCard reveal">
+            <img src="assets/SERVI%C3%87O%204.svg" alt="Bioestimuladores de Colágeno">
+            <div class="procActions">
+              <a class="btn" data-wa="Bioestimuladores de Colágeno" href="#">Quero agendar</a>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- contato depois -->
-    <section id="contato" style="height:1px;"></section>
+    <!-- CONTATO (placeholder simples só pra ancorar; você pode substituir depois) -->
+    <section id="contato" class="section" aria-label="Contato" style="background:#fff;">
+      <div class="inner">
+        <h2 class="procTitle reveal">CONTATO</h2>
+        <p class="centerText reveal" style="max-width:720px">
+          Para agendar sua avaliação e receber orientações personalizadas, fale diretamente no WhatsApp.
+        </p>
+        <div class="hero__cta reveal" style="justify-content:center; margin-top:18px">
+          <a class="btn" id="ctaContato" href="#">Agendar no WhatsApp</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <script>
-    // ===== Menu mobile =====
-    const btn = document.getElementById("menuBtn");
-    const nav = document.getElementById("mNav");
-    const overlay = document.getElementById("overlay");
+    // ===== Config WhatsApp (edite aqui) =====
+    const WHATSAPP_NUMBER = "5544990000000"; // <- TROQUE PELO NÚMERO (55 + DDD + número)
 
-    function closeMenu(){
-      nav.classList.remove("open");
-      overlay.classList.remove("show");
-      btn.setAttribute("aria-expanded","false");
+    function waLink(serviceName){
+      const msg = `Olá, Dra. Márcia! Quero agendar ${serviceName}. Pode me passar horários disponíveis?`;
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
     }
 
-    btn.addEventListener("click", () => {
-      const willOpen = !nav.classList.contains("open");
-      nav.classList.toggle("open");
-      overlay.classList.toggle("show");
-      btn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+    // Botões WhatsApp
+    document.querySelectorAll('[data-wa]').forEach(btn=>{
+      const name = btn.getAttribute('data-wa');
+      btn.href = waLink(name);
+      btn.target = "_blank";
+      btn.rel = "noopener";
     });
 
-    overlay.addEventListener("click", closeMenu);
-    nav.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+    // CTA do hero / contato
+    document.getElementById("ctaHero").addEventListener("click", (e)=>{
+      // mantém como âncora para contato (você pediu menu funcionando)
+    });
 
-    // ===== Reveal (fade + blur) =====
-    const revealEls = document.querySelectorAll(".reveal");
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("is-visible");
-          io.unobserve(e.target);
+    const contatoBtn = document.getElementById("ctaContato");
+    contatoBtn.href = waLink("uma avaliação");
+    contatoBtn.target = "_blank";
+    contatoBtn.rel = "noopener";
+
+    const panelAgendar = document.getElementById("panelAgendar");
+    panelAgendar.href = waLink("uma avaliação");
+    panelAgendar.target = "_blank";
+    panelAgendar.rel = "noopener";
+
+    // ===== Menu mobile =====
+    const burger = document.getElementById("burger");
+    const panel  = document.getElementById("panel");
+    const links  = panel.querySelectorAll(".panel__link");
+
+    function closePanel(){ panel.style.display = "none"; }
+    function togglePanel(){
+      panel.style.display = (panel.style.display === "block") ? "none" : "block";
+    }
+    burger.addEventListener("click", togglePanel);
+    links.forEach(a=>a.addEventListener("click", closePanel));
+    window.addEventListener("scroll", closePanel, {passive:true});
+
+    // ===== Fade-in blur (Intersection Observer) =====
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting){
+          en.target.classList.add("is-in");
+          io.unobserve(en.target);
         }
       });
-    }, { threshold: 0.25 });
-    revealEls.forEach(el => io.observe(el));
+    }, {threshold:0.12});
+
+    document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 
     // ===== Carrossel automático (Sessão 3) =====
     (function(){
@@ -697,8 +748,13 @@
       const dots  = Array.from(dotsWrap.querySelectorAll("button"));
 
       let idx = 0;
-      const gap = 22;
       let timer = null;
+
+      function getGapPx(){
+        const st = getComputedStyle(track);
+        const g = parseFloat(st.gap || st.columnGap || "0");
+        return isNaN(g) ? 0 : g;
+      }
 
       function setActive(newIdx){
         idx = (newIdx + items.length) % items.length;
@@ -711,9 +767,11 @@
 
         const item = items[idx];
         const itemW = item.getBoundingClientRect().width;
-        const xBefore = idx * (itemW + gap);
+        const gapPx = getGapPx();
 
+        const xBefore = idx * (itemW + gapPx);
         const target = (vpW/2) - (itemW/2) - xBefore;
+
         track.style.transform = `translateX(${target}px)`;
       }
 
