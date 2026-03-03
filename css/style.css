@@ -28,7 +28,7 @@
          - X (lado):  negativo = esquerda | positivo = direita
          ========================== */
       --handle-y: 86%;      /* <<< abaixo do quadril (padrão) */
-      --handle-x: -10px;    /* <<< empurra um pouco pra esquerda (se quiser) */
+      --handle-x: -50px;    /* <<< empurra um pouco pra esquerda (se quiser) */
 
       --handle-w-mobile: min(360px, 90vw);
       --handle-w-desktop: 380px;
