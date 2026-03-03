@@ -93,10 +93,10 @@ header{
 
 /* @ CENTRALIZADO EMBAIXO */
 .handle{
-  width:280px;
-  margin-top:-55px; /* ENCOSTA NO QUADRIL */
-  filter:drop-shadow(0 15px 25px rgba(0,0,0,.25));
-}
+  position:absolute;
+  left:50%;
+  top:var(--handle-y-mobile);
+  transform:translate(-50%,-50%);
 
 /* TEXTO */
 .text{
