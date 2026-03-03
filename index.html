@@ -22,31 +22,29 @@
       --container: 1200px;
 
       /* ===========================
-         AJUSTE DO @ (sem dor de cabeça)
-         1) Ajuste grosso: --handle-y-*
-         2) Ajuste fino (cola no quadril): --handle-nudge-* (px)
+         @ — cola no quadril (controle fino)
          =========================== */
-      --handle-y-mobile: 60%;
-      --handle-nudge-mobile: 38px;
+      --handle-w-mobile: min(360px, 92vw);
+      --handle-w-desktop: 380px;
 
-      --handle-y-tablet: 60%;
-      --handle-nudge-tablet: 36px;
+      /* (grosso) posição vertical base */
+      --handle-y-mobile: 72%;
+      --handle-y-tablet: 72%;
+      --handle-y-desktop: 72%;
 
-      --handle-y-desktop: 60%;
-      --handle-nudge-desktop: 34px;
+      /* (fino) empurra pra baixo/ cima em px  (maior=desce | menor=sobe) */
+      --handle-nudge-mobile: 120px;
+      --handle-nudge-tablet: 115px;
+      --handle-nudge-desktop: 110px;
 
-      --handle-w-mobile: min(320px, 86vw);
-      --handle-w-desktop: 360px;
-
-      /* Espaços */
+      /* ===== Espaços ===== */
       --mobile-gap: 10px;
       --mobile-text-mt: 6px;
       --sub-to-btn: 56px;
 
-      /* Desktop: tira o “buracão” embaixo */
+      /* Desktop */
       --desktop-gap: 42px;
       --desktop-text-top: 18px;
-      --desktop-hero-bottom: 12px; /* <<< reduz o espaço do desktop aqui */
     }
 
     *{box-sizing:border-box}
@@ -238,6 +236,7 @@
       display:flex;
       align-items:flex-start;
       background:url("assets/FUNDO%20MOBILE.webp") center/cover no-repeat;
+      padding-bottom:0;
     }
 
     .hero .wrap{
@@ -285,13 +284,22 @@
       50%{ transform: translateY(-8px); }
     }
 
-    /* ✅ @ com ajuste fino em px (cola no quadril) */
+    /* ✅ @ CENTRALIZADO PELO VIEWPORT (resolve “cortando” e “indo pro lado”) */
     .handle{
       position:absolute;
-      left:50%;
+
+      /* centro REAL da tela */
+      left:50vw;
+
+      /* altura base por breakpoint */
       top:var(--handle-y-mobile);
+
+      /* ajuste fino em px */
       transform:translate(-50%,-50%) translateY(var(--handle-nudge-mobile));
+
       width:var(--handle-w-mobile);
+      max-width:calc(100vw - 40px);
+
       z-index:3;
       pointer-events:none;
       filter:drop-shadow(0 18px 28px rgba(0,0,0,.18));
@@ -391,7 +399,7 @@
       .hero{
         background:url("assets/FUNDO%20DESKTOP.webp") center/cover no-repeat;
         align-items:flex-start;
-        min-height:auto; /* mata espaço forçado */
+        min-height:auto; /* ✅ tira o espaço forçado */
       }
 
       .hero .wrap{
@@ -400,7 +408,8 @@
         align-items:start;
         gap: var(--desktop-gap);
 
-        padding:44px 20px var(--desktop-hero-bottom); /* <<< remove buracão */
+        /* ✅ elimina o espaço enorme embaixo no desktop */
+        padding:44px 20px 0px;
       }
 
       .text{ margin-top: var(--desktop-text-top); max-width:520px; }
@@ -412,6 +421,7 @@
         top:var(--handle-y-desktop);
         transform:translate(-50%,-50%) translateY(var(--handle-nudge-desktop));
         width:var(--handle-w-desktop);
+        max-width:420px;
       }
 
       .title{ font-size:56px; }
@@ -442,6 +452,7 @@
         <a href="#contato">Contato</a>
       </nav>
 
+      <!-- some no mobile, aparece só no desktop -->
       <a class="cta-top"
          href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
          target="_blank" rel="noopener">
@@ -499,9 +510,24 @@
         </div>
       </div>
     </section>
+
+    <!-- placeholders das seções -->
+    <section id="quem-sou" style="padding:70px 20px; max-width:1200px; margin:0 auto;">
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:34px; margin:0 0 12px;">Quem sou</h2>
+      <p style="margin:0; color:rgba(0,0,0,.60);">(conteúdo depois)</p>
+    </section>
+    <section id="procedimentos" style="padding:70px 20px; max-width:1200px; margin:0 auto;">
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:34px; margin:0 0 12px;">Procedimentos</h2>
+      <p style="margin:0; color:rgba(0,0,0,.60);">(conteúdo depois)</p>
+    </section>
+    <section id="contato" style="padding:70px 20px; max-width:1200px; margin:0 auto;">
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:34px; margin:0 0 12px;">Contato</h2>
+      <p style="margin:0; color:rgba(0,0,0,.60);">(conteúdo depois)</p>
+    </section>
   </main>
 
   <script>
+    // menu mobile
     const btn = document.getElementById("menuBtn");
     const nav = document.getElementById("mNav");
     const overlay = document.getElementById("overlay");
@@ -522,6 +548,7 @@
     overlay.addEventListener("click", closeMenu);
     nav.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
 
+    // fade-in + blur
     const revealEls = document.querySelectorAll(".reveal");
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
