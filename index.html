@@ -450,30 +450,6 @@
       </div>
     </section>
 
-
-   <!-- =========================
-     SESSÃO 2 — QUEM SOU (texto)
-========================= -->
-<section id="quem-sou" class="s2" aria-label="Quem sou"
-  style="background:#fff; width:100%; display:block;">
-  <div class="s2__inner"
-    style="max-width:1120px; margin:0 auto; padding:90px 20px; text-align:center;">
-    <h2 class="s2__title reveal"
-      style="font-family:'Cormorant Garamond', serif; font-weight:700; font-size:40px; line-height:1.05; letter-spacing:.02em; text-transform:uppercase; margin:0 0 18px; color:#3B4E57;">
-      POR QUE ESCOLHER A DR. MÁRCIA<br>
-      PARA SUA HARMONIZAÇÃO FACIAL?
-    </h2>
-
-    <p class="s2__text reveal"
-      style="font-family:'Cora', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-weight:300; font-size:15px; line-height:1.85; max-width:900px; margin:0 auto; color:rgba(0,0,0,.52);">
-      Porque harmonizar exige equilíbrio entre ciência e estética. A atuação da Dra. Márcia é baseada em planejamento
-      individual, técnica refinada e compromisso com naturalidade. Cada procedimento respeita as proporções faciais e
-      busca resultados elegantes, sem excessos. Mais do que procedimentos, o cuidado está na construção de confiança,
-      autoestima e segurança.
-    </p>
-  </div>
-</section>
-
     <!-- =========================
      SESSÃO 2 — QUEM SOU (texto)
 ========================= -->
@@ -527,3 +503,44 @@
     </p>
   </div>
 </section>
+
+    <!-- âncoras (menu não quebra) -->
+    <section id="quem-sou" style="height:1px;"></section>
+    <section id="procedimentos" style="height:1px;"></section>
+    <section id="contato" style="height:1px;"></section>
+  </main>
+
+  <script>
+    const btn = document.getElementById("menuBtn");
+    const nav = document.getElementById("mNav");
+    const overlay = document.getElementById("overlay");
+
+    function closeMenu(){
+      nav.classList.remove("open");
+      overlay.classList.remove("show");
+      btn.setAttribute("aria-expanded","false");
+    }
+
+    btn.addEventListener("click", () => {
+      const willOpen = !nav.classList.contains("open");
+      nav.classList.toggle("open");
+      overlay.classList.toggle("show");
+      btn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+    });
+
+    overlay.addEventListener("click", closeMenu);
+    nav.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+
+    const revealEls = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-visible");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.25 });
+    revealEls.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
