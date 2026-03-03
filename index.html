@@ -6,7 +6,6 @@
 <title>Dra. Márcia Arduini</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400&display=swap" rel="stylesheet">
 
@@ -16,197 +15,148 @@
   --ink:#3B4E57;
   --header-h:104px;
 
-  /* AJUSTE FINO DO @ (desktop e mobile) */
-  --handle-y-desktop: 68%; /* menor = sobe | maior = desce */
-  --handle-y-mobile: 63%;
+  --handle-desktop:66%;
+  --handle-mobile:62%;
 
-  /* RESPIRO subtítulo -> botão */
-  --sub-to-btn: 52px;
+  --space-btn:58px;
 }
 
-/* RESET */
 *{box-sizing:border-box}
-html,body{height:100%}
 body{
   margin:0;
-  font-family:"Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family:"Source Sans 3", sans-serif;
   background:#fff;
-  overflow-x:hidden;
 }
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
-button{font:inherit}
 
 /* HEADER */
 header{
   position:fixed;
   top:0;left:0;right:0;
-  background:var(--paper);
   height:var(--header-h);
+  background:var(--paper);
   display:flex;
   align-items:center;
-  padding:0 18px;
+  padding:0 20px;
   z-index:9999;
   border-bottom:1px solid rgba(0,0,0,.08);
 }
-.header-inner{
-  width:1200px;
-  max-width:100%;
-  margin:0 auto;
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-.logo img{height:64px;width:auto}
+.logo img{height:64px}
 
-/* DESKTOP NAV (central) */
 .nav-desktop{
   display:none;
   flex:1;
   justify-content:center;
-  gap:26px;
+  gap:28px;
 }
-.nav-desktop a{
-  font-size:16px;
-  padding:10px 10px;
-  border-radius:12px;
-}
-.nav-desktop a:hover{background:rgba(0,0,0,.05)}
+.nav-desktop a{font-size:16px}
 
-/* DESKTOP CTA right */
 .cta-top{
   display:none;
   background:var(--ink);
   color:#fff;
   padding:12px 18px;
-  border-radius:14px;
-  white-space:nowrap;
+  border-radius:12px;
 }
 
-/* MOBILE BUTTON */
 .menuBtn{
   margin-left:auto;
   width:56px;height:56px;
   border-radius:18px;
   border:1px solid rgba(0,0,0,.10);
-  background:rgba(255,255,255,.45);
+  background:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
   cursor:pointer;
-  -webkit-tap-highlight-color:transparent;
 }
-.menuBtn img{width:26px;height:26px}
 
-/* MOBILE NAV */
 .nav-mobile{
   position:fixed;
   top:calc(var(--header-h) - 6px);
   right:18px;
-  width:min(360px, calc(100vw - 36px));
-  background:rgba(255,255,255,.96);
-  backdrop-filter:blur(12px);
-  border:1px solid rgba(0,0,0,.10);
+  width:300px;
+  background:#fff;
   border-radius:20px;
   padding:14px;
   box-shadow:0 20px 50px rgba(0,0,0,.15);
-
   opacity:0;
-  transform:translateY(-10px);
   pointer-events:none;
-  transition:.2s ease;
-  z-index:9999;
+  transform:translateY(-10px);
+  transition:.2s;
 }
-.nav-mobile.open{opacity:1;transform:translateY(0);pointer-events:auto;}
+.nav-mobile.open{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0);
+}
 .nav-mobile a{
   display:block;
-  padding:14px 16px;
-  font-size:18px;
-  border-radius:14px;
-}
-.nav-mobile a:active{background:rgba(0,0,0,.05)}
-.nav-mobile .wa{
-  margin-top:10px;
-  background:var(--ink);
-  color:#fff;
-  text-align:center;
-  border-radius:16px;
-  padding:16px;
+  padding:14px;
   font-size:18px;
 }
-
 .overlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.20);
+  background:rgba(0,0,0,.2);
   opacity:0;
   pointer-events:none;
-  transition:.2s ease;
-  z-index:9998;
 }
-.overlay.show{opacity:1;pointer-events:auto;}
+.overlay.show{
+  opacity:1;
+  pointer-events:auto;
+}
 
 /* HERO */
 .hero{
   padding-top:var(--header-h);
-  min-height:100svh;
-  position:relative;
+  min-height:100vh;
+  background:url("assets/FUNDO MOBILE.webp") center/cover no-repeat;
   display:flex;
   align-items:center;
-  background:url("assets/FUNDO MOBILE.webp") center/cover no-repeat;
 }
+
 .container{
   width:1200px;
   max-width:95%;
-  margin:0 auto;
+  margin:auto;
   display:flex;
   flex-direction:column;
-  gap:18px;
-  padding:20px 0 56px;
+  gap:30px;
 }
 
-/* MOBILE STACK */
+/* MOBILE */
 .image-wrap{
   position:relative;
-  width:min(420px, 100%);
-  margin:0 auto;
-}
-.doutora{
   width:100%;
-  position:relative;
-  z-index:2;
-  filter: drop-shadow(0 20px 30px rgba(0,0,0,.22));
+  max-width:420px;
+  margin:auto;
 }
 .image-wrap::before{
   content:"";
   position:absolute;
-  left:50%;
   bottom:10%;
+  left:50%;
   transform:translateX(-50%);
   width:85%;
   height:30%;
-  background:radial-gradient(ellipse at center, rgba(0,0,0,.22), rgba(0,0,0,0) 70%);
+  background:radial-gradient(ellipse at center, rgba(0,0,0,.25), transparent);
   filter:blur(12px);
   z-index:1;
-  pointer-events:none;
 }
-
-/* @ perto do quadril */
+.doutora{position:relative;z-index:2}
 .handle{
   position:absolute;
   left:50%;
-  top:var(--handle-y-mobile);
+  top:var(--handle-mobile);
   transform:translate(-50%,-50%);
-  width:min(320px, 86vw);
+  width:300px;
   z-index:3;
-  filter: drop-shadow(0 18px 28px rgba(0,0,0,.18));
-  pointer-events:none;
 }
 
-/* TEXTO */
 .text{
   width:100%;
-  max-width:560px;
 }
 .text h1{
   font-family:"Cormorant Garamond", serif;
@@ -214,34 +164,26 @@ header{
   line-height:1.05;
   text-transform:uppercase;
   margin:0;
-  text-align:left;
 }
 .text p{
-  margin:22px 0 var(--sub-to-btn) 0; /* RESPIRO AQUI */
+  margin:24px 0 var(--space-btn);
   font-size:18px;
-  line-height:1.75;
   color:#555;
-  text-align:left;
 }
 .cta{
   display:flex;
   align-items:center;
   justify-content:center;
   height:64px;
-  border-radius:18px;
   background:var(--ink);
   color:#fff;
+  border-radius:18px;
   font-size:20px;
 }
 
-/* TABLET */
-@media (min-width:768px){
-  .text h1{font-size:50px;}
-  .text p{font-size:19px;}
-}
+/* DESKTOP */
+@media(min-width:1024px){
 
-/* DESKTOP: TEXTO ESQUERDA / FOTO DIREITA */
-@media (min-width:1024px){
   .hero{
     background:url("assets/FUNDO DESKTOP.webp") center/cover no-repeat;
   }
@@ -250,31 +192,27 @@ header{
     flex-direction:row;
     align-items:center;
     justify-content:space-between;
-    gap:60px;
-    padding:40px 0 70px;
   }
 
-  .text{width:48%; order:1;}
-  .image-wrap{width:42%; order:2; margin:0;}
+  .text{
+    width:48%;
+  }
 
-  /* @ no desktop (mais “colado” no quadril) */
+  .image-wrap{
+    width:42%;
+    margin:0;
+  }
+
   .handle{
-    top:var(--handle-y-desktop);
+    top:var(--handle-desktop);
     width:360px;
   }
 
-  /* MENU DESKTOP aparece, mobile button some */
-  .nav-desktop{display:flex;}
-  .cta-top{display:inline-block;}
-  .menuBtn{display:none;}
-  .nav-mobile{display:none;}
-  .overlay{display:none;}
-}
-
-/* TELAS MUITO PEQUENAS */
-@media (max-width:380px){
-  :root{ --header-h:96px; }
-  .logo img{height:58px}
+  .nav-desktop{display:flex}
+  .cta-top{display:inline-block}
+  .menuBtn{display:none}
+  .nav-mobile{display:none}
+  .overlay{display:none}
 }
 </style>
 </head>
@@ -282,50 +220,42 @@ header{
 <body>
 
 <header>
-  <div class="header-inner">
-    <a class="logo" href="#inicio" aria-label="Ir para início">
-      <img src="assets/LOGO.svg" alt="Dra. Márcia Arduini">
-    </a>
-
-    <!-- Desktop menu (centralizado) -->
-    <nav class="nav-desktop" aria-label="Menu principal">
-      <a href="#inicio">Início</a>
-      <a href="#quem-sou">Quem sou</a>
-      <a href="#procedimentos">Procedimentos</a>
-      <a href="#contato">Contato</a>
-    </nav>
-
-    <!-- Desktop CTA (direita) -->
-    <a class="cta-top" target="_blank" rel="noopener"
-       href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o.">
-      Agendar
-    </a>
-
-    <!-- Mobile menu button -->
-    <button class="menuBtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" type="button">
-      <img src="assets/CLICAVEL.svg" alt="">
-    </button>
+  <div class="logo">
+    <img src="assets/LOGO.svg">
   </div>
+
+  <nav class="nav-desktop">
+    <a href="#">Início</a>
+    <a href="#">Quem sou</a>
+    <a href="#">Procedimentos</a>
+    <a href="#">Contato</a>
+  </nav>
+
+  <a href="#" class="cta-top">Agendar</a>
+
+  <button class="menuBtn" id="menuBtn">
+    <img src="assets/CLICAVEL.svg">
+  </button>
 </header>
 
-<!-- Mobile menu -->
-<nav class="nav-mobile" id="navMobile" aria-label="Menu">
-  <a href="#inicio">Início</a>
-  <a href="#quem-sou">Quem sou</a>
-  <a href="#procedimentos">Procedimentos</a>
-  <a href="#contato">Contato</a>
-
-  <a class="wa" target="_blank" rel="noopener"
-     href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o.">
-    WhatsApp — Quero agendar
-  </a>
+<nav class="nav-mobile" id="navMobile">
+  <a href="#">Início</a>
+  <a href="#">Quem sou</a>
+  <a href="#">Procedimentos</a>
+  <a href="#">Contato</a>
 </nav>
 <div class="overlay" id="overlay"></div>
 
-<section class="hero" id="inicio">
+<section class="hero">
   <div class="container">
 
-    <!-- TEXTO ESQUERDA (desktop) -->
+    <!-- MOBILE: FOTO EM CIMA -->
+    <div class="image-wrap">
+      <img src="assets/DOUTORA MOBILE.webp" class="doutora">
+      <img src="assets/@dramarcia.arduini.svg" class="handle">
+    </div>
+
+    <!-- TEXTO -->
     <div class="text">
       <h1>
         PRECISÃO<br>
@@ -335,62 +265,30 @@ header{
       </h1>
 
       <p>
-        Harmonização facial e estética avançada<br>
-        com foco em naturalidade, segurança e<br>
+        Harmonização facial e estética avançada
+        com foco em naturalidade, segurança e
         planejamento individual.
       </p>
 
-      <a class="cta" target="_blank" rel="noopener"
-         href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o.">
-        Quero agendar
-      </a>
-    </div>
-
-    <!-- FOTO DIREITA (desktop) -->
-    <div class="image-wrap">
-      <img src="assets/DOUTORA MOBILE.webp" class="doutora" alt="Dra. Márcia Arduini">
-      <img src="assets/@dramarcia.arduini.svg" class="handle" alt="@dramarcia.arduini">
+      <a href="#" class="cta">Quero agendar</a>
     </div>
 
   </div>
 </section>
 
-<section id="quem-sou" style="padding:70px 18px;max-width:1200px;margin:0 auto;">
-  <h2 style="font-family:'Cormorant Garamond',serif;font-size:34px;margin:0 0 12px;">Quem sou</h2>
-  <p style="margin:0;color:#555;">(conteúdo depois)</p>
-</section>
-
-<section id="procedimentos" style="padding:70px 18px;max-width:1200px;margin:0 auto;">
-  <h2 style="font-family:'Cormorant Garamond',serif;font-size:34px;margin:0 0 12px;">Procedimentos</h2>
-  <p style="margin:0;color:#555;">(conteúdo depois)</p>
-</section>
-
-<section id="contato" style="padding:70px 18px;max-width:1200px;margin:0 auto;">
-  <h2 style="font-family:'Cormorant Garamond',serif;font-size:34px;margin:0 0 12px;">Contato</h2>
-  <p style="margin:0;color:#555;">(conteúdo depois)</p>
-</section>
-
 <script>
-  // menu mobile
-  const btn = document.getElementById("menuBtn");
-  const nav = document.getElementById("navMobile");
-  const overlay = document.getElementById("overlay");
+const btn=document.getElementById("menuBtn");
+const nav=document.getElementById("navMobile");
+const overlay=document.getElementById("overlay");
 
-  function closeMenu(){
-    nav.classList.remove("open");
-    overlay.classList.remove("show");
-    btn.setAttribute("aria-expanded","false");
-  }
-
-  btn.addEventListener("click", () => {
-    const willOpen = !nav.classList.contains("open");
-    nav.classList.toggle("open");
-    overlay.classList.toggle("show");
-    btn.setAttribute("aria-expanded", willOpen ? "true" : "false");
-  });
-
-  overlay.addEventListener("click", closeMenu);
-  nav.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+btn.addEventListener("click",()=>{
+  nav.classList.toggle("open");
+  overlay.classList.toggle("show");
+});
+overlay.addEventListener("click",()=>{
+  nav.classList.remove("open");
+  overlay.classList.remove("show");
+});
 </script>
 
 </body>
