@@ -979,160 +979,80 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
 <!-- ===================== SESSÃO 4 | PROCEDIMENTOS ===================== -->
 <section id="procedimentos">
   <style>
-    /* ====== CONTROLE DE ALINHAMENTO (1 ajuste e acabou) ======
-       Se o título não estiver na mesma linha da Sessão 3/1,
-       ajuste só esse valor abaixo para o mesmo padding/eixo das outras sessões.
-       Ex: 6%, 7%, 80px, etc.
-    */
-    #procedimentos{
-      --axis-pad: 6%;
-    }
-
-    /* tudo escopado: não encosta na sessão 3 */
-    #procedimentos .p4-wrap{
-      width:100%;
-      background:#fff;
-      padding:70px 0 100px;
-      scroll-margin-top:120px;
-    }
-
-    /* título alinhado pelo eixo */
+    #procedimentos{ --axis-pad: 6%; }
+    #procedimentos .p4-wrap{ width:100%; background:#fff; padding:70px 0 100px; scroll-margin-top:120px; }
     #procedimentos .p4-titlewrap{
-      width:100%;
-      margin:0 auto;
-      padding-left: var(--axis-pad);
-      padding-right: var(--axis-pad);
-      max-width: 1600px;  /* deixa o título “andar” sem ficar preso */
+      width:100%; margin:0 auto; max-width:1600px;
+      padding-left:var(--axis-pad); padding-right:var(--axis-pad);
     }
-
     #procedimentos .p4-title{
       font-family:'Cormorant Garamond',serif;
-      font-size:54px;
-      letter-spacing:3px;
-      color:#3f525a;
-      margin:0 0 34px;
-      text-align:left;
-
-      opacity:0;
-      filter:blur(10px);
-      transform:translateY(20px);
+      font-size:54px; letter-spacing:3px; color:#3f525a;
+      margin:0 0 34px; text-align:left;
+      opacity:0; filter:blur(10px); transform:translateY(20px);
       animation:p4FadeBlur .9s ease forwards;
     }
-
-    /* grid grande (cards grandes igual seu PNG) */
-    #procedimentos .p4-gridwrap{
-      width:100%;
-      max-width:1500px;
-      margin:0 auto;
-      padding:0 var(--axis-pad);
-    }
-
+    #procedimentos .p4-gridwrap{ width:100%; max-width:1500px; margin:0 auto; padding:0 var(--axis-pad); }
     #procedimentos .p4-grid{
       display:grid;
       grid-template-columns:repeat(4, minmax(300px, 1fr));
       gap:40px;
       align-items:start;
     }
-
     #procedimentos .p4-card{
       position:relative;
       border-radius:14px;
       overflow:hidden;
       background:transparent;
       box-shadow:0 12px 28px rgba(0,0,0,0.10);
-
-      opacity:0;
-      filter:blur(10px);
-      transform:translateY(20px);
+      opacity:0; filter:blur(10px); transform:translateY(20px);
       animation:p4FadeBlur .9s ease forwards;
     }
-
     #procedimentos .p4-card:nth-child(1){ animation-delay:.06s; }
     #procedimentos .p4-card:nth-child(2){ animation-delay:.12s; }
     #procedimentos .p4-card:nth-child(3){ animation-delay:.18s; }
     #procedimentos .p4-card:nth-child(4){ animation-delay:.24s; }
 
-    #procedimentos .p4-img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
+    #procedimentos .p4-img{ width:100%; height:auto; display:block; }
 
-    /* BOTÃO: maior + não grudado + no cinza do SVG */
     #procedimentos .p4-btn{
       position:absolute;
       left:50%;
-      bottom:8.7%;                  /* desce pra não encostar no texto do SVG */
+      bottom:8.6%;
       transform:translateX(-50%);
-
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-
-      padding:12px 26px;            /* maior */
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 26px;
       border-radius:14px;
       background:#3f525a;
       color:#fff;
       text-decoration:none;
       font-size:14.5px;
       line-height:1;
-
       overflow:hidden;
       box-shadow:0 12px 26px rgba(0,0,0,0.15);
       transition:transform .18s ease, filter .18s ease;
-      will-change:transform;
     }
+    #procedimentos .p4-btn:hover{ transform:translateX(-50%) translateY(-1px); filter:brightness(1.06); }
 
-    #procedimentos .p4-btn:hover{
-      transform:translateX(-50%) translateY(-1px);
-      filter:brightness(1.06);
-    }
-
-    /* light sweep */
     #procedimentos .p4-btn::before{
       content:'';
-      position:absolute;
-      top:0; left:-75%;
+      position:absolute; top:0; left:-75%;
       width:55%; height:100%;
       background:linear-gradient(120deg, transparent, rgba(255,255,255,.65), transparent);
       transform:skewX(-20deg);
       pointer-events:none;
     }
-    #procedimentos .p4-btn:hover::before{
-      animation:p4Sweep .8s ease;
-    }
+    #procedimentos .p4-btn:hover::before{ animation:p4Sweep .8s ease; }
 
     @keyframes p4Sweep{ 100%{ left:125%; } }
-    @keyframes p4FadeBlur{ to{ opacity:1; filter:blur(0); transform:translateY(0); } }
+    @keyframes p4FadeBlur{ to{ opacity:1; filter:blur(0); transform:translateY(0);} }
 
-    /* MOBILE 2x2 */
     @media (max-width:900px){
-      #procedimentos{ --axis-pad: 6%; }
-
-      #procedimentos .p4-wrap{
-        padding:55px 0 80px;
-      }
-
-      #procedimentos .p4-title{
-        font-size:38px;
-        margin-bottom:26px;
-        text-align:center;
-      }
-
-      #procedimentos .p4-gridwrap{
-        max-width:560px;
-      }
-
-      #procedimentos .p4-grid{
-        grid-template-columns:repeat(2, minmax(0, 1fr));
-        gap:18px;
-      }
-
-      #procedimentos .p4-btn{
-        bottom:9.4%;
-        padding:10px 18px;
-        font-size:13px;
-      }
+      #procedimentos .p4-wrap{ padding:55px 0 80px; }
+      #procedimentos .p4-title{ font-size:38px; margin-bottom:26px; text-align:center; }
+      #procedimentos .p4-gridwrap{ max-width:560px; }
+      #procedimentos .p4-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:18px; }
+      #procedimentos .p4-btn{ bottom:9.4%; padding:10px 18px; font-size:13px; }
     }
   </style>
 
@@ -1143,7 +1063,6 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
 
     <div class="p4-gridwrap">
       <div class="p4-grid">
-
         <div class="p4-card">
           <img class="p4-img" src="assets/SERVIÇO 1.svg" alt="Harmonização Facial">
           <a class="p4-btn" target="_blank" rel="noopener"
@@ -1167,54 +1086,9 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
           <a class="p4-btn" target="_blank" rel="noopener"
              href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Bioestimuladores%20de%20Colágeno.">Quero Agendar</a>
         </div>
-
       </div>
     </div>
   </div>
-
-  <!-- REATIVAR AUTOPLAY DO CARROSSEL (sem mexer no layout da Sessão 3) -->
-  <script>
-    (function () {
-      function restartCarousels() {
-        // SWIPER
-        try {
-          if (window.Swiper) {
-            document.querySelectorAll(".swiper").forEach((el) => {
-              const inst = el.swiper;
-              if (inst && inst.autoplay && typeof inst.autoplay.start === "function") {
-                inst.autoplay.start();
-              }
-            });
-          }
-        } catch (e) {}
-
-        // SLICK
-        try {
-          if (window.jQuery && jQuery.fn && typeof jQuery.fn.slick === "function") {
-            const $ = window.jQuery;
-            $(".slick-initialized").each(function () {
-              try { $(this).slick("slickPlay"); } catch (e) {}
-            });
-          }
-        } catch (e) {}
-
-        // BOOTSTRAP
-        try {
-          if (window.bootstrap) {
-            document.querySelectorAll(".carousel").forEach((el) => {
-              const inst = bootstrap.Carousel.getOrCreateInstance(el);
-              if (inst && typeof inst.cycle === "function") inst.cycle();
-            });
-          }
-        } catch (e) {}
-      }
-
-      window.addEventListener("load", restartCarousels);
-      document.addEventListener("visibilitychange", () => {
-        if (!document.hidden) restartCarousels();
-      });
-    })();
-  </script>
 </section>
 <!-- ===================== /SESSÃO 4 | PROCEDIMENTOS ===================== -->
 
