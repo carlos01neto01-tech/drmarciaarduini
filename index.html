@@ -506,6 +506,7 @@ letter-spacing:.02em;
 text-transform:uppercase;
 color:#3B4E57;
 margin:0 0 18px 0;
+text-align:center;
 }
 
 .s3-text{
@@ -515,7 +516,8 @@ font-size:15px;
 line-height:1.85;
 color:rgba(0,0,0,.55);
 max-width:560px;
-margin:0;
+margin:0 auto;
+text-align:center;
 }
 
 /* CARROSSEL */
@@ -529,8 +531,6 @@ justify-content:center;
 .cf-shell{
 width:min(560px,100%);
 position:relative;
-
-/* retângulo invisível nas laterais */
 
 -webkit-mask-image:linear-gradient(
 90deg,
@@ -547,7 +547,6 @@ transparent 0%,
 #000 78%,
 transparent 100%
 );
-
 }
 
 .cf-viewport{
@@ -589,15 +588,13 @@ object-fit:contain;
 display:block;
 }
 
-/* slide central */
-
 .cf-slide.is-active{
 opacity:1;
 filter:blur(0);
 transform:scale(1);
 }
 
-/* desktop */
+/* DESKTOP */
 
 @media(min-width:1024px){
 
@@ -609,6 +606,12 @@ align-items:start;
 
 .s3-title{
 font-size:64px;
+text-align:left;
+}
+
+.s3-text{
+text-align:left;
+margin:0;
 }
 
 .cf{
@@ -708,6 +711,48 @@ e naturais.
 
 
 <script>
+
+const track = document.getElementById("carouselTrack")
+const slides = [...track.children]
+
+let index = 0
+
+const AUTOPLAY_MS = 1400
+
+function update(){
+
+slides.forEach((slide,i)=>{
+slide.classList.toggle("is-active",i===index)
+})
+
+const slideWidth = slides[0].offsetWidth + 18
+
+const offset =
+-index * slideWidth +
+(track.parentElement.offsetWidth - slides[0].offsetWidth)/2
+
+track.style.transform = `translateX(${offset}px)`
+
+}
+
+function next(){
+
+index++
+
+if(index>=slides.length) index=0
+
+update()
+
+}
+
+setInterval(next,AUTOPLAY_MS)
+
+window.addEventListener("load",update)
+window.addEventListener("resize",update)
+
+</script>
+
+</section>
 
 const track = document.getElementById("carouselTrack")
 const slides = [...track.children]
