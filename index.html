@@ -497,15 +497,13 @@ SESSÃO 3 — BASTIDORES (FINAL)
       margin:0 auto;
       width:100%;
       display:flex;
-      flex-direction:column; /* mobile: carrossel em cima */
+      flex-direction:column;          /* mobile: carrossel em cima */
       gap:26px;
       align-items:stretch;
     }
 
-    /* TEXTO (mobile central) */
-    .s3-copy{
-      width:100%;
-    }
+    /* TEXTO */
+    .s3-copy{ width:100%; }
 
     .s3-title{
       font-family:"Cormorant Garamond",serif;
@@ -516,7 +514,7 @@ SESSÃO 3 — BASTIDORES (FINAL)
       text-transform:uppercase;
       color:#3B4E57;
       margin:0 0 14px 0;
-      text-align:center;
+      text-align:center;              /* mobile */
     }
 
     .s3-text{
@@ -527,7 +525,7 @@ SESSÃO 3 — BASTIDORES (FINAL)
       color:rgba(0,0,0,.55);
       max-width:560px;
       margin:0 auto;
-      text-align:center;
+      text-align:center;              /* mobile */
     }
 
     /* CARROSSEL */
@@ -544,54 +542,54 @@ SESSÃO 3 — BASTIDORES (FINAL)
       overflow:hidden;
       background:#fff;
 
-      /* controle de velocidade (menor = mais rápido) */
-      --cf-speed: 6.2; /* segundos */
+      /* velocidade: menor = mais rápido */
+      --cf-speed: 5.4; /* deixa mais rápido e suave */
     }
 
-    /* “retângulo invisível” (sumir nas laterais) */
-    .cf-shell{
-      -webkit-mask-image:linear-gradient(90deg,
-        transparent 0%,
-        #000 14%,
-        #000 86%,
-        transparent 100%
-      );
-      mask-image:linear-gradient(90deg,
-        transparent 0%,
-        #000 14%,
-        #000 86%,
-        transparent 100%
-      );
-    }
-
-    /* blur lateral (centro limpo) */
+    /* ✅ Fade lateral premium (sem faixa dura) */
     .cf-shell::before,
     .cf-shell::after{
       content:"";
       position:absolute;
-      top:0; bottom:0;
-      width:24%;
+      top:-2px; bottom:-2px;
+      width:28%;
       pointer-events:none;
-      z-index:4;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      z-index:5;
     }
 
     .cf-shell::before{
-      left:0;
+      left:-2px;
       background:linear-gradient(90deg,
-        rgba(255,255,255,.92) 0%,
-        rgba(255,255,255,.55) 55%,
+        rgba(255,255,255,1) 0%,
+        rgba(255,255,255,.92) 30%,
+        rgba(255,255,255,.65) 55%,
         rgba(255,255,255,0) 100%
       );
     }
 
     .cf-shell::after{
-      right:0;
+      right:-2px;
       background:linear-gradient(270deg,
-        rgba(255,255,255,.92) 0%,
-        rgba(255,255,255,.55) 55%,
+        rgba(255,255,255,1) 0%,
+        rgba(255,255,255,.92) 30%,
+        rgba(255,255,255,.65) 55%,
         rgba(255,255,255,0) 100%
+      );
+    }
+
+    /* ✅ Mask (some nas laterais de verdade, sem cortes estranhos) */
+    .cf-shell{
+      -webkit-mask-image: linear-gradient(90deg,
+        transparent 0%,
+        #000 12%,
+        #000 88%,
+        transparent 100%
+      );
+      mask-image: linear-gradient(90deg,
+        transparent 0%,
+        #000 12%,
+        #000 88%,
+        transparent 100%
       );
     }
 
@@ -603,7 +601,7 @@ SESSÃO 3 — BASTIDORES (FINAL)
       padding:6px 0;
       user-select:none;
       -webkit-user-select:none;
-      touch-action:pan-y; /* permite scroll vertical no mobile */
+      touch-action:pan-y;
     }
 
     .cf-track{
@@ -612,12 +610,13 @@ SESSÃO 3 — BASTIDORES (FINAL)
       gap:18px;
       width:max-content;
       will-change: transform;
-      transform: translateX(0); /* JS controla */
+      transform: translateX(0);       /* JS controla */
     }
 
+    /* card */
     .cf-slide{
       flex:0 0 auto;
-      width:340px; /* largura fixa = loop perfeito e previsível */
+      width:340px;
       border-radius:28px;
       overflow:hidden;
       background:#f6f4ef;
@@ -625,28 +624,31 @@ SESSÃO 3 — BASTIDORES (FINAL)
       transform: translateZ(0);
     }
 
+    /* imagem inteira */
     .cf-slide img{
       width:100%;
       height:auto;
-      object-fit:contain; /* não corta */
+      object-fit:contain;
       display:block;
     }
 
-    /* Desktop: texto esquerda / carrossel direita */
+    /* DESKTOP: ✅ TEXTO ESQUERDA / CARROSSEL DIREITA */
     @media(min-width:1024px){
       .s3-container{
         flex-direction:row;
-        justify-content:space-between;
         align-items:flex-start;
+        justify-content:space-between;
         gap:60px;
       }
 
       .s3-copy{
+        order:1;                      /* força texto à esquerda */
         flex:0 0 520px;
-        padding-left:14px; /* respiro (não cola na borda esquerda) */
+        padding-left:18px;            /* respiro */
       }
 
       .cf{
+        order:2;                      /* carrossel à direita */
         flex:1;
         justify-content:flex-end;
       }
@@ -662,7 +664,6 @@ SESSÃO 3 — BASTIDORES (FINAL)
       }
     }
 
-    /* Mobile: cards maiores (estilo story) */
     @media(max-width:520px){
       .cf-slide{ width:300px; }
     }
@@ -675,7 +676,7 @@ SESSÃO 3 — BASTIDORES (FINAL)
 
   <div class="s3-container">
 
-    <!-- MOBILE: carrossel em cima -->
+    <!-- Mobile: carrossel em cima -->
     <div class="cf">
       <div class="cf-shell" id="cfShell">
         <div class="cf-viewport" aria-label="Carrossel contínuo de bastidores">
@@ -689,7 +690,7 @@ SESSÃO 3 — BASTIDORES (FINAL)
             <div class="cf-slide"><img src="assets/BASTIDOR%205.svg" alt="Bastidores 5"></div>
             <div class="cf-slide"><img src="assets/BASTIDOR%206.svg" alt="Bastidores 6"></div>
 
-            <!-- SEQUÊNCIA B (duplicada p/ loop perfeito) -->
+            <!-- SEQUÊNCIA B (duplicada) -->
             <div class="cf-slide"><img src="assets/BASTIDOR%201.svg" alt=""></div>
             <div class="cf-slide"><img src="assets/BASTIDOR%202.svg" alt=""></div>
             <div class="cf-slide"><img src="assets/BASTIDOR%203.svg" alt=""></div>
@@ -718,6 +719,76 @@ SESSÃO 3 — BASTIDORES (FINAL)
     </div>
 
   </div>
+
+
+  <script>
+    (function(){
+      const shell = document.getElementById("cfShell");
+      const track = document.getElementById("cfTrack");
+      if(!shell || !track) return;
+
+      let raf = null;
+      let last = 0;
+      let x = 0;
+      let loopPx = 0;
+
+      function getSpeedPxPerSec(){
+        const raw = getComputedStyle(shell).getPropertyValue("--cf-speed").trim();
+        const seconds = parseFloat(raw);
+        const base = 2200;
+        if(!Number.isFinite(seconds) || seconds <= 0) return base / 6;
+        return base / seconds;
+      }
+
+      function measure(){
+        loopPx = track.scrollWidth / 2;
+        if(loopPx <= 0) return;
+        x = x % loopPx;
+        track.style.transform = `translateX(${-x}px)`;
+      }
+
+      function tick(t){
+        if(!last) last = t;
+        const dt = (t - last) / 1000;
+        last = t;
+
+        x += getSpeedPxPerSec() * dt;
+        if(loopPx > 0 && x >= loopPx) x -= loopPx;
+
+        track.style.transform = `translateX(${-x}px)`;
+        raf = requestAnimationFrame(tick);
+      }
+
+      // pausa no hover (desktop)
+      shell.addEventListener("mouseenter", () => {
+        if(raf) cancelAnimationFrame(raf);
+        raf = null;
+        last = 0;
+      });
+
+      shell.addEventListener("mouseleave", () => {
+        if(!raf){
+          last = 0;
+          raf = requestAnimationFrame(tick);
+        }
+      });
+
+      window.addEventListener("load", () => {
+        measure();
+        if(!raf) raf = requestAnimationFrame(tick);
+      });
+
+      window.addEventListener("resize", measure);
+
+      // fallback
+      setTimeout(() => {
+        measure();
+        if(!raf) raf = requestAnimationFrame(tick);
+      }, 150);
+    })();
+  </script>
+
+</section>
 
 
   <script>
