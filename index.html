@@ -474,35 +474,308 @@
       </div>
     </section>
 
-    <!-- Placeholders (mantém o menu funcionando sem quebrar links) -->
-    <section id="procedimentos" class="s2" aria-label="Procedimentos" style="background:#fff; width:100%; display:block;">
-      <div class="s2__inner" style="max-width:1120px; margin:0 auto; padding:70px 20px; text-align:center;">
-        <h2 class="s2__title reveal"
-            style="font-family:'Cormorant Garamond', serif; font-weight:700; font-size:40px; line-height:1.05; letter-spacing:.02em; text-transform:uppercase; margin:0 0 14px; color:#3B4E57;">
-          PROCEDIMENTOS
-        </h2>
-        <p class="s2__text reveal"
-           style="font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-                  font-weight:300; font-size:15px; line-height:1.85; max-width:900px; margin:0 auto; color:rgba(0,0,0,.52);">
-          Em construção.
-        </p>
-      </div>
-    </section>
+  <!-- =========================
+SESSÃO 3 — BASTIDORES
+========================= -->
 
-    <section id="contato" class="s2" aria-label="Contato" style="background:#fff; width:100%; display:block;">
-      <div class="s2__inner" style="max-width:1120px; margin:0 auto; padding:70px 20px 90px; text-align:center;">
-        <h2 class="s2__title reveal"
-            style="font-family:'Cormorant Garamond', serif; font-weight:700; font-size:40px; line-height:1.05; letter-spacing:.02em; text-transform:uppercase; margin:0 0 14px; color:#3B4E57;">
-          CONTATO
-        </h2>
-        <p class="s2__text reveal"
-           style="font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-                  font-weight:300; font-size:15px; line-height:1.85; max-width:900px; margin:0 auto; color:rgba(0,0,0,.52);">
-          Em construção.
-        </p>
-      </div>
-    </section>
-  </main>
+<section class="s3">
+
+<style>
+
+.s3{
+background:#ffffff;
+padding:90px 20px;
+display:flex;
+justify-content:center;
+width:100%;
+}
+
+.s3-container{
+max-width:1120px;
+width:100%;
+display:grid;
+grid-template-columns:1fr;
+gap:40px;
+align-items:center;
+}
+
+/* TEXTO */
+
+.s3-title{
+font-family:"Cormorant Garamond",serif;
+font-size:54px;
+line-height:1.05;
+letter-spacing:.02em;
+text-transform:uppercase;
+color:#3B4E57;
+margin:0 0 20px 0;
+}
+
+.s3-text{
+font-family:"Inter",sans-serif;
+font-size:15px;
+line-height:1.85;
+color:rgba(0,0,0,.55);
+max-width:520px;
+}
+
+/* CARROSSEL */
+
+.carousel{
+position:relative;
+width:100%;
+max-width:520px;
+margin:auto;
+}
+
+.carousel-viewport{
+overflow:hidden;
+border-radius:26px;
+}
+
+.carousel-track{
+display:flex;
+transition:transform .6s cubic-bezier(.22,.75,.2,1);
+}
+
+.carousel-slide{
+min-width:100%;
+}
+
+.carousel-slide img{
+width:100%;
+display:block;
+border-radius:26px;
+
+opacity:0;
+filter:blur(14px);
+transform:scale(1.03);
+
+transition:
+opacity .6s ease,
+filter .6s ease,
+transform .6s ease;
+}
+
+.carousel-slide.active img{
+opacity:1;
+filter:blur(0);
+transform:scale(1);
+}
+
+/* DOTS */
+
+.carousel-dots{
+display:flex;
+justify-content:center;
+gap:10px;
+margin-top:16px;
+}
+
+.carousel-dot{
+width:10px;
+height:10px;
+border-radius:50%;
+border:1px solid #3B4E57;
+background:rgba(59,78,87,.2);
+cursor:pointer;
+}
+
+.carousel-dot.active{
+background:#3B4E57;
+}
+
+/* DESKTOP */
+
+@media(min-width:1024px){
+
+.s3-container{
+grid-template-columns:1fr 1fr;
+gap:60px;
+}
+
+.s3-title{
+font-size:64px;
+}
+
+.carousel{
+margin-left:auto;
+}
+
+}
+
+</style>
+
+
+<div class="s3-container">
+
+<div>
+
+<h2 class="s3-title">
+HARMONIA NÃO<br>
+É TENDÊNCIA, É<br>
+PROPORÇÃO!
+</h2>
+
+<p class="s3-text">
+Cada rosto possui características únicas que merecem análise criteriosa e planejamento responsável.  
+O objetivo não é transformar traços, mas equilibrá-los com precisão técnica e sensibilidade estética.
+
+<br><br>
+
+A proposta é preservar expressões, respeitar a identidade e proporcionar resultados progressivos e naturais.
+</p>
+
+</div>
+
+
+<div class="carousel" id="carousel">
+
+<div class="carousel-viewport">
+
+<div class="carousel-track">
+
+<div class="carousel-slide active">
+<img src="assets/BASTIDOR%201.svg">
+</div>
+
+<div class="carousel-slide">
+<img src="assets/BASTIDOR%202.svg">
+</div>
+
+<div class="carousel-slide">
+<img src="assets/BASTIDOR%203.svg">
+</div>
+
+<div class="carousel-slide">
+<img src="assets/BASTIDOR%204.svg">
+</div>
+
+<div class="carousel-slide">
+<img src="assets/BASTIDOR%205.svg">
+</div>
+
+<div class="carousel-slide">
+<img src="assets/BASTIDOR%206.svg">
+</div>
+
+</div>
+
+</div>
+
+<div class="carousel-dots"></div>
+
+</div>
+
+</div>
+
+
+<script>
+
+const carousel = document.getElementById("carousel")
+
+const track = carousel.querySelector(".carousel-track")
+const slides = [...carousel.querySelectorAll(".carousel-slide")]
+const dotsContainer = carousel.querySelector(".carousel-dots")
+
+let index = 0
+let autoplay
+
+slides.forEach((_,i)=>{
+
+const dot=document.createElement("button")
+dot.classList.add("carousel-dot")
+
+if(i===0)dot.classList.add("active")
+
+dot.onclick=()=>goTo(i)
+
+dotsContainer.appendChild(dot)
+
+})
+
+const dots=[...dotsContainer.children]
+
+function update(){
+
+track.style.transform=`translateX(-${index*100}%)`
+
+slides.forEach((s,i)=>{
+
+s.classList.toggle("active",i===index)
+
+})
+
+dots.forEach((d,i)=>{
+
+d.classList.toggle("active",i===index)
+
+})
+
+}
+
+function goTo(i){
+
+index=i
+update()
+restart()
+
+}
+
+function next(){
+
+index=(index+1)%slides.length
+update()
+
+}
+
+function start(){
+
+autoplay=setInterval(next,4200)
+
+}
+
+function restart(){
+
+clearInterval(autoplay)
+start()
+
+}
+
+carousel.addEventListener("mouseenter",()=>clearInterval(autoplay))
+carousel.addEventListener("mouseleave",start)
+
+/* swipe mobile */
+
+let startX=0
+
+carousel.addEventListener("pointerdown",e=>{
+
+startX=e.clientX
+clearInterval(autoplay)
+
+})
+
+carousel.addEventListener("pointerup",e=>{
+
+let diff=e.clientX-startX
+
+if(diff>50)index--
+if(diff<-50)index++
+
+if(index<0)index=slides.length-1
+if(index>=slides.length)index=0
+
+update()
+start()
+
+})
+
+start()
+
+</script>
+
+</section>
 
   <script>
     const btn = document.getElementById("menuBtn");
