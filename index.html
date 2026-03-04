@@ -474,306 +474,290 @@
       </div>
     </section>
 
-  <!-- =========================
-SESSÃO 3 — BASTIDORES
-========================= -->
-
-<section class="s3">
-
-<style>
-
-.s3{
-background:#ffffff;
-padding:90px 20px;
-display:flex;
-justify-content:center;
-width:100%;
-}
-
-.s3-container{
-max-width:1120px;
-width:100%;
-display:grid;
-grid-template-columns:1fr;
-gap:40px;
-align-items:center;
-}
-
-/* TEXTO */
-
-.s3-title{
-font-family:"Cormorant Garamond",serif;
-font-size:54px;
-line-height:1.05;
-letter-spacing:.02em;
-text-transform:uppercase;
-color:#3B4E57;
-margin:0 0 20px 0;
-}
-
-.s3-text{
-font-family:"Inter",sans-serif;
-font-size:15px;
-line-height:1.85;
-color:rgba(0,0,0,.55);
-max-width:520px;
-}
-
-/* CARROSSEL */
-
-.carousel{
-position:relative;
-width:100%;
-max-width:520px;
-margin:auto;
-}
-
-.carousel-viewport{
-overflow:hidden;
-border-radius:26px;
-}
-
-.carousel-track{
-display:flex;
-transition:transform .6s cubic-bezier(.22,.75,.2,1);
-}
-
-.carousel-slide{
-min-width:100%;
-}
-
-.carousel-slide img{
-width:100%;
-display:block;
-border-radius:26px;
-
-opacity:0;
-filter:blur(14px);
-transform:scale(1.03);
-
-transition:
-opacity .6s ease,
-filter .6s ease,
-transform .6s ease;
-}
-
-.carousel-slide.active img{
-opacity:1;
-filter:blur(0);
-transform:scale(1);
-}
-
-/* DOTS */
-
-.carousel-dots{
-display:flex;
-justify-content:center;
-gap:10px;
-margin-top:16px;
-}
-
-.carousel-dot{
-width:10px;
-height:10px;
-border-radius:50%;
-border:1px solid #3B4E57;
-background:rgba(59,78,87,.2);
-cursor:pointer;
-}
-
-.carousel-dot.active{
-background:#3B4E57;
-}
-
-/* DESKTOP */
-
-@media(min-width:1024px){
-
-.s3-container{
-grid-template-columns:1fr 1fr;
-gap:60px;
-}
-
-.s3-title{
-font-size:64px;
-}
-
-.carousel{
-margin-left:auto;
-}
-
-}
-
-</style>
-
-
-<div class="s3-container">
-
-<div>
-
-<h2 class="s3-title">
-HARMONIA NÃO<br>
-É TENDÊNCIA, É<br>
-PROPORÇÃO!
-</h2>
-
-<p class="s3-text">
-Cada rosto possui características únicas que merecem análise criteriosa e planejamento responsável.  
-O objetivo não é transformar traços, mas equilibrá-los com precisão técnica e sensibilidade estética.
-
-<br><br>
-
-A proposta é preservar expressões, respeitar a identidade e proporcionar resultados progressivos e naturais.
-</p>
-
-</div>
-
-
-<div class="carousel" id="carousel">
-
-<div class="carousel-viewport">
-
-<div class="carousel-track">
-
-<div class="carousel-slide active">
-<img src="assets/BASTIDOR%201.svg">
-</div>
-
-<div class="carousel-slide">
-<img src="assets/BASTIDOR%202.svg">
-</div>
-
-<div class="carousel-slide">
-<img src="assets/BASTIDOR%203.svg">
-</div>
-
-<div class="carousel-slide">
-<img src="assets/BASTIDOR%204.svg">
-</div>
-
-<div class="carousel-slide">
-<img src="assets/BASTIDOR%205.svg">
-</div>
-
-<div class="carousel-slide">
-<img src="assets/BASTIDOR%206.svg">
-</div>
-
-</div>
-
-</div>
-
-<div class="carousel-dots"></div>
-
-</div>
-
-</div>
-
-
-<script>
-
-const carousel = document.getElementById("carousel")
-
-const track = carousel.querySelector(".carousel-track")
-const slides = [...carousel.querySelectorAll(".carousel-slide")]
-const dotsContainer = carousel.querySelector(".carousel-dots")
-
-let index = 0
-let autoplay
-
-slides.forEach((_,i)=>{
-
-const dot=document.createElement("button")
-dot.classList.add("carousel-dot")
-
-if(i===0)dot.classList.add("active")
-
-dot.onclick=()=>goTo(i)
-
-dotsContainer.appendChild(dot)
-
-})
-
-const dots=[...dotsContainer.children]
-
-function update(){
-
-track.style.transform=`translateX(-${index*100}%)`
-
-slides.forEach((s,i)=>{
-
-s.classList.toggle("active",i===index)
-
-})
-
-dots.forEach((d,i)=>{
-
-d.classList.toggle("active",i===index)
-
-})
-
-}
-
-function goTo(i){
-
-index=i
-update()
-restart()
-
-}
-
-function next(){
-
-index=(index+1)%slides.length
-update()
-
-}
-
-function start(){
-
-autoplay=setInterval(next,4200)
-
-}
-
-function restart(){
-
-clearInterval(autoplay)
-start()
-
-}
-
-carousel.addEventListener("mouseenter",()=>clearInterval(autoplay))
-carousel.addEventListener("mouseleave",start)
-
-/* swipe mobile */
-
-let startX=0
-
-carousel.addEventListener("pointerdown",e=>{
-
-startX=e.clientX
-clearInterval(autoplay)
-
-})
-
-carousel.addEventListener("pointerup",e=>{
-
-let diff=e.clientX-startX
-
-if(diff>50)index--
-if(diff<-50)index++
-
-if(index<0)index=slides.length-1
-if(index>=slides.length)index=0
-
-update()
-start()
-
-})
-
-start()
-
-</script>
+<section class="s3" id="bastidores">
+
+  <style>
+    .s3{
+      background:#fff;
+      width:100%;
+      padding:90px 20px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .s3-container{
+      width:100%;
+      max-width:1120px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:34px;
+      align-items:center;
+    }
+
+    /* TEXTO */
+    .s3-title{
+      font-family:"Cormorant Garamond",serif;
+      font-weight:700;
+      font-size:54px;
+      line-height:1.05;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+      color:#3B4E57;
+      margin:0 0 18px 0;
+    }
+
+    .s3-text{
+      font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-weight:300;
+      font-size:15px;
+      line-height:1.85;
+      color:rgba(0,0,0,.55);
+      max-width:560px;
+      margin:0;
+    }
+
+    /* CARROSSEL */
+    .cf{
+      width:100%;
+      display:flex;
+      justify-content:center;
+    }
+
+    .cf-shell{
+      width:min(560px, 100%);
+      position:relative;
+      /* “retângulo invisível” que faz sumir nas laterais */
+      -webkit-mask-image: linear-gradient(90deg,
+        transparent 0%,
+        #000 16%,
+        #000 84%,
+        transparent 100%
+      );
+      mask-image: linear-gradient(90deg,
+        transparent 0%,
+        #000 16%,
+        #000 84%,
+        transparent 100%
+      );
+    }
+
+    .cf-viewport{
+      overflow:hidden;
+      border-radius:28px;
+    }
+
+    .cf-track{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      will-change:transform;
+      transition:transform .65s cubic-bezier(.22,.75,.2,1);
+      padding:4px 0;
+    }
+
+    .cf-slide{
+      flex:0 0 auto;
+      width:78%;
+      border-radius:28px;
+      overflow:hidden;
+      background:#f6f4ef;
+      box-shadow:0 18px 45px rgba(0,0,0,.12);
+      transform:translateZ(0);
+      transition:filter .55s ease, opacity .55s ease, transform .55s ease;
+      opacity:.55;
+      filter:blur(10px);
+      transform:scale(.94);
+      pointer-events:none;
+    }
+
+    .cf-slide img{
+      width:100%;
+      display:block;
+      height:auto;
+    }
+
+    /* Slide central (foco) */
+    .cf-slide.is-active{
+      opacity:1;
+      filter:blur(0);
+      transform:scale(1);
+      pointer-events:auto;
+    }
+
+    /* Desktop: texto esquerda / carrossel direita */
+    @media(min-width:1024px){
+      .s3-container{
+        grid-template-columns:0.95fr 1.05fr;
+        gap:60px;
+        align-items:start;
+      }
+      .s3-title{ font-size:64px; }
+      .cf{ justify-content:flex-end; }
+      .cf-shell{ width:min(560px, 100%); }
+    }
+
+    @media(max-width:520px){
+      .s3-title{ font-size:44px; }
+      .cf-viewport{ border-radius:24px; }
+      .cf-slide{ border-radius:24px; width:86%; }
+    }
+  </style>
+
+  <div class="s3-container">
+
+    <div class="s3-copy">
+      <h2 class="s3-title">
+        HARMONIA NÃO<br>
+        É TENDÊNCIA, É<br>
+        PROPORÇÃO!
+      </h2>
+
+      <p class="s3-text">
+        Cada rosto possui características únicas que merecem análise criteriosa e planejamento responsável.
+        O objetivo não é transformar traços, mas equilibrá-los com precisão técnica e sensibilidade estética.
+        <br><br>
+        A proposta é preservar expressões, respeitar a identidade e proporcionar resultados progressivos e naturais.
+      </p>
+    </div>
+
+    <div class="cf">
+      <div class="cf-shell" id="cfShell">
+        <div class="cf-viewport">
+          <div class="cf-track" id="cfTrack">
+            <div class="cf-slide"><img src="assets/BASTIDOR%201.svg" alt="Bastidores 1"></div>
+            <div class="cf-slide"><img src="assets/BASTIDOR%202.svg" alt="Bastidores 2"></div>
+            <div class="cf-slide"><img src="assets/BASTIDOR%203.svg" alt="Bastidores 3"></div>
+            <div class="cf-slide"><img src="assets/BASTIDOR%204.svg" alt="Bastidores 4"></div>
+            <div class="cf-slide"><img src="assets/BASTIDOR%205.svg" alt="Bastidores 5"></div>
+            <div class="cf-slide"><img src="assets/BASTIDOR%206.svg" alt="Bastidores 6"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function(){
+      const shell = document.getElementById("cfShell");
+      const track = document.getElementById("cfTrack");
+      if(!shell || !track) return;
+
+      const slides = Array.from(track.querySelectorAll(".cf-slide"));
+      let index = 0;
+
+      let isDragging = false;
+      let startX = 0;
+      let startTranslate = 0;
+      let currentTranslate = 0;
+
+      let autoplayTimer = null;
+      const AUTOPLAY_MS = 3200;
+
+      function getMetrics(){
+        const shellW = shell.getBoundingClientRect().width;
+        const slideW = slides[0].getBoundingClientRect().width;
+        const gap = parseFloat(getComputedStyle(track).gap) || 0;
+        return { shellW, slideW, gap };
+      }
+
+      function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+
+      function setActive(){
+        slides.forEach((s,i)=>s.classList.toggle("is-active", i === index));
+      }
+
+      function translateToIndex(animate=true){
+        const { shellW, slideW, gap } = getMetrics();
+        const step = slideW + gap;
+
+        // centraliza o slide atual
+        const target = -index * step + (shellW - slideW)/2;
+
+        track.style.transition = animate ? "transform .65s cubic-bezier(.22,.75,.2,1)" : "none";
+        track.style.transform = `translateX(${target}px)`;
+        currentTranslate = target;
+
+        setActive();
+      }
+
+      function nearestIndexFromTranslate(tx){
+        const { shellW, slideW, gap } = getMetrics();
+        const step = slideW + gap;
+
+        // inverte a fórmula para estimar index
+        const raw = ((shellW - slideW)/2 - tx) / step;
+        return clamp(Math.round(raw), 0, slides.length - 1);
+      }
+
+      function stopAutoplay(){
+        if(autoplayTimer) clearInterval(autoplayTimer);
+        autoplayTimer = null;
+      }
+
+      function startAutoplay(){
+        stopAutoplay();
+        autoplayTimer = setInterval(()=>{
+          index = (index + 1) % slides.length;
+          translateToIndex(true);
+        }, AUTOPLAY_MS);
+      }
+
+      function restartAutoplay(){
+        stopAutoplay();
+        startAutoplay();
+      }
+
+      // Drag / swipe
+      shell.addEventListener("pointerdown", (e)=>{
+        isDragging = true;
+        startX = e.clientX;
+        startTranslate = currentTranslate;
+        stopAutoplay();
+        shell.setPointerCapture(e.pointerId);
+        track.style.transition = "none";
+      });
+
+      shell.addEventListener("pointermove", (e)=>{
+        if(!isDragging) return;
+        const dx = e.clientX - startX;
+        const tx = startTranslate + dx;
+
+        track.style.transform = `translateX(${tx}px)`;
+      });
+
+      shell.addEventListener("pointerup", (e)=>{
+        if(!isDragging) return;
+        isDragging = false;
+
+        const style = getComputedStyle(track);
+        const matrix = new DOMMatrixReadOnly(style.transform);
+        const tx = matrix.m41;
+
+        index = nearestIndexFromTranslate(tx);
+        translateToIndex(true);
+        startAutoplay();
+      });
+
+      shell.addEventListener("pointercancel", ()=>{
+        isDragging = false;
+        translateToIndex(true);
+        startAutoplay();
+      });
+
+      // Pausa no hover (desktop)
+      shell.addEventListener("mouseenter", stopAutoplay);
+      shell.addEventListener("mouseleave", startAutoplay);
+
+      // Ajuste responsivo
+      window.addEventListener("resize", ()=> translateToIndex(false));
+
+      // Init
+      setActive();
+      translateToIndex(false);
+      startAutoplay();
+    })();
+  </script>
 
 </section>
 
