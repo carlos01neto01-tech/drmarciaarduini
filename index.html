@@ -728,26 +728,17 @@ Cada rosto possui características únicas que merecem análise criteriosa e pla
 A proposta é preservar expressões, respeitar a identidade e proporcionar resultados progressivos e naturais.
 </p>
 
-<!-- ===================== SESSÃO 4 | PROCEDIMENTOS (IGUAL AO PNG) ===================== -->
+<!-- ===================== SESSÃO 4 | PROCEDIMENTOS ===================== -->
 <section id="procedimentos" class="procedimentos">
   <style>
-    /* Se essa seção cair dentro de algum flex do site, isso evita ela ser "espremida" */
     #procedimentos{
       width:100%;
       max-width:100%;
-      flex:0 0 100%;
-      clear:both;
       display:block;
-      box-sizing:border-box;
-
-      /* FUNDO TEM QUE SER BRANCO (igual outras sessões) */
-      background:#ffffff;
-
-      /* ocupa tela toda (sem quadradão) */
+      background:#fff;
       padding:110px 6% 120px;
-      text-align:center;
-
-      scroll-margin-top:120px; /* se menu fixo */
+      text-align:left; /* título alinhado igual seu print */
+      scroll-margin-top:120px;
     }
     #procedimentos *{ box-sizing:border-box; }
 
@@ -758,40 +749,35 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
       color:#3f525a;
       margin:0 0 70px;
 
-      /* fade blur */
       opacity:0;
       filter:blur(10px);
       transform:translateY(35px);
       animation:fadeBlur 1.05s ease forwards;
     }
 
-    /* GRID SEM CENTRALIZAR EM "quadrado" pequeno */
+    /* AGORA O GRID OCUPA A TELA */
     #procedimentos .procedimentos-grid{
       width:100%;
-      max-width:1200px;      /* controla o "miolo" sem virar quadradão */
-      margin:0 auto;
+      max-width:1440px;     /* aumenta o miolo pra não sobrar aquele vazio enorme */
+      margin:0;             /* tira centralização que cria “bloco” pequeno */
       display:grid;
-      grid-template-columns:repeat(4, minmax(0, 1fr));
-      gap:28px;
+      grid-template-columns:repeat(4, minmax(240px, 1fr)); /* garante card grande */
+      gap:34px;
       align-items:start;
     }
 
-    /* CARD: NÃO tem fundo cinza, não tem texto duplicado */
     #procedimentos .procedimento-card{
       position:relative;
-      width:100%;
-      border-radius:12px;
+      border-radius:14px;
       overflow:hidden;
       background:transparent;
-      box-shadow:0 10px 25px rgba(0,0,0,0.08);
+      box-shadow:0 12px 28px rgba(0,0,0,0.10);
 
-      /* fade blur */
       opacity:0;
       filter:blur(10px);
       transform:translateY(35px);
       animation:fadeBlur 1.05s ease forwards;
     }
-
     #procedimentos .procedimento-card:nth-child(1){ animation-delay:.08s; }
     #procedimentos .procedimento-card:nth-child(2){ animation-delay:.16s; }
     #procedimentos .procedimento-card:nth-child(3){ animation-delay:.24s; }
@@ -803,20 +789,15 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
       display:block;
     }
 
-    /* BOTÃO PEQUENO, POSICIONADO EM CIMA DO SVG (espaço branco) */
+    /* botão pequeno dentro do “espaço branco” do SVG */
     #procedimentos .btn-agendar{
       position:absolute;
-
-      /* AJUSTE FINO AQUI (por card se quiser) */
-      left:var(--btn-left, 18%);
+      left:var(--btn-left, 22%);
       bottom:var(--btn-bottom, 12%);
 
-      transform:translateX(0);
       display:inline-flex;
       align-items:center;
       justify-content:center;
-
-      /* pequeno, pra caber no branco do SVG */
       padding:10px 18px;
       border-radius:10px;
       background:#3f525a;
@@ -824,20 +805,16 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
       text-decoration:none;
       font-size:13px;
       line-height:1;
-      letter-spacing:.2px;
 
       overflow:hidden;
       box-shadow:0 8px 18px rgba(0,0,0,0.12);
       transition:transform .18s ease, filter .18s ease;
-      will-change:transform;
     }
-
     #procedimentos .btn-agendar:hover{
       transform:translateY(-1px);
       filter:brightness(1.06);
     }
 
-    /* Light Sweep */
     #procedimentos .btn-agendar::before{
       content:'';
       position:absolute;
@@ -847,40 +824,35 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
       height:100%;
       background:linear-gradient(120deg, transparent, rgba(255,255,255,.65), transparent);
       transform:skewX(-20deg);
-      pointer-events:none;
     }
     #procedimentos .btn-agendar:hover::before{
       animation:lightSweep .8s ease;
     }
+
     @keyframes lightSweep{ 100%{ left:125%; } }
+    @keyframes fadeBlur{ to{ opacity:1; filter:blur(0); transform:translateY(0);} }
 
-    /* fade blur keyframes */
-    @keyframes fadeBlur{
-      to{ opacity:1; filter:blur(0); transform:translateY(0); }
-    }
-
-    /* MOBILE 2x2 */
+    /* RESPONSIVO */
     @media (max-width: 900px){
       #procedimentos{
         padding:85px 6% 95px;
+        text-align:center;
       }
       #procedimentos .titulo-procedimentos{
         font-size:38px;
         margin-bottom:40px;
+        text-align:center;
       }
       #procedimentos .procedimentos-grid{
         grid-template-columns:repeat(2, minmax(0, 1fr));
         gap:18px;
-        max-width:520px;
+        max-width:560px;
+        margin:0 auto;
       }
-
-      /* botão ainda menor no mobile pra não estourar */
       #procedimentos .btn-agendar{
         padding:9px 14px;
         font-size:12px;
-        border-radius:10px;
-
-        left:var(--btn-left-mobile, 18%);
+        left:var(--btn-left-mobile, 22%);
         bottom:var(--btn-bottom-mobile, 10%);
       }
     }
@@ -890,50 +862,33 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
 
   <div class="procedimentos-grid">
 
-    <!-- CARD 1 -->
-    <div class="procedimento-card"
-         style="--btn-left:18%; --btn-bottom:10%; --btn-left-mobile:18%; --btn-bottom-mobile:9%;">
+    <div class="procedimento-card" style="--btn-left:22%; --btn-bottom:12%; --btn-left-mobile:22%; --btn-bottom-mobile:10%;">
       <img src="assets/SERVIÇO 1.svg" alt="Harmonização Facial">
       <a class="btn-agendar" target="_blank" rel="noopener"
-         href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Harmonização%20Facial.">
-        Quero Agendar
-      </a>
+         href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Harmonização%20Facial.">Quero Agendar</a>
     </div>
 
-    <!-- CARD 2 -->
-    <div class="procedimento-card"
-         style="--btn-left:18%; --btn-bottom:10%; --btn-left-mobile:18%; --btn-bottom-mobile:9%;">
+    <div class="procedimento-card" style="--btn-left:22%; --btn-bottom:12%; --btn-left-mobile:22%; --btn-bottom-mobile:10%;">
       <img src="assets/SERVIÇO 2.svg" alt="Preenchimento Facial">
       <a class="btn-agendar" target="_blank" rel="noopener"
-         href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Preenchimento%20Facial.">
-        Quero Agendar
-      </a>
+         href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Preenchimento%20Facial.">Quero Agendar</a>
     </div>
 
-    <!-- CARD 3 -->
-    <div class="procedimento-card"
-         style="--btn-left:18%; --btn-bottom:10%; --btn-left-mobile:18%; --btn-bottom-mobile:9%;">
+    <div class="procedimento-card" style="--btn-left:22%; --btn-bottom:12%; --btn-left-mobile:22%; --btn-bottom-mobile:10%;">
       <img src="assets/SERVIÇO 3.svg" alt="Toxina Botulínica">
       <a class="btn-agendar" target="_blank" rel="noopener"
-         href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Toxina%20Botulínica.">
-        Quero Agendar
-      </a>
+         href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Toxina%20Botulínica.">Quero Agendar</a>
     </div>
 
-    <!-- CARD 4 -->
-    <div class="procedimento-card"
-         style="--btn-left:18%; --btn-bottom:10%; --btn-left-mobile:18%; --btn-bottom-mobile:9%;">
+    <div class="procedimento-card" style="--btn-left:22%; --btn-bottom:12%; --btn-left-mobile:22%; --btn-bottom-mobile:10%;">
       <img src="assets/SERVIÇO 4.svg" alt="Bioestimuladores de Colágeno">
       <a class="btn-agendar" target="_blank" rel="noopener"
-         href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Bioestimuladores%20de%20Colágeno.">
-        Quero Agendar
-      </a>
+         href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Bioestimuladores%20de%20Colágeno.">Quero Agendar</a>
     </div>
 
   </div>
 </section>
 <!-- ===================== /SESSÃO 4 | PROCEDIMENTOS ===================== -->
-
 
 </script>
 
