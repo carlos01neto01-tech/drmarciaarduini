@@ -730,200 +730,147 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
 </div>
 </section>
 
-<!-- ===================== SESSÃO 4 | PROCEDIMENTOS (FINAL) ===================== -->
+<!-- ===================== SESSÃO 4 | PROCEDIMENTOS ===================== -->
 <section id="procedimentos">
   <style>
-    /* 100% ESCOPADO: NÃO AFETA SESSÃO 3 */
-    #procedimentos{
-      width:100%;
-      background:#fff;
-      padding:110px 0 120px;
-      scroll-margin-top:120px;
-    }
-    #procedimentos *{ box-sizing:border-box; }
-
-    /* WRAP DO TÍTULO = MESMA LINHA DAS SESSÕES 1 E 3 */
-    #procedimentos .p-title-wrap{
-      width:100%;
-      max-width:1200px;   /* se seu site usa outro eixo, troque só aqui */
-      margin:0 auto;
-      padding:0 6%;
-    }
-
-    #procedimentos .p-title{
+    /* tudo prefixado pra NÃO encostar na Sessão 3 */
+    #procedimentos .p4-wrap{ width:100%; background:#fff; padding:110px 0 120px; scroll-margin-top:120px; }
+    #procedimentos .p4-titlewrap{ width:100%; max-width:1200px; margin:0 auto; padding:0 6%; }
+    #procedimentos .p4-title{
       font-family:'Cormorant Garamond',serif;
-      font-size:54px;
-      letter-spacing:3px;
-      color:#3f525a;
+      font-size:54px; letter-spacing:3px; color:#3f525a;
       margin:0 0 70px;
-      text-align:left;
-
-      opacity:0;
-      filter:blur(10px);
-      transform:translateY(35px);
-      animation:pFadeBlur 1.05s ease forwards;
+      text-align:left; /* mesma linha das sessões 1 e 3 */
+      opacity:0; filter:blur(10px); transform:translateY(35px);
+      animation:p4FadeBlur 1.05s ease forwards;
     }
 
-    /* WRAP DO GRID: pode ser MAIS LARGO pra ficar igual seu PNG */
-    #procedimentos .p-grid-wrap{
-      width:100%;
-      max-width:1500px;   /* aumenta o tamanho dos cards */
-      margin:0 auto;
-      padding:0 6%;
-    }
-
-    #procedimentos .p-grid{
+    /* grid maior (cards grandes) sem mexer no eixo do título */
+    #procedimentos .p4-gridwrap{ width:100%; max-width:1500px; margin:0 auto; padding:0 6%; }
+    #procedimentos .p4-grid{
       display:grid;
-      grid-template-columns:repeat(4, minmax(260px, 1fr)); /* garante proporção grande */
+      grid-template-columns:repeat(4, minmax(300px, 1fr));
       gap:40px;
       align-items:start;
     }
 
-    /* CARD */
-    #procedimentos .p-card{
+    #procedimentos .p4-card{
       position:relative;
       border-radius:14px;
       overflow:hidden;
       background:transparent;
       box-shadow:0 12px 28px rgba(0,0,0,0.10);
-
-      opacity:0;
-      filter:blur(10px);
-      transform:translateY(35px);
-      animation:pFadeBlur 1.05s ease forwards;
+      opacity:0; filter:blur(10px); transform:translateY(35px);
+      animation:p4FadeBlur 1.05s ease forwards;
     }
-    #procedimentos .p-card:nth-child(1){ animation-delay:.08s; }
-    #procedimentos .p-card:nth-child(2){ animation-delay:.16s; }
-    #procedimentos .p-card:nth-child(3){ animation-delay:.24s; }
-    #procedimentos .p-card:nth-child(4){ animation-delay:.32s; }
+    #procedimentos .p4-card:nth-child(1){ animation-delay:.08s; }
+    #procedimentos .p4-card:nth-child(2){ animation-delay:.16s; }
+    #procedimentos .p4-card:nth-child(3){ animation-delay:.24s; }
+    #procedimentos .p4-card:nth-child(4){ animation-delay:.32s; }
 
-    #procedimentos .p-card img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
+    #procedimentos .p4-img{ width:100%; height:auto; display:block; }
 
-    /* BOTÃO PEQUENO NA BASE CINZA (DENTRO DO SVG) */
-    #procedimentos .p-btn{
+    /* BOTÃO: pequeno e no CINZA (desce pra não pegar o texto) */
+    #procedimentos .p4-btn{
       position:absolute;
-      left:var(--btn-left, 50%);
-      bottom:var(--btn-bottom, 12%);
+      left:50%;
+      bottom:10.2%;              /* desce pra ficar no cinza */
       transform:translateX(-50%);
-
       display:inline-flex;
       align-items:center;
       justify-content:center;
-
-      padding:8px 14px;
+      padding:7px 14px;          /* pequeno */
       border-radius:10px;
       background:#3f525a;
       color:#fff;
       text-decoration:none;
       font-size:12px;
       line-height:1;
-
       overflow:hidden;
       box-shadow:0 8px 18px rgba(0,0,0,0.12);
       transition:transform .18s ease, filter .18s ease;
       will-change:transform;
     }
-
-    #procedimentos .p-btn:hover{
+    #procedimentos .p4-btn:hover{
       transform:translateX(-50%) translateY(-1px);
       filter:brightness(1.06);
     }
 
-    /* Light sweep */
-    #procedimentos .p-btn::before{
+    /* light sweep */
+    #procedimentos .p4-btn::before{
       content:'';
       position:absolute;
-      top:0;
-      left:-75%;
-      width:55%;
-      height:100%;
+      top:0; left:-75%;
+      width:55%; height:100%;
       background:linear-gradient(120deg, transparent, rgba(255,255,255,.65), transparent);
       transform:skewX(-20deg);
       pointer-events:none;
     }
-    #procedimentos .p-btn:hover::before{
-      animation:pLightSweep .8s ease;
-    }
+    #procedimentos .p4-btn:hover::before{ animation:p4Sweep .8s ease; }
+    @keyframes p4Sweep{ 100%{ left:125%; } }
+    @keyframes p4FadeBlur{ to{ opacity:1; filter:blur(0); transform:translateY(0); } }
 
-    @keyframes pLightSweep{ 100%{ left:125%; } }
-    @keyframes pFadeBlur{ to{ opacity:1; filter:blur(0); transform:translateY(0);} }
-
-    /* MOBILE 2x2 */
-    @media (max-width: 900px){
-      #procedimentos{
-        padding:85px 0 95px;
-      }
-
-      #procedimentos .p-title-wrap,
-      #procedimentos .p-grid-wrap{
-        max-width:560px;
-        padding:0 6%;
-      }
-
-      #procedimentos .p-title{
+    @media (max-width:900px){
+      #procedimentos .p4-wrap{ padding:85px 0 95px; }
+      #procedimentos .p4-titlewrap{ max-width:560px; }
+      #procedimentos .p4-title{
         font-size:38px;
         margin-bottom:40px;
-        text-align:center; /* no mobile fica central igual seu layout */
+        text-align:center;
       }
-
-      #procedimentos .p-grid{
+      #procedimentos .p4-gridwrap{ max-width:560px; }
+      #procedimentos .p4-grid{
         grid-template-columns:repeat(2, minmax(0, 1fr));
         gap:18px;
       }
-
-      #procedimentos .p-btn{
+      #procedimentos .p4-btn{
+        bottom:10.5%;
         padding:7px 12px;
         font-size:11.5px;
-        bottom:var(--btn-bottom-mobile, 12%);
       }
     }
   </style>
 
-  <!-- TÍTULO alinhado no mesmo eixo -->
-  <div class="p-title-wrap">
-    <h2 class="p-title">PROCEDIMENTOS</h2>
-  </div>
+  <div class="p4-wrap">
+    <div class="p4-titlewrap">
+      <h2 class="p4-title">PROCEDIMENTOS</h2>
+    </div>
 
-  <!-- GRID maior (cards grandes igual PNG) -->
-  <div class="p-grid-wrap">
-    <div class="p-grid">
+    <div class="p4-gridwrap">
+      <div class="p4-grid">
 
-      <div class="p-card" style="--btn-left:50%; --btn-bottom:13%; --btn-bottom-mobile:12%;">
-        <img src="assets/SERVIÇO 1.svg" alt="Harmonização Facial">
-        <a class="p-btn" target="_blank" rel="noopener"
-           href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Harmonização%20Facial.">Quero Agendar</a>
+        <div class="p4-card">
+          <img class="p4-img" src="assets/SERVIÇO 1.svg" alt="Harmonização Facial">
+          <a class="p4-btn" target="_blank" rel="noopener"
+             href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Harmonização%20Facial.">Quero Agendar</a>
+        </div>
+
+        <div class="p4-card">
+          <img class="p4-img" src="assets/SERVIÇO 2.svg" alt="Preenchimento Facial">
+          <a class="p4-btn" target="_blank" rel="noopener"
+             href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Preenchimento%20Facial.">Quero Agendar</a>
+        </div>
+
+        <div class="p4-card">
+          <img class="p4-img" src="assets/SERVIÇO 3.svg" alt="Toxina Botulínica">
+          <a class="p4-btn" target="_blank" rel="noopener"
+             href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Toxina%20Botulínica.">Quero Agendar</a>
+        </div>
+
+        <div class="p4-card">
+          <img class="p4-img" src="assets/SERVIÇO 4.svg" alt="Bioestimuladores de Colágeno">
+          <a class="p4-btn" target="_blank" rel="noopener"
+             href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Bioestimuladores%20de%20Colágeno.">Quero Agendar</a>
+        </div>
+
       </div>
-
-      <div class="p-card" style="--btn-left:50%; --btn-bottom:13%; --btn-bottom-mobile:12%;">
-        <img src="assets/SERVIÇO 2.svg" alt="Preenchimento Facial">
-        <a class="p-btn" target="_blank" rel="noopener"
-           href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Preenchimento%20Facial.">Quero Agendar</a>
-      </div>
-
-      <div class="p-card" style="--btn-left:50%; --btn-bottom:13%; --btn-bottom-mobile:12%;">
-        <img src="assets/SERVIÇO 3.svg" alt="Toxina Botulínica">
-        <a class="p-btn" target="_blank" rel="noopener"
-           href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Toxina%20Botulínica.">Quero Agendar</a>
-      </div>
-
-      <div class="p-card" style="--btn-left:50%; --btn-bottom:13%; --btn-bottom-mobile:12%;">
-        <img src="assets/SERVIÇO 4.svg" alt="Bioestimuladores de Colágeno">
-        <a class="p-btn" target="_blank" rel="noopener"
-           href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Bioestimuladores%20de%20Colágeno.">Quero Agendar</a>
-      </div>
-
     </div>
   </div>
 </section>
 <!-- ===================== /SESSÃO 4 | PROCEDIMENTOS ===================== -->
 
 
-</script>
-
+</div>
 </section>
 
    <!-- âncoras (menu não quebra) -->
