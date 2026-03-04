@@ -728,21 +728,22 @@ Cada rosto possui características únicas que merecem análise criteriosa e pla
 A proposta é preservar expressões, respeitar a identidade e proporcionar resultados progressivos e naturais.
 </p>
 
-<!-- ===================== SESSÃO 4 | PROCEDIMENTOS (SEM VAZAR CSS) ===================== -->
+<!-- ===================== SESSÃO 4 | PROCEDIMENTOS (FINAL) ===================== -->
 <section id="procedimentos">
   <style>
-    /* ESCOPADO: nada aqui mexe no resto do site */
+    /* 100% ESCOPADO: NÃO AFETA SESSÃO 3 */
     #procedimentos{
       width:100%;
       background:#fff;
       padding:110px 0 120px;
       scroll-margin-top:120px;
     }
+    #procedimentos *{ box-sizing:border-box; }
 
-    /* Container interno = mesmo “eixo” da sessão 1 e 3 */
-    #procedimentos .p-wrap{
+    /* WRAP DO TÍTULO = MESMA LINHA DAS SESSÕES 1 E 3 */
+    #procedimentos .p-title-wrap{
       width:100%;
-      max-width:1200px;   /* se suas sessões usam outro, me diga e eu igualo */
+      max-width:1200px;   /* se seu site usa outro eixo, troque só aqui */
       margin:0 auto;
       padding:0 6%;
     }
@@ -753,26 +754,37 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
       letter-spacing:3px;
       color:#3f525a;
       margin:0 0 70px;
-      text-align:left; /* fica na mesma linha do texto da sessão 3 */
+      text-align:left;
+
       opacity:0;
       filter:blur(10px);
       transform:translateY(35px);
       animation:pFadeBlur 1.05s ease forwards;
     }
 
+    /* WRAP DO GRID: pode ser MAIS LARGO pra ficar igual seu PNG */
+    #procedimentos .p-grid-wrap{
+      width:100%;
+      max-width:1500px;   /* aumenta o tamanho dos cards */
+      margin:0 auto;
+      padding:0 6%;
+    }
+
     #procedimentos .p-grid{
       display:grid;
-      grid-template-columns:repeat(4, minmax(0, 1fr));
-      gap:34px;
+      grid-template-columns:repeat(4, minmax(260px, 1fr)); /* garante proporção grande */
+      gap:40px;
       align-items:start;
     }
 
+    /* CARD */
     #procedimentos .p-card{
       position:relative;
       border-radius:14px;
       overflow:hidden;
       background:transparent;
       box-shadow:0 12px 28px rgba(0,0,0,0.10);
+
       opacity:0;
       filter:blur(10px);
       transform:translateY(35px);
@@ -789,28 +801,29 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
       display:block;
     }
 
-    /* Botão: menor e no espaço cinza (ajuste fino via variáveis) */
+    /* BOTÃO PEQUENO NA BASE CINZA (DENTRO DO SVG) */
     #procedimentos .p-btn{
       position:absolute;
-      left:50%;
+      left:var(--btn-left, 50%);
+      bottom:var(--btn-bottom, 12%);
       transform:translateX(-50%);
-      bottom:var(--btn-bottom, 10.5%);
 
       display:inline-flex;
       align-items:center;
       justify-content:center;
 
-      padding:9px 16px;
+      padding:8px 14px;
       border-radius:10px;
       background:#3f525a;
       color:#fff;
       text-decoration:none;
-      font-size:12.5px;
+      font-size:12px;
       line-height:1;
 
       overflow:hidden;
       box-shadow:0 8px 18px rgba(0,0,0,0.12);
       transition:transform .18s ease, filter .18s ease;
+      will-change:transform;
     }
 
     #procedimentos .p-btn:hover{
@@ -828,6 +841,7 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
       height:100%;
       background:linear-gradient(120deg, transparent, rgba(255,255,255,.65), transparent);
       transform:skewX(-20deg);
+      pointer-events:none;
     }
     #procedimentos .p-btn:hover::before{
       animation:pLightSweep .8s ease;
@@ -836,49 +850,65 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
     @keyframes pLightSweep{ 100%{ left:125%; } }
     @keyframes pFadeBlur{ to{ opacity:1; filter:blur(0); transform:translateY(0);} }
 
-    /* MOBILE */
+    /* MOBILE 2x2 */
     @media (max-width: 900px){
-      #procedimentos{ padding:85px 0 95px; }
+      #procedimentos{
+        padding:85px 0 95px;
+      }
+
+      #procedimentos .p-title-wrap,
+      #procedimentos .p-grid-wrap{
+        max-width:560px;
+        padding:0 6%;
+      }
+
       #procedimentos .p-title{
         font-size:38px;
         margin-bottom:40px;
+        text-align:center; /* no mobile fica central igual seu layout */
       }
+
       #procedimentos .p-grid{
         grid-template-columns:repeat(2, minmax(0, 1fr));
         gap:18px;
       }
+
       #procedimentos .p-btn{
-        padding:8px 14px;
-        font-size:12px;
-        bottom:var(--btn-bottom-mobile, 10%);
+        padding:7px 12px;
+        font-size:11.5px;
+        bottom:var(--btn-bottom-mobile, 12%);
       }
     }
   </style>
 
-  <div class="p-wrap">
+  <!-- TÍTULO alinhado no mesmo eixo -->
+  <div class="p-title-wrap">
     <h2 class="p-title">PROCEDIMENTOS</h2>
+  </div>
 
+  <!-- GRID maior (cards grandes igual PNG) -->
+  <div class="p-grid-wrap">
     <div class="p-grid">
 
-      <div class="p-card" style="--btn-bottom:10.5%; --btn-bottom-mobile:10%;">
+      <div class="p-card" style="--btn-left:50%; --btn-bottom:13%; --btn-bottom-mobile:12%;">
         <img src="assets/SERVIÇO 1.svg" alt="Harmonização Facial">
         <a class="p-btn" target="_blank" rel="noopener"
            href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Harmonização%20Facial.">Quero Agendar</a>
       </div>
 
-      <div class="p-card" style="--btn-bottom:10.5%; --btn-bottom-mobile:10%;">
+      <div class="p-card" style="--btn-left:50%; --btn-bottom:13%; --btn-bottom-mobile:12%;">
         <img src="assets/SERVIÇO 2.svg" alt="Preenchimento Facial">
         <a class="p-btn" target="_blank" rel="noopener"
            href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Preenchimento%20Facial.">Quero Agendar</a>
       </div>
 
-      <div class="p-card" style="--btn-bottom:10.5%; --btn-bottom-mobile:10%;">
+      <div class="p-card" style="--btn-left:50%; --btn-bottom:13%; --btn-bottom-mobile:12%;">
         <img src="assets/SERVIÇO 3.svg" alt="Toxina Botulínica">
         <a class="p-btn" target="_blank" rel="noopener"
            href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Toxina%20Botulínica.">Quero Agendar</a>
       </div>
 
-      <div class="p-card" style="--btn-bottom:10.5%; --btn-bottom-mobile:10%;">
+      <div class="p-card" style="--btn-left:50%; --btn-bottom:13%; --btn-bottom-mobile:12%;">
         <img src="assets/SERVIÇO 4.svg" alt="Bioestimuladores de Colágeno">
         <a class="p-btn" target="_blank" rel="noopener"
            href="https://wa.me/55SEUNUMEROAQUI?text=Olá,%20quero%20agendar%20Bioestimuladores%20de%20Colágeno.">Quero Agendar</a>
@@ -889,63 +919,6 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
 </section>
 <!-- ===================== /SESSÃO 4 | PROCEDIMENTOS ===================== -->
 
-</section>
-
-
-<script>
-
-(function(){
-
-const shell=document.getElementById("cfShell");
-const track=document.getElementById("cfTrack");
-
-let raf=null;
-let last=0;
-let x=0;
-let loopPx=0;
-
-function getSpeed(){
-
-const seconds=5.4;
-return 2200/seconds;
-
-}
-
-function measure(){
-
-loopPx=track.scrollWidth/2;
-x=x%loopPx;
-track.style.transform=`translateX(${-x}px)`;
-
-}
-
-function tick(t){
-
-if(!last) last=t;
-
-const dt=(t-last)/1000;
-last=t;
-
-x+=getSpeed()*dt;
-
-if(x>=loopPx) x-=loopPx;
-
-track.style.transform=`translateX(${-x}px)`;
-
-raf=requestAnimationFrame(tick);
-
-}
-
-window.addEventListener("load",()=>{
-
-measure();
-raf=requestAnimationFrame(tick);
-
-});
-
-window.addEventListener("resize",measure);
-
-})();
 
 </script>
 
