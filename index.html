@@ -732,23 +732,33 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
 </div>
 </section>
 
-<!-- ===================== SESSÃO 4 | PROCEDIMENTOS (AJUSTADA) ===================== -->
+<!-- ===================== SESSÃO 4 | PROCEDIMENTOS ===================== -->
 <section id="procedimentos">
   <style>
-    /* 100% escopado: não encosta na Sessão 3 nem no carrossel */
+    /* ====== CONTROLE DE ALINHAMENTO (1 ajuste e acabou) ======
+       Se o título não estiver na mesma linha da Sessão 3/1,
+       ajuste só esse valor abaixo para o mesmo padding/eixo das outras sessões.
+       Ex: 6%, 7%, 80px, etc.
+    */
+    #procedimentos{
+      --axis-pad: 6%;
+    }
+
+    /* tudo escopado: não encosta na sessão 3 */
     #procedimentos .p4-wrap{
       width:100%;
       background:#fff;
-      padding:70px 0 100px;         /* ↓ menos espaço geral pra não ficar desproporcional */
+      padding:70px 0 100px;
       scroll-margin-top:120px;
     }
 
-    /* eixo do título (alinha com sessão 3) */
+    /* título alinhado pelo eixo */
     #procedimentos .p4-titlewrap{
       width:100%;
-      max-width:1200px;             /* se o eixo da sessão 3 for outro, troque só aqui */
       margin:0 auto;
-      padding:0 6%;
+      padding-left: var(--axis-pad);
+      padding-right: var(--axis-pad);
+      max-width: 1600px;  /* deixa o título “andar” sem ficar preso */
     }
 
     #procedimentos .p4-title{
@@ -756,22 +766,21 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
       font-size:54px;
       letter-spacing:3px;
       color:#3f525a;
-
-      margin:0 0 40px;              /* ↓ diminui espaço embaixo do título */
+      margin:0 0 34px;
       text-align:left;
 
       opacity:0;
       filter:blur(10px);
-      transform:translateY(25px);
-      animation:p4FadeBlur 0.95s ease forwards;
+      transform:translateY(20px);
+      animation:p4FadeBlur .9s ease forwards;
     }
 
-    /* grid grande */
+    /* grid grande (cards grandes igual seu PNG) */
     #procedimentos .p4-gridwrap{
       width:100%;
       max-width:1500px;
       margin:0 auto;
-      padding:0 6%;
+      padding:0 var(--axis-pad);
     }
 
     #procedimentos .p4-grid{
@@ -790,37 +799,42 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
 
       opacity:0;
       filter:blur(10px);
-      transform:translateY(25px);
-      animation:p4FadeBlur 0.95s ease forwards;
+      transform:translateY(20px);
+      animation:p4FadeBlur .9s ease forwards;
     }
+
     #procedimentos .p4-card:nth-child(1){ animation-delay:.06s; }
     #procedimentos .p4-card:nth-child(2){ animation-delay:.12s; }
     #procedimentos .p4-card:nth-child(3){ animation-delay:.18s; }
     #procedimentos .p4-card:nth-child(4){ animation-delay:.24s; }
 
-    #procedimentos .p4-img{ width:100%; height:auto; display:block; }
+    #procedimentos .p4-img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
 
-    /* BOTÃO: maior e com melhor proporção */
+    /* BOTÃO: maior + não grudado + no cinza do SVG */
     #procedimentos .p4-btn{
       position:absolute;
       left:50%;
-      bottom:9.2%;                  /* ↓ desce pra ficar no cinza e não grudar no texto do SVG */
+      bottom:8.7%;                  /* desce pra não encostar no texto do SVG */
       transform:translateX(-50%);
 
       display:inline-flex;
       align-items:center;
       justify-content:center;
 
-      padding:10px 20px;            /* ↑ maior */
-      border-radius:12px;
+      padding:12px 26px;            /* maior */
+      border-radius:14px;
       background:#3f525a;
       color:#fff;
       text-decoration:none;
-      font-size:13.5px;             /* ↑ maior */
+      font-size:14.5px;
       line-height:1;
 
       overflow:hidden;
-      box-shadow:0 10px 22px rgba(0,0,0,0.14);
+      box-shadow:0 12px 26px rgba(0,0,0,0.15);
       transition:transform .18s ease, filter .18s ease;
       will-change:transform;
     }
@@ -830,6 +844,7 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
       filter:brightness(1.06);
     }
 
+    /* light sweep */
     #procedimentos .p4-btn::before{
       content:'';
       position:absolute;
@@ -839,25 +854,29 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
       transform:skewX(-20deg);
       pointer-events:none;
     }
-    #procedimentos .p4-btn:hover::before{ animation:p4Sweep .8s ease; }
+    #procedimentos .p4-btn:hover::before{
+      animation:p4Sweep .8s ease;
+    }
 
     @keyframes p4Sweep{ 100%{ left:125%; } }
     @keyframes p4FadeBlur{ to{ opacity:1; filter:blur(0); transform:translateY(0); } }
 
-    /* MOBILE */
+    /* MOBILE 2x2 */
     @media (max-width:900px){
-      #procedimentos .p4-wrap{ padding:55px 0 80px; }
+      #procedimentos{ --axis-pad: 6%; }
 
-      #procedimentos .p4-titlewrap,
-      #procedimentos .p4-gridwrap{
-        max-width:560px;
-        padding:0 6%;
+      #procedimentos .p4-wrap{
+        padding:55px 0 80px;
       }
 
       #procedimentos .p4-title{
         font-size:38px;
-        margin-bottom:26px;         /* ↓ menos espaço ainda no mobile */
+        margin-bottom:26px;
         text-align:center;
+      }
+
+      #procedimentos .p4-gridwrap{
+        max-width:560px;
       }
 
       #procedimentos .p4-grid{
@@ -866,9 +885,9 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
       }
 
       #procedimentos .p4-btn{
-        bottom:9.8%;
-        padding:9px 16px;
-        font-size:12.5px;
+        bottom:9.4%;
+        padding:10px 18px;
+        font-size:13px;
       }
     }
   </style>
@@ -908,6 +927,50 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
       </div>
     </div>
   </div>
+
+  <!-- REATIVAR AUTOPLAY DO CARROSSEL (sem mexer no layout da Sessão 3) -->
+  <script>
+    (function () {
+      function restartCarousels() {
+        // SWIPER
+        try {
+          if (window.Swiper) {
+            document.querySelectorAll(".swiper").forEach((el) => {
+              const inst = el.swiper;
+              if (inst && inst.autoplay && typeof inst.autoplay.start === "function") {
+                inst.autoplay.start();
+              }
+            });
+          }
+        } catch (e) {}
+
+        // SLICK
+        try {
+          if (window.jQuery && jQuery.fn && typeof jQuery.fn.slick === "function") {
+            const $ = window.jQuery;
+            $(".slick-initialized").each(function () {
+              try { $(this).slick("slickPlay"); } catch (e) {}
+            });
+          }
+        } catch (e) {}
+
+        // BOOTSTRAP
+        try {
+          if (window.bootstrap) {
+            document.querySelectorAll(".carousel").forEach((el) => {
+              const inst = bootstrap.Carousel.getOrCreateInstance(el);
+              if (inst && typeof inst.cycle === "function") inst.cycle();
+            });
+          }
+        } catch (e) {}
+      }
+
+      window.addEventListener("load", restartCarousels);
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) restartCarousels();
+      });
+    })();
+  </script>
 </section>
 <!-- ===================== /SESSÃO 4 | PROCEDIMENTOS ===================== -->
 
