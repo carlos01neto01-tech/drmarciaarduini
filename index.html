@@ -476,288 +476,277 @@
 
 <section class="s3" id="bastidores">
 
-  <style>
-    .s3{
-      background:#fff;
-      width:100%;
-      padding:90px 20px;
-      display:flex;
-      justify-content:center;
-    }
+<style>
 
-    .s3-container{
-      width:100%;
-      max-width:1120px;
-      display:grid;
-      grid-template-columns:1fr;
-      gap:34px;
-      align-items:center;
-    }
+.s3{
+background:#fff;
+width:100%;
+padding:90px 20px;
+display:flex;
+justify-content:center;
+}
 
-    /* TEXTO */
-    .s3-title{
-      font-family:"Cormorant Garamond",serif;
-      font-weight:700;
-      font-size:54px;
-      line-height:1.05;
-      letter-spacing:.02em;
-      text-transform:uppercase;
-      color:#3B4E57;
-      margin:0 0 18px 0;
-    }
+.s3-container{
+width:100%;
+max-width:1120px;
+display:grid;
+grid-template-columns:1fr;
+gap:34px;
+align-items:center;
+}
 
-    .s3-text{
-      font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      font-weight:300;
-      font-size:15px;
-      line-height:1.85;
-      color:rgba(0,0,0,.55);
-      max-width:560px;
-      margin:0;
-    }
+/* TEXTO */
 
-    /* CARROSSEL */
-    .cf{
-      width:100%;
-      display:flex;
-      justify-content:center;
-    }
+.s3-title{
+font-family:"Cormorant Garamond",serif;
+font-weight:700;
+font-size:54px;
+line-height:1.05;
+letter-spacing:.02em;
+text-transform:uppercase;
+color:#3B4E57;
+margin:0 0 18px 0;
+}
 
-    .cf-shell{
-      width:min(560px, 100%);
-      position:relative;
-      /* “retângulo invisível” que faz sumir nas laterais */
-      -webkit-mask-image: linear-gradient(90deg,
-        transparent 0%,
-        #000 16%,
-        #000 84%,
-        transparent 100%
-      );
-      mask-image: linear-gradient(90deg,
-        transparent 0%,
-        #000 16%,
-        #000 84%,
-        transparent 100%
-      );
-    }
+.s3-text{
+font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+font-weight:300;
+font-size:15px;
+line-height:1.85;
+color:rgba(0,0,0,.55);
+max-width:560px;
+margin:0;
+}
 
-    .cf-viewport{
-      overflow:hidden;
-      border-radius:28px;
-    }
+/* CARROSSEL */
 
-    .cf-track{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      will-change:transform;
-      transition:transform .65s cubic-bezier(.22,.75,.2,1);
-      padding:4px 0;
-    }
+.cf{
+width:100%;
+display:flex;
+justify-content:center;
+}
 
-    .cf-slide{
-      flex:0 0 auto;
-      width:78%;
-      border-radius:28px;
-      overflow:hidden;
-      background:#f6f4ef;
-      box-shadow:0 18px 45px rgba(0,0,0,.12);
-      transform:translateZ(0);
-      transition:filter .55s ease, opacity .55s ease, transform .55s ease;
-      opacity:.55;
-      filter:blur(10px);
-      transform:scale(.94);
-      pointer-events:none;
-    }
+.cf-shell{
+width:min(560px,100%);
+position:relative;
 
-    .cf-slide img{
-      width:100%;
-      display:block;
-      height:auto;
-    }
+/* retângulo invisível nas laterais */
 
-    /* Slide central (foco) */
-    .cf-slide.is-active{
-      opacity:1;
-      filter:blur(0);
-      transform:scale(1);
-      pointer-events:auto;
-    }
+-webkit-mask-image:linear-gradient(
+90deg,
+transparent 0%,
+#000 22%,
+#000 78%,
+transparent 100%
+);
 
-    /* Desktop: texto esquerda / carrossel direita */
-    @media(min-width:1024px){
-      .s3-container{
-        grid-template-columns:0.95fr 1.05fr;
-        gap:60px;
-        align-items:start;
-      }
-      .s3-title{ font-size:64px; }
-      .cf{ justify-content:flex-end; }
-      .cf-shell{ width:min(560px, 100%); }
-    }
+mask-image:linear-gradient(
+90deg,
+transparent 0%,
+#000 22%,
+#000 78%,
+transparent 100%
+);
 
-    @media(max-width:520px){
-      .s3-title{ font-size:44px; }
-      .cf-viewport{ border-radius:24px; }
-      .cf-slide{ border-radius:24px; width:86%; }
-    }
-  </style>
+}
 
-  <div class="s3-container">
+.cf-viewport{
+overflow:hidden;
+border-radius:28px;
+}
 
-    <div class="s3-copy">
-      <h2 class="s3-title">
-        HARMONIA NÃO<br>
-        É TENDÊNCIA, É<br>
-        PROPORÇÃO!
-      </h2>
+.cf-track{
+display:flex;
+align-items:center;
+gap:18px;
+will-change:transform;
+transition:transform .35s cubic-bezier(.22,.75,.2,1);
+padding:4px 0;
+}
 
-      <p class="s3-text">
-        Cada rosto possui características únicas que merecem análise criteriosa e planejamento responsável.
-        O objetivo não é transformar traços, mas equilibrá-los com precisão técnica e sensibilidade estética.
-        <br><br>
-        A proposta é preservar expressões, respeitar a identidade e proporcionar resultados progressivos e naturais.
-      </p>
-    </div>
+.cf-slide{
+flex:0 0 auto;
+width:64%;
+border-radius:28px;
+overflow:hidden;
+background:#f6f4ef;
+box-shadow:0 18px 45px rgba(0,0,0,.12);
 
-    <div class="cf">
-      <div class="cf-shell" id="cfShell">
-        <div class="cf-viewport">
-          <div class="cf-track" id="cfTrack">
-            <div class="cf-slide"><img src="assets/BASTIDOR%201.svg" alt="Bastidores 1"></div>
-            <div class="cf-slide"><img src="assets/BASTIDOR%202.svg" alt="Bastidores 2"></div>
-            <div class="cf-slide"><img src="assets/BASTIDOR%203.svg" alt="Bastidores 3"></div>
-            <div class="cf-slide"><img src="assets/BASTIDOR%204.svg" alt="Bastidores 4"></div>
-            <div class="cf-slide"><img src="assets/BASTIDOR%205.svg" alt="Bastidores 5"></div>
-            <div class="cf-slide"><img src="assets/BASTIDOR%206.svg" alt="Bastidores 6"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+opacity:.55;
+filter:blur(10px);
+transform:scale(.94);
 
-  </div>
+transition:
+filter .45s ease,
+opacity .45s ease,
+transform .45s ease;
+}
 
-  <script>
-    (function(){
-      const shell = document.getElementById("cfShell");
-      const track = document.getElementById("cfTrack");
-      if(!shell || !track) return;
+.cf-slide img{
+width:100%;
+height:auto;
+object-fit:contain;
+display:block;
+}
 
-      const slides = Array.from(track.querySelectorAll(".cf-slide"));
-      let index = 0;
+/* slide central */
 
-      let isDragging = false;
-      let startX = 0;
-      let startTranslate = 0;
-      let currentTranslate = 0;
+.cf-slide.is-active{
+opacity:1;
+filter:blur(0);
+transform:scale(1);
+}
 
-      let autoplayTimer = null;
-      const AUTOPLAY_MS = 3200;
+/* desktop */
 
-      function getMetrics(){
-        const shellW = shell.getBoundingClientRect().width;
-        const slideW = slides[0].getBoundingClientRect().width;
-        const gap = parseFloat(getComputedStyle(track).gap) || 0;
-        return { shellW, slideW, gap };
-      }
+@media(min-width:1024px){
 
-      function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+.s3-container{
+grid-template-columns:0.95fr 1.05fr;
+gap:60px;
+align-items:start;
+}
 
-      function setActive(){
-        slides.forEach((s,i)=>s.classList.toggle("is-active", i === index));
-      }
+.s3-title{
+font-size:64px;
+}
 
-      function translateToIndex(animate=true){
-        const { shellW, slideW, gap } = getMetrics();
-        const step = slideW + gap;
+.cf{
+justify-content:flex-end;
+}
 
-        // centraliza o slide atual
-        const target = -index * step + (shellW - slideW)/2;
+}
 
-        track.style.transition = animate ? "transform .65s cubic-bezier(.22,.75,.2,1)" : "none";
-        track.style.transform = `translateX(${target}px)`;
-        currentTranslate = target;
+@media(max-width:520px){
 
-        setActive();
-      }
+.s3-title{
+font-size:44px;
+}
 
-      function nearestIndexFromTranslate(tx){
-        const { shellW, slideW, gap } = getMetrics();
-        const step = slideW + gap;
+.cf-slide{
+width:82%;
+}
 
-        // inverte a fórmula para estimar index
-        const raw = ((shellW - slideW)/2 - tx) / step;
-        return clamp(Math.round(raw), 0, slides.length - 1);
-      }
+}
 
-      function stopAutoplay(){
-        if(autoplayTimer) clearInterval(autoplayTimer);
-        autoplayTimer = null;
-      }
+</style>
 
-      function startAutoplay(){
-        stopAutoplay();
-        autoplayTimer = setInterval(()=>{
-          index = (index + 1) % slides.length;
-          translateToIndex(true);
-        }, AUTOPLAY_MS);
-      }
 
-      function restartAutoplay(){
-        stopAutoplay();
-        startAutoplay();
-      }
+<div class="s3-container">
 
-      // Drag / swipe
-      shell.addEventListener("pointerdown", (e)=>{
-        isDragging = true;
-        startX = e.clientX;
-        startTranslate = currentTranslate;
-        stopAutoplay();
-        shell.setPointerCapture(e.pointerId);
-        track.style.transition = "none";
-      });
+<div>
 
-      shell.addEventListener("pointermove", (e)=>{
-        if(!isDragging) return;
-        const dx = e.clientX - startX;
-        const tx = startTranslate + dx;
+<h2 class="s3-title">
+HARMONIA NÃO<br>
+É TENDÊNCIA, É<br>
+PROPORÇÃO!
+</h2>
 
-        track.style.transform = `translateX(${tx}px)`;
-      });
+<p class="s3-text">
 
-      shell.addEventListener("pointerup", (e)=>{
-        if(!isDragging) return;
-        isDragging = false;
+Cada rosto possui características únicas que merecem análise criteriosa
+e planejamento responsável.
 
-        const style = getComputedStyle(track);
-        const matrix = new DOMMatrixReadOnly(style.transform);
-        const tx = matrix.m41;
+O objetivo não é transformar traços,
+mas equilibrá-los com precisão técnica
+e sensibilidade estética.
 
-        index = nearestIndexFromTranslate(tx);
-        translateToIndex(true);
-        startAutoplay();
-      });
+<br><br>
 
-      shell.addEventListener("pointercancel", ()=>{
-        isDragging = false;
-        translateToIndex(true);
-        startAutoplay();
-      });
+A proposta é preservar expressões,
+respeitar a identidade
+e proporcionar resultados progressivos
+e naturais.
 
-      // Pausa no hover (desktop)
-      shell.addEventListener("mouseenter", stopAutoplay);
-      shell.addEventListener("mouseleave", startAutoplay);
+</p>
 
-      // Ajuste responsivo
-      window.addEventListener("resize", ()=> translateToIndex(false));
+</div>
 
-      // Init
-      setActive();
-      translateToIndex(false);
-      startAutoplay();
-    })();
-  </script>
+
+
+<div class="cf">
+
+<div class="cf-shell" id="carouselShell">
+
+<div class="cf-viewport">
+
+<div class="cf-track" id="carouselTrack">
+
+<div class="cf-slide">
+<img src="assets/BASTIDOR%201.svg">
+</div>
+
+<div class="cf-slide">
+<img src="assets/BASTIDOR%202.svg">
+</div>
+
+<div class="cf-slide">
+<img src="assets/BASTIDOR%203.svg">
+</div>
+
+<div class="cf-slide">
+<img src="assets/BASTIDOR%204.svg">
+</div>
+
+<div class="cf-slide">
+<img src="assets/BASTIDOR%205.svg">
+</div>
+
+<div class="cf-slide">
+<img src="assets/BASTIDOR%206.svg">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+const track = document.getElementById("carouselTrack")
+const slides = [...track.children]
+
+let index = 0
+
+const AUTOPLAY_MS = 1400
+
+function update(){
+
+slides.forEach((slide,i)=>{
+
+slide.classList.toggle("is-active",i===index)
+
+})
+
+const slideWidth = slides[0].offsetWidth + 18
+const offset = -index * slideWidth + (track.parentElement.offsetWidth - slides[0].offsetWidth)/2
+
+track.style.transform = `translateX(${offset}px)`
+
+}
+
+function next(){
+
+index++
+
+if(index>=slides.length) index=0
+
+update()
+
+}
+
+setInterval(next,AUTOPLAY_MS)
+
+window.addEventListener("load",update)
+window.addEventListener("resize",update)
+
+</script>
 
 </section>
 
