@@ -792,6 +792,66 @@ window.addEventListener("resize",measure);
 
 </section>
 
+
+<script>
+
+(function(){
+
+const shell=document.getElementById("cfShell");
+const track=document.getElementById("cfTrack");
+
+let raf=null;
+let last=0;
+let x=0;
+let loopPx=0;
+
+function getSpeed(){
+
+const seconds=5.4;
+return 2200/seconds;
+
+}
+
+function measure(){
+
+loopPx=track.scrollWidth/2;
+x=x%loopPx;
+track.style.transform=`translateX(${-x}px)`;
+
+}
+
+function tick(t){
+
+if(!last) last=t;
+
+const dt=(t-last)/1000;
+last=t;
+
+x+=getSpeed()*dt;
+
+if(x>=loopPx) x-=loopPx;
+
+track.style.transform=`translateX(${-x}px)`;
+
+raf=requestAnimationFrame(tick);
+
+}
+
+window.addEventListener("load",()=>{
+
+measure();
+raf=requestAnimationFrame(tick);
+
+});
+
+window.addEventListener("resize",measure);
+
+})();
+
+</script>
+
+</section>
+
    <!-- âncoras (menu não quebra) -->
     <section id="quem-sou" style="height:1px;"></section>
     <section id="procedimentos" style="height:1px;"></section>
