@@ -730,23 +730,48 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
 </div>
 </section>
 
-<!-- ===================== SESSÃO 4 | PROCEDIMENTOS ===================== -->
+<!-- ===================== SESSÃO 4 | PROCEDIMENTOS (AJUSTADA) ===================== -->
 <section id="procedimentos">
   <style>
-    /* tudo prefixado pra NÃO encostar na Sessão 3 */
-    #procedimentos .p4-wrap{ width:100%; background:#fff; padding:110px 0 120px; scroll-margin-top:120px; }
-    #procedimentos .p4-titlewrap{ width:100%; max-width:1200px; margin:0 auto; padding:0 6%; }
-    #procedimentos .p4-title{
-      font-family:'Cormorant Garamond',serif;
-      font-size:54px; letter-spacing:3px; color:#3f525a;
-      margin:0 0 70px;
-      text-align:left; /* mesma linha das sessões 1 e 3 */
-      opacity:0; filter:blur(10px); transform:translateY(35px);
-      animation:p4FadeBlur 1.05s ease forwards;
+    /* 100% escopado: não encosta na Sessão 3 nem no carrossel */
+    #procedimentos .p4-wrap{
+      width:100%;
+      background:#fff;
+      padding:70px 0 100px;         /* ↓ menos espaço geral pra não ficar desproporcional */
+      scroll-margin-top:120px;
     }
 
-    /* grid maior (cards grandes) sem mexer no eixo do título */
-    #procedimentos .p4-gridwrap{ width:100%; max-width:1500px; margin:0 auto; padding:0 6%; }
+    /* eixo do título (alinha com sessão 3) */
+    #procedimentos .p4-titlewrap{
+      width:100%;
+      max-width:1200px;             /* se o eixo da sessão 3 for outro, troque só aqui */
+      margin:0 auto;
+      padding:0 6%;
+    }
+
+    #procedimentos .p4-title{
+      font-family:'Cormorant Garamond',serif;
+      font-size:54px;
+      letter-spacing:3px;
+      color:#3f525a;
+
+      margin:0 0 40px;              /* ↓ diminui espaço embaixo do título */
+      text-align:left;
+
+      opacity:0;
+      filter:blur(10px);
+      transform:translateY(25px);
+      animation:p4FadeBlur 0.95s ease forwards;
+    }
+
+    /* grid grande */
+    #procedimentos .p4-gridwrap{
+      width:100%;
+      max-width:1500px;
+      margin:0 auto;
+      padding:0 6%;
+    }
+
     #procedimentos .p4-grid{
       display:grid;
       grid-template-columns:repeat(4, minmax(300px, 1fr));
@@ -760,43 +785,49 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
       overflow:hidden;
       background:transparent;
       box-shadow:0 12px 28px rgba(0,0,0,0.10);
-      opacity:0; filter:blur(10px); transform:translateY(35px);
-      animation:p4FadeBlur 1.05s ease forwards;
+
+      opacity:0;
+      filter:blur(10px);
+      transform:translateY(25px);
+      animation:p4FadeBlur 0.95s ease forwards;
     }
-    #procedimentos .p4-card:nth-child(1){ animation-delay:.08s; }
-    #procedimentos .p4-card:nth-child(2){ animation-delay:.16s; }
-    #procedimentos .p4-card:nth-child(3){ animation-delay:.24s; }
-    #procedimentos .p4-card:nth-child(4){ animation-delay:.32s; }
+    #procedimentos .p4-card:nth-child(1){ animation-delay:.06s; }
+    #procedimentos .p4-card:nth-child(2){ animation-delay:.12s; }
+    #procedimentos .p4-card:nth-child(3){ animation-delay:.18s; }
+    #procedimentos .p4-card:nth-child(4){ animation-delay:.24s; }
 
     #procedimentos .p4-img{ width:100%; height:auto; display:block; }
 
-    /* BOTÃO: pequeno e no CINZA (desce pra não pegar o texto) */
+    /* BOTÃO: maior e com melhor proporção */
     #procedimentos .p4-btn{
       position:absolute;
       left:50%;
-      bottom:10.2%;              /* desce pra ficar no cinza */
+      bottom:9.2%;                  /* ↓ desce pra ficar no cinza e não grudar no texto do SVG */
       transform:translateX(-50%);
+
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding:7px 14px;          /* pequeno */
-      border-radius:10px;
+
+      padding:10px 20px;            /* ↑ maior */
+      border-radius:12px;
       background:#3f525a;
       color:#fff;
       text-decoration:none;
-      font-size:12px;
+      font-size:13.5px;             /* ↑ maior */
       line-height:1;
+
       overflow:hidden;
-      box-shadow:0 8px 18px rgba(0,0,0,0.12);
+      box-shadow:0 10px 22px rgba(0,0,0,0.14);
       transition:transform .18s ease, filter .18s ease;
       will-change:transform;
     }
+
     #procedimentos .p4-btn:hover{
       transform:translateX(-50%) translateY(-1px);
       filter:brightness(1.06);
     }
 
-    /* light sweep */
     #procedimentos .p4-btn::before{
       content:'';
       position:absolute;
@@ -807,26 +838,35 @@ A proposta é preservar expressões, respeitar a identidade e proporcionar resul
       pointer-events:none;
     }
     #procedimentos .p4-btn:hover::before{ animation:p4Sweep .8s ease; }
+
     @keyframes p4Sweep{ 100%{ left:125%; } }
     @keyframes p4FadeBlur{ to{ opacity:1; filter:blur(0); transform:translateY(0); } }
 
+    /* MOBILE */
     @media (max-width:900px){
-      #procedimentos .p4-wrap{ padding:85px 0 95px; }
-      #procedimentos .p4-titlewrap{ max-width:560px; }
+      #procedimentos .p4-wrap{ padding:55px 0 80px; }
+
+      #procedimentos .p4-titlewrap,
+      #procedimentos .p4-gridwrap{
+        max-width:560px;
+        padding:0 6%;
+      }
+
       #procedimentos .p4-title{
         font-size:38px;
-        margin-bottom:40px;
+        margin-bottom:26px;         /* ↓ menos espaço ainda no mobile */
         text-align:center;
       }
-      #procedimentos .p4-gridwrap{ max-width:560px; }
+
       #procedimentos .p4-grid{
         grid-template-columns:repeat(2, minmax(0, 1fr));
         gap:18px;
       }
+
       #procedimentos .p4-btn{
-        bottom:10.5%;
-        padding:7px 12px;
-        font-size:11.5px;
+        bottom:9.8%;
+        padding:9px 16px;
+        font-size:12.5px;
       }
     }
   </style>
