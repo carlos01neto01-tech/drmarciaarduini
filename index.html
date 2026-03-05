@@ -21,21 +21,14 @@
       --header-h:104px;
       --container:1200px;
 
-      /* =========================
-         ✅ TRAVA PADRÃO DO @ (todas as telas)
-         Ajuste só estes dois:
-         - Y maior = desce (mais abaixo do quadril)
-         - X negativo = esquerda | positivo = direita
-         ========================= */
       --handle-y: 86%;
       --handle-x: -18px;
 
       --handle-w-mobile: min(360px, 90vw);
       --handle-w-desktop: 380px;
 
-      /* Texto */
-      --mobile-text-mt: -12px;   /* aproxima texto da foto no mobile */
-      --desktop-text-top: 110px; /* desce texto no desktop (altura da cabeça) */
+      --mobile-text-mt: -12px;
+      --desktop-text-top: 110px;
       --sub-to-btn: 62px;
     }
 
@@ -103,7 +96,6 @@
     }
     .nav-desktop a:hover{ background:rgba(0,0,0,.05); }
 
-    /* CTA header: não aparece no mobile */
     .cta-top{
       display:none;
       height:46px;
@@ -262,7 +254,6 @@
     }
     @keyframes floaty{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 
-    /* ✅ @ travado e padronizado */
     .handle{
       position:absolute;
       left:50% !important;
@@ -275,7 +266,6 @@
       filter:drop-shadow(0 18px 28px rgba(0,0,0,.18));
     }
 
-    /* ✅ Mobile maior */
     .title{
       font-family:var(--title);
       font-weight:700;
@@ -286,15 +276,6 @@
       margin:0;
       text-align:left;
     }
-    .subtitle{
-      margin:24px 0 var(--sub-to-btn);
-      font-size:22px;
-      line-height:1.65;
-      color:rgba(0,0,0,.62);
-      text-align:left;
-      max-width:560px;
-    }
-
     .cta{
       width:min(560px, 100%);
       height:76px;
@@ -326,10 +307,6 @@
     .cta:hover::after{ opacity:1; animation:sweep2 1.2s ease-in-out; }
     @keyframes sweep2{ 0%{left:-70%} 100%{left:140%} }
 
-    @media (min-width:768px){
-      .hero .wrap{ padding:28px 20px 60px; }
-    }
-
     @media (min-width:1024px){
       .nav-desktop{ display:flex; }
       .cta-top{ display:flex; }
@@ -339,7 +316,6 @@
         background:url("assets/FUNDO%20DESKTOP.webp") center/cover no-repeat;
         min-height:auto;
       }
-
       .hero .wrap{
         grid-template-areas:"text media";
         grid-template-columns:0.95fr 1.05fr;
@@ -347,24 +323,15 @@
         padding:44px 20px 0;
         align-items:start;
       }
-
-      /* ✅ DESKTOP: texto na altura da cabeça */
       .text{
         margin-top:var(--desktop-text-top);
         max-width:560px;
       }
-
       .media{ justify-content:flex-end; }
       .figure{ width:min(520px, 100%); }
       .figure::before{ bottom:7%; width:92%; height:36%; filter:blur(14px); }
-
-      .handle{
-        width:var(--handle-w-desktop);
-        max-width:420px;
-      }
-
+      .handle{ width:var(--handle-w-desktop); max-width:420px; }
       .title{ font-size:64px; }
-      .subtitle{ font-size:18px; max-width:520px; margin-bottom:44px; }
       .cta{ width:240px; height:56px; font-size:18px; border-radius:16px; }
     }
 
@@ -372,8 +339,95 @@
       :root{ --header-h:96px; }
       .m-logo img{ height:58px; }
       .title{ font-size:46px; }
-      .subtitle{ font-size:19px; }
       .cta{ height:68px; font-size:20px; }
+    }
+
+    /* =========================
+       FAIXA CONTÍNUA (Marquee)
+       ========================= */
+    .s-marquee{width:100%;background:#3F525A;padding:18px 0;overflow:hidden}
+    .marquee{max-width:1200px;margin:0 auto;padding:0 20px}
+    .marquee-viewport{overflow:hidden;position:relative}
+    .marquee-viewport::before,.marquee-viewport::after{
+      content:"";position:absolute;top:0;bottom:0;width:90px;pointer-events:none;z-index:2
+    }
+    .marquee-viewport::before{left:0;background:linear-gradient(90deg,#3F525A,rgba(63,82,90,0))}
+    .marquee-viewport::after{right:0;background:linear-gradient(270deg,#3F525A,rgba(63,82,90,0))}
+    .marquee-track{display:flex;align-items:center;gap:34px;width:max-content;will-change:transform;transform:translateX(0)}
+    .marquee-item{
+      white-space:nowrap;color:#fff;font-family:"Cormorant Garamond",serif;font-weight:700;
+      letter-spacing:.08em;text-transform:uppercase;font-size:18px;opacity:.95
+    }
+    @media(max-width:520px){
+      .s-marquee{padding:14px 0}
+      .marquee-item{font-size:16px}
+      .marquee-track{gap:26px}
+      .marquee-viewport::before,.marquee-viewport::after{width:60px}
+    }
+
+    /* =========================
+       SESSÃO 2
+       ========================= */
+    .s2{padding:110px 20px;background:#f5f5f5}
+    .s2-container{max-width:1120px;margin:0 auto}
+    .s2-head{
+      text-align:center;margin-bottom:64px;opacity:0;transform:translateY(30px);
+      transition:opacity .9s ease,transform .9s ease
+    }
+    .s2-head.visible{opacity:1;transform:translateY(0)}
+    .s2-title{
+      font-family:"Cormorant Garamond",serif;font-weight:700;
+      font-size:64px;line-height:1.05;color:#3B4E57;margin:0 0 14px;
+      letter-spacing:.02em;text-transform:uppercase
+    }
+    .s2-sub{
+      font-family:"Source Sans 3",system-ui;font-weight:300;
+      font-size:18px;line-height:1.65;color:rgba(0,0,0,.62);
+      margin:0;max-width:860px;margin-inline:auto
+    }
+
+    /* MAIS JUNTO + CENTRALIZADO + MAIOR */
+    .s2-grid{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:44px}
+
+    .s2-item{
+      position:relative;opacity:0;transform:translateY(24px);
+      transition:opacity .9s ease,transform .9s ease
+    }
+    .s2-item.visible{opacity:1;transform:translateY(0)}
+
+    /* Só o SVG */
+    .s2-item img{
+      width:460px;
+      max-width:92vw;
+      height:auto;
+      display:block;
+      background:transparent;
+      border-radius:0;
+      filter:drop-shadow(0 18px 35px rgba(0,0,0,.14))
+    }
+
+    /* Light sweep */
+    .s2-item::after{
+      content:"";
+      position:absolute;
+      top:-10%;
+      left:-120%;
+      width:60%;
+      height:120%;
+      background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,.50) 50%,transparent 100%);
+      transform:skewX(-25deg);
+      transition:left .9s ease;
+      pointer-events:none
+    }
+    .s2-item:hover::after{left:130%}
+
+    @media(max-width:900px){
+      .s2{padding:80px 20px}
+      .s2-head{text-align:left;margin-bottom:34px}
+      .s2-title{font-size:50px}
+      .s2-sub{margin-inline:0}
+      .s2-grid{justify-content:flex-start;gap:22px}
+      .s2-item img{width:min(520px,100%)}
     }
   </style>
 </head>
@@ -423,13 +477,11 @@
     <section class="hero" id="inicio" aria-label="Início">
       <div class="wrap">
         <div class="text">
-          <h1 class="title reveal d1">
-            PRECISÃO TÉCNICA E SENSIBILIDADE ESTÉTICA.
-          </h1>
+          <h1 class="title reveal d1">PRECISÃO TÉCNICA E SENSIBILIDADE ESTÉTICA.</h1>
 
-<p class="hero__subtitle reveal">
-Realce sua beleza com naturalidade e confiança, através de procedimentos seguros e personalizados.
-</p>
+          <p class="hero__subtitle reveal">
+            Realce sua beleza com naturalidade e confiança, através de procedimentos seguros e personalizados.
+          </p>
 
           <a class="cta reveal d3"
              href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
@@ -447,298 +499,63 @@ Realce sua beleza com naturalidade e confiança, através de procedimentos segur
       </div>
     </section>
 
-   <section class="s-marquee">
+    <!-- =========================
+    FAIXA CONTÍNUA
+    ========================= -->
+    <section class="s-marquee">
+      <div class="marquee">
+        <div class="marquee-viewport">
+          <div class="marquee-track" id="mqTrack">
+            <div class="marquee-item">◆ CONFIANÇA</div>
+            <div class="marquee-item">◆ AUTORIDADE</div>
+            <div class="marquee-item">◆ NATURALIDADE</div>
+            <div class="marquee-item">◆ SEGURANÇA</div>
+            <div class="marquee-item">◆ PRECISÃO</div>
+            <div class="marquee-item">◆ RESULTADOS</div>
 
-<style>
-
-.s-marquee{
-width:100%;
-background:#3F525A;
-padding:18px 0;
-overflow:hidden;
-}
-
-/* container */
-
-.marquee{
-max-width:1200px;
-margin:0 auto;
-padding:0 20px;
-}
-
-.marquee-viewport{
-overflow:hidden;
-position:relative;
-}
-
-/* fade lateral elegante */
-
-.marquee-viewport::before,
-.marquee-viewport::after{
-content:"";
-position:absolute;
-top:0;
-bottom:0;
-width:90px;
-pointer-events:none;
-z-index:2;
-}
-
-.marquee-viewport::before{
-left:0;
-background:linear-gradient(90deg,#3F525A,rgba(63,82,90,0));
-}
-
-.marquee-viewport::after{
-right:0;
-background:linear-gradient(270deg,#3F525A,rgba(63,82,90,0));
-}
-
-/* track */
-
-.marquee-track{
-display:flex;
-align-items:center;
-gap:34px;
-width:max-content;
-will-change:transform;
-transform:translateX(0);
-}
-
-/* item */
-
-.marquee-item{
-white-space:nowrap;
-color:#fff;
-font-family:"Cormorant Garamond",serif;
-font-weight:700;
-letter-spacing:.08em;
-text-transform:uppercase;
-font-size:18px;
-opacity:.95;
-}
-
-/* mobile */
-
-@media(max-width:520px){
-
-.s-marquee{
-padding:14px 0;
-}
-
-.marquee-item{
-font-size:16px;
-}
-
-.marquee-track{
-gap:26px;
-}
-
-</section>
-
-
-<script>
-<!-- =========================
-FAIXA CONTÍNUA
-========================= -->
-<section class="s-marquee">
-  <style>
-    .s-marquee{width:100%;background:#3F525A;padding:18px 0;overflow:hidden}
-    .marquee{max-width:1200px;margin:0 auto;padding:0 20px}
-    .marquee-viewport{overflow:hidden;position:relative}
-    .marquee-viewport::before,.marquee-viewport::after{
-      content:"";position:absolute;top:0;bottom:0;width:90px;pointer-events:none;z-index:2
-    }
-    .marquee-viewport::before{left:0;background:linear-gradient(90deg,#3F525A,rgba(63,82,90,0))}
-    .marquee-viewport::after{right:0;background:linear-gradient(270deg,#3F525A,rgba(63,82,90,0))}
-    .marquee-track{display:flex;align-items:center;gap:34px;width:max-content;will-change:transform;transform:translateX(0)}
-    .marquee-item{
-      white-space:nowrap;color:#fff;font-family:"Cormorant Garamond",serif;font-weight:700;
-      letter-spacing:.08em;text-transform:uppercase;font-size:18px;opacity:.95
-    }
-    @media(max-width:520px){
-      .s-marquee{padding:14px 0}
-      .marquee-item{font-size:16px}
-      .marquee-track{gap:26px}
-      .marquee-viewport::before,.marquee-viewport::after{width:60px}
-    }
-  </style>
-
-  <div class="marquee">
-    <div class="marquee-viewport">
-      <div class="marquee-track" id="mqTrack">
-        <div class="marquee-item">◆ CONFIANÇA</div>
-        <div class="marquee-item">◆ AUTORIDADE</div>
-        <div class="marquee-item">◆ NATURALIDADE</div>
-        <div class="marquee-item">◆ SEGURANÇA</div>
-        <div class="marquee-item">◆ PRECISÃO</div>
-        <div class="marquee-item">◆ RESULTADOS</div>
-
-        <div class="marquee-item">◆ CONFIANÇA</div>
-        <div class="marquee-item">◆ AUTORIDADE</div>
-        <div class="marquee-item">◆ NATURALIDADE</div>
-        <div class="marquee-item">◆ SEGURANÇA</div>
-        <div class="marquee-item">◆ PRECISÃO</div>
-        <div class="marquee-item">◆ RESULTADOS</div>
+            <div class="marquee-item">◆ CONFIANÇA</div>
+            <div class="marquee-item">◆ AUTORIDADE</div>
+            <div class="marquee-item">◆ NATURALIDADE</div>
+            <div class="marquee-item">◆ SEGURANÇA</div>
+            <div class="marquee-item">◆ PRECISÃO</div>
+            <div class="marquee-item">◆ RESULTADOS</div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<script>
-(function(){
-  function startMarquee(){
-    const track = document.getElementById("mqTrack");
-    if(!track) return;
+    <!-- =========================
+    SESSÃO 2
+    ========================= -->
+    <section class="s2" aria-label="Sessão 2">
+      <div class="s2-container">
+        <div class="s2-head">
+          <h2 class="s2-title">NÃO É SÓ ESTÉTICA, É TRANSFORMAÇÃO.</h2>
+          <p class="s2-sub">Harmonização facial com planejamento individual, técnica refinada e resultados naturais.</p>
+        </div>
 
-    let last = 0;
-    let x = 0;
-    let loopPx = 0;
-    const SPEED = 140; // mais rápido
-
-    function measure(){
-      loopPx = track.scrollWidth / 2;
-      if(loopPx <= 0) return;
-      x = x % loopPx;
-      track.style.transform = `translateX(${-x}px)`;
-    }
-
-    function tick(t){
-      if(!last) last = t;
-      const dt = (t - last) / 1000;
-      last = t;
-
-      x += SPEED * dt;
-      if(loopPx > 0 && x >= loopPx) x -= loopPx;
-
-      track.style.transform = `translateX(${-x}px)`;
-      requestAnimationFrame(tick);
-    }
-
-    measure();
-    setTimeout(measure, 150);
-    setTimeout(measure, 600);
-    window.addEventListener("resize", measure);
-    requestAnimationFrame(tick);
-  }
-
-  if(document.readyState === "loading"){
-    document.addEventListener("DOMContentLoaded", startMarquee);
-  } else {
-    startMarquee();
-  }
-})();
-</script>
-
-<!-- =========================
-SESSÃO 2
-========================= -->
-<section class="s2">
-  <style>
-    .s2{padding:110px 20px;background:#f5f5f5}
-    .s2-container{max-width:1120px;margin:0 auto}
-
-    .s2-head{
-      text-align:center;margin-bottom:56px;opacity:0;transform:translateY(30px);
-      transition:opacity .9s ease,transform .9s ease
-    }
-    .s2-head.visible{opacity:1;transform:translateY(0)}
-
-    .s2-title{
-      font-family:"Cormorant Garamond",serif;font-weight:700;
-      font-size:64px;line-height:1.05;color:#3B4E57;margin:0 0 14px;
-      letter-spacing:.02em;text-transform:uppercase
-    }
-    .s2-sub{
-      font-family:"Source Sans 3",system-ui;font-weight:300;
-      font-size:18px;line-height:1.65;color:rgba(0,0,0,.62);
-      margin:0;max-width:860px;margin-inline:auto
-    }
-
-    /* MAIS JUNTO + CENTRALIZADO */
-    .s2-grid{display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
-
-    /* SEM RETÂNGULO BRANCO: só o SVG */
-    .s2-item{
-      position:relative;opacity:0;transform:translateY(24px);
-      transition:opacity .9s ease,transform .9s ease
-    }
-    .s2-item.visible{opacity:1;transform:translateY(0)}
-
-    /* SVG MAIOR */
-    .s2-item img{
-      width:420px;max-width:92vw;height:auto;display:block;
-      background:transparent;border-radius:0;
-      filter:drop-shadow(0 18px 35px rgba(0,0,0,.14))
-    }
-
-    /* LIGHT SWEEP */
-    .s2-item::after{
-      content:"";position:absolute;top:-10%;left:-120%;width:60%;height:120%;
-      background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,.50) 50%,transparent 100%);
-      transform:skewX(-25deg);transition:left .9s ease;pointer-events:none
-    }
-    .s2-item:hover::after{left:130%}
-
-    @media(max-width:900px){
-      .s2{padding:80px 20px}
-      .s2-head{text-align:left;margin-bottom:34px}
-      .s2-title{font-size:50px}
-      .s2-sub{margin-inline:0}
-      .s2-grid{justify-content:flex-start;gap:22px}
-      .s2-item img{width:min(520px,100%)}
-    }
-  </style>
-
-  <div class="s2-container">
-    <div class="s2-head">
-      <h2 class="s2-title">NÃO É SÓ ESTÉTICA, É TRANSFORMAÇÃO.</h2>
-      <p class="s2-sub">Harmonização facial com planejamento individual, técnica refinada e resultados naturais.</p>
-    </div>
-
-    <div class="s2-grid" aria-label="Diferenciais">
-      <div class="s2-item">
-        <img src="assets/Resultados%20reais.svg" alt="Resultados reais">
+        <div class="s2-grid" aria-label="Diferenciais">
+          <div class="s2-item">
+            <img src="assets/Resultados%20reais.svg" alt="Resultados reais">
+          </div>
+          <div class="s2-item">
+            <img src="assets/Procedimentos%20de%20excelencia.svg" alt="Procedimentos de excelência">
+          </div>
+          <div class="s2-item">
+            <img src="assets/Avalia%C3%A7%C3%A3o%20completa.svg" alt="Avaliação completa">
+          </div>
+        </div>
       </div>
-      <div class="s2-item">
-        <img src="assets/Procedimentos%20de%20excelencia.svg" alt="Procedimentos de excelência">
-      </div>
-      <div class="s2-item">
-        <img src="assets/Avalia%C3%A7%C3%A3o%20completa.svg" alt="Avaliação completa">
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <script>
-    (function(){
-      const targets = document.querySelectorAll(".s2-head, .s2-item");
-      if(!targets.length) return;
-
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach((e)=>{
-          if(e.isIntersecting){
-            e.target.classList.add("visible");
-            io.unobserve(e.target);
-          }
-        });
-      },{threshold:0.25});
-
-      targets.forEach(el=>io.observe(el));
-    })();
-  </script>
-</section>
-  
-
-
-</script>
-
-   <!-- âncoras (menu não quebra) -->
+    <!-- âncoras -->
     <section id="quem-sou" style="height:1px;"></section>
     <section id="procedimentos" style="height:1px;"></section>
     <section id="contato" style="height:1px;"></section>
   </main>
 
   <script>
+    // Menu mobile
     const btn = document.getElementById("menuBtn");
     const nav = document.getElementById("mNav");
     const overlay = document.getElementById("overlay");
@@ -759,16 +576,78 @@ SESSÃO 2
     overlay.addEventListener("click", closeMenu);
     nav.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
 
+    // Reveal (sessão 1)
     const revealEls = document.querySelectorAll(".reveal");
-    const io = new IntersectionObserver((entries) => {
+    const ioReveal = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
           e.target.classList.add("is-visible");
-          io.unobserve(e.target);
+          ioReveal.unobserve(e.target);
         }
       });
     }, { threshold: 0.25 });
-    revealEls.forEach(el => io.observe(el));
+    revealEls.forEach(el => ioReveal.observe(el));
+
+    // Marquee (faixa contínua)
+    (function(){
+      function startMarquee(){
+        const track = document.getElementById("mqTrack");
+        if(!track) return;
+
+        let last = 0;
+        let x = 0;
+        let loopPx = 0;
+        const SPEED = 140;
+
+        function measure(){
+          loopPx = track.scrollWidth / 2;
+          if(loopPx <= 0) return;
+          x = x % loopPx;
+          track.style.transform = `translateX(${-x}px)`;
+        }
+
+        function tick(t){
+          if(!last) last = t;
+          const dt = (t - last) / 1000;
+          last = t;
+
+          x += SPEED * dt;
+          if(loopPx > 0 && x >= loopPx) x -= loopPx;
+
+          track.style.transform = `translateX(${-x}px)`;
+          requestAnimationFrame(tick);
+        }
+
+        measure();
+        setTimeout(measure, 150);
+        setTimeout(measure, 600);
+        window.addEventListener("resize", measure);
+        requestAnimationFrame(tick);
+      }
+
+      if(document.readyState === "loading"){
+        document.addEventListener("DOMContentLoaded", startMarquee);
+      } else {
+        startMarquee();
+      }
+    })();
+
+    // Fade in (sessão 2)
+    (function(){
+      const targets = document.querySelectorAll(".s2-head, .s2-item");
+      if(!targets.length) return;
+
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach((e)=>{
+          if(e.isIntersecting){
+            e.target.classList.add("visible");
+            io.unobserve(e.target);
+          }
+        });
+      },{threshold:0.25});
+
+      targets.forEach(el=>io.observe(el));
+    })();
   </script>
 </body>
 </html>
