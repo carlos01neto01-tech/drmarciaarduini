@@ -622,8 +622,7 @@ gap:26px;
 </section>
 
 <!-- ====== SESSÃO 2 ====== -->
-<section class="s2">
-  <style>
+<style>
     .s2{
       padding:110px 20px;
       background:#f5f5f5;
@@ -633,93 +632,94 @@ gap:26px;
       margin:0 auto;
     }
 
+    /* Head */
     .s2-head{
       text-align:center;
-      margin-bottom:60px;
+      margin-bottom:52px;
       opacity:0;
       transform:translateY(30px);
       transition:opacity .9s ease, transform .9s ease;
     }
-    .s2-head.visible{
-      opacity:1;
-      transform:translateY(0);
-    }
+    .s2-head.visible{ opacity:1; transform:translateY(0); }
 
+    /* Tamanhos alinhados com sua Sessão 1 */
     .s2-title{
       font-family:"Cormorant Garamond",serif;
+      font-weight:700;
       font-size:64px;
       line-height:1.05;
       color:#3B4E57;
-      margin:0 0 16px;
+      margin:0 0 14px;
       letter-spacing:.02em;
       text-transform:uppercase;
     }
-
     .s2-sub{
       font-family:"Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       font-weight:300;
       font-size:18px;
+      line-height:1.65;
       color:rgba(0,0,0,.62);
       margin:0;
+      max-width:860px;
+      margin-inline:auto;
     }
 
+    /* Grid: mais junto e centralizado */
     .s2-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:34px;
+      display:flex;
+      justify-content:center;
+      gap:20px;              /* MAIS JUNTO */
+      flex-wrap:wrap;
     }
 
-    .s2-card{
-      background:#fff;
-      border-radius:28px;
-      padding:26px;
-      text-align:center;
-      box-shadow:0 18px 40px rgba(0,0,0,.08);
-      border:1px solid #d6dde0;
-      opacity:0;
-      transform:translateY(30px);
-      transition:opacity .9s ease, transform .9s ease;
+    /* Item: sem fundo, sem borda, sem retângulo */
+    .s2-item{
       position:relative;
-      overflow:hidden;
+      opacity:0;
+      transform:translateY(24px);
+      transition:opacity .9s ease, transform .9s ease;
     }
-    .s2-card.visible{
-      opacity:1;
-      transform:translateY(0);
-    }
+    .s2-item.visible{ opacity:1; transform:translateY(0); }
 
-    .s2-card img{
-      width:100%;
-      border-radius:18px;
-      margin-bottom:18px;
+    /* Só o SVG (maior) */
+    .s2-item img{
+      width:340px;           /* AUMENTA */
+      max-width:92vw;
+      height:auto;
       display:block;
+      border-radius:0;
+      background:transparent;
+      filter: drop-shadow(0 18px 35px rgba(0,0,0,.14));
     }
 
-    .s2-label{
-      font-family:"Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      font-weight:300;
-      font-size:18px;
-      color:#3B4E57;
-    }
-
-    /* light sweep no hover */
-    .s2-card::after{
+    /* Light sweep ao passar o mouse (desktop) */
+    .s2-item::after{
       content:"";
       position:absolute;
-      top:0;
+      top:-10%;
       left:-120%;
       width:60%;
-      height:100%;
-      background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.55) 50%, transparent 100%);
+      height:120%;
+      background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.50) 50%, transparent 100%);
       transform:skewX(-25deg);
       transition:left .9s ease;
       pointer-events:none;
     }
-    .s2-card:hover::after{ left:130%; }
+    .s2-item:hover::after{ left:130%; }
 
+    /* Mobile: mantém alinhado à esquerda como seu print */
     @media(max-width:900px){
-      .s2-title{ font-size:50px; }
-      .s2-grid{ grid-template-columns:1fr; gap:28px; }
-      .s2-head{ text-align:left; }
+      .s2{ padding:80px 20px; }
+      .s2-head{ text-align:left; margin-bottom:34px; }
+      .s2-title{ font-size:50px; } /* igual Sessão 2 mobile anterior */
+      .s2-sub{ margin-inline:0; }
+      .s2-grid{
+        justify-content:flex-start;
+        gap:22px;
+      }
+      .s2-item img{
+        width:min(520px, 100%); /* fica grande e bonito no mobile */
+      }
     }
   </style>
 
@@ -729,89 +729,39 @@ gap:26px;
       <p class="s2-sub">Harmonização facial com planejamento individual, técnica refinada e resultados naturais.</p>
     </div>
 
-    <div class="s2-grid">
-      <div class="s2-card">
-        <img src="assets/Resultados reais.svg" alt="Resultados reais">
-        <div class="s2-label">Resultados reais</div>
+    <div class="s2-grid" aria-label="Diferenciais">
+      <!-- ⚠️ Sem texto HTML aqui pra não duplicar -->
+      <div class="s2-item">
+        <img src="assets/Resultados%20reais.svg" alt="Resultados reais">
       </div>
 
-      <div class="s2-card">
-        <img src="assets/Procedimentos de excelencia.svg" alt="Procedimentos de excelência">
-        <div class="s2-label">Procedimentos de excelência</div>
+      <div class="s2-item">
+        <img src="assets/Procedimentos%20de%20excelencia.svg" alt="Procedimentos de excelência">
       </div>
 
-      <div class="s2-card">
-        <img src="assets/Avaliação completa.svg" alt="Avaliação completa">
-        <div class="s2-label">Avaliação completa</div>
+      <div class="s2-item">
+        <img src="assets/Avalia%C3%A7%C3%A3o%20completa.svg" alt="Avaliação completa">
       </div>
     </div>
   </div>
-</section>
 
-<!-- ✅ JS DO MARQUEE (fora de <section> e sem misturar com HTML) -->
-<script>
-(function(){
-  const track = document.getElementById("mqTrack");
-  if(!track) return;
+  <script>
+    (function(){
+      const targets = document.querySelectorAll(".s2-head, .s2-item");
+      if(!targets.length) return;
 
-  let raf=null, last=0, x=0, loopPx=0;
-  const SPEED = 120;
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if(e.isIntersecting){
+            e.target.classList.add("visible");
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.25 });
 
-  function measure(){
-    loopPx = track.scrollWidth / 2;
-    if(loopPx <= 0) return;
-    x = x % loopPx;
-    track.style.transform = `translateX(${-x}px)`;
-  }
-
-  function tick(t){
-    if(!last) last = t;
-    const dt = (t - last) / 1000;
-    last = t;
-
-    x += SPEED * dt;
-    if(loopPx > 0 && x >= loopPx) x -= loopPx;
-
-    track.style.transform = `translateX(${-x}px)`;
-    raf = requestAnimationFrame(tick);
-  }
-
-  window.addEventListener("load", () => {
-    measure();
-    raf = requestAnimationFrame(tick);
-  });
-  window.addEventListener("resize", measure);
-
-  // fallback caso fontes/imagens alterem a largura depois
-  setTimeout(measure, 150);
-})();
-</script>
-
-<!-- ✅ JS DO FADE-IN DA SESSÃO 2 -->
-<script>
-(function(){
-  const targets = document.querySelectorAll(".s2-head, .s2-card");
-  if(!targets.length) return;
-
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if(e.isIntersecting){
-        e.target.classList.add("visible");
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.25 });
-
-  targets.forEach(el => io.observe(el));
-})();
-</script>
-
-</script>
-
-</section>
-
-
-</div>
+      targets.forEach(el => io.observe(el));
+    })();
+  </script>
 </section>
 
    <!-- âncoras (menu não quebra) -->
