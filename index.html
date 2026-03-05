@@ -21,9 +21,9 @@
       --header-h:104px;
       --container:1200px;
 
+      /* @ handle */
       --handle-y: 86%;
       --handle-x: -18px;
-
       --handle-w-mobile: min(360px, 90vw);
       --handle-w-desktop: 380px;
 
@@ -96,7 +96,6 @@
     }
     .nav-desktop a:hover{ background:rgba(0,0,0,.05); }
 
-    /* CTA header: não aparece no mobile */
     .cta-top{
       display:none;
       height:46px;
@@ -209,27 +208,23 @@
       grid-template-areas:"media" "text";
       gap:10px;
     }
-
     .text{
       grid-area:text;
       max-width:640px;
       margin-top:var(--mobile-text-mt);
     }
-
     .media{
       grid-area:media;
       width:100%;
       display:flex;
       justify-content:center;
     }
-
     .figure{
       position:relative;
       width:min(520px, 100%);
       display:flex;
       justify-content:center;
     }
-
     .figure::before{
       content:"";
       position:absolute;
@@ -243,7 +238,6 @@
       z-index:1;
       pointer-events:none;
     }
-
     .doutora{
       position:relative;
       z-index:2;
@@ -278,7 +272,7 @@
       text-align:left;
     }
 
-    /* seu subtítulo do hero (você usou hero__subtitle no HTML) */
+    /* ✅ seu HTML usa hero__subtitle, então estilizamos essa classe */
     .hero__subtitle{
       margin:24px 0 var(--sub-to-btn);
       font-size:22px;
@@ -322,7 +316,6 @@
     @media (min-width:768px){
       .hero .wrap{ padding:28px 20px 60px; }
     }
-
     @media (min-width:1024px){
       .nav-desktop{ display:flex; }
       .cta-top{ display:flex; }
@@ -332,7 +325,6 @@
         background:url("assets/FUNDO%20DESKTOP.webp") center/cover no-repeat;
         min-height:auto;
       }
-
       .hero .wrap{
         grid-template-areas:"text media";
         grid-template-columns:0.95fr 1.05fr;
@@ -340,26 +332,20 @@
         padding:44px 20px 0;
         align-items:start;
       }
-
       .text{
         margin-top:var(--desktop-text-top);
         max-width:560px;
       }
-
       .media{ justify-content:flex-end; }
       .figure{ width:min(520px, 100%); }
       .figure::before{ bottom:7%; width:92%; height:36%; filter:blur(14px); }
 
-      .handle{
-        width:var(--handle-w-desktop);
-        max-width:420px;
-      }
+      .handle{ width:var(--handle-w-desktop); max-width:420px; }
 
       .title{ font-size:64px; }
       .hero__subtitle{ font-size:18px; max-width:520px; margin-bottom:44px; }
       .cta{ width:240px; height:56px; font-size:18px; border-radius:16px; }
     }
-
     @media (max-width:380px){
       :root{ --header-h:96px; }
       .m-logo img{ height:58px; }
@@ -390,8 +376,7 @@
     .marquee-viewport::after{
       content:"";
       position:absolute;
-      top:0;
-      bottom:0;
+      top:0; bottom:0;
       width:90px;
       pointer-events:none;
       z-index:2;
@@ -404,17 +389,18 @@
       right:0;
       background:linear-gradient(270deg,#3F525A,rgba(63,82,90,0));
     }
+
     .marquee-track{
       display:flex;
       align-items:center;
       gap:34px;
       width:max-content;
       will-change:transform;
-      animation: marqueeMove 10s linear infinite; /* rápido */
+      animation:marqueeMove 10s linear infinite; /* mais rápido */
     }
     @keyframes marqueeMove{
-      from{ transform:translateX(0); }
-      to{ transform:translateX(-50%); } /* funciona porque duplicamos os itens */
+      from{transform:translateX(0)}
+      to{transform:translateX(-50%)}
     }
     .marquee-item{
       white-space:nowrap;
@@ -432,6 +418,9 @@
       .marquee-track{ gap:26px; }
       .marquee-viewport::before,
       .marquee-viewport::after{ width:60px; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .marquee-track{ animation:none; transform:translateX(0); }
     }
 
     /* =========================
@@ -461,7 +450,7 @@
     .s2-title{
       font-family:"Cormorant Garamond",serif;
       font-weight:700;
-      font-size:64px; /* desktop igual padrão */
+      font-size:64px; /* padrão desktop */
       line-height:1.05;
       color:#3B4E57;
       margin:0 0 14px;
@@ -469,7 +458,7 @@
       text-transform:uppercase;
     }
     .s2-sub{
-      font-family:"Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family:var(--body);
       font-weight:300;
       font-size:18px;
       line-height:1.65;
@@ -483,12 +472,12 @@
     .s2-grid{
       display:flex;
       justify-content:center;
-      gap:14px;       /* mais juntos */
+      gap:14px;             /* mais juntos */
       flex-wrap:wrap;
       margin-top:44px;
     }
 
-    /* SEM CARD BRANCO */
+    /* SEM CARD: só o SVG */
     .s2-item{
       position:relative;
       opacity:0;
@@ -500,18 +489,18 @@
       transform:translateY(0);
     }
 
-    /* SVG MAIOR */
     .s2-item img{
-      width:480px;    /* maior */
+      width:460px;          /* maior */
       max-width:92vw;
       height:auto;
       display:block;
       background:transparent;
       border-radius:0;
+      box-shadow:none;
       filter: drop-shadow(0 18px 35px rgba(0,0,0,.14));
     }
 
-    /* LIGHT SWEEP */
+    /* LIGHT SWEEP (desktop hover) */
     .s2-item::after{
       content:"";
       position:absolute;
@@ -523,33 +512,18 @@
       transform:skewX(-25deg);
       transition:left .9s ease;
       pointer-events:none;
+      opacity:.95;
     }
-    .s2-item:hover::after{
-      left:130%;
-    }
+    .s2-item:hover::after{ left:130%; }
 
-    /* MOBILE: como seu print (tudo à esquerda) */
+    /* Mobile: exatamente como você quer (texto à esquerda) */
     @media(max-width:900px){
-      .s2{
-        padding:80px 20px;
-      }
-      .s2-head{
-        text-align:left;
-        margin-bottom:34px;
-      }
-      .s2-title{
-        font-size:50px; /* proporcional */
-      }
-      .s2-sub{
-        margin-inline:0;
-      }
-      .s2-grid{
-        justify-content:flex-start;
-        gap:22px;
-      }
-      .s2-item img{
-        width:min(520px, 100%);
-      }
+      .s2{ padding:80px 20px; }
+      .s2-head{ text-align:left; margin-bottom:34px; }
+      .s2-title{ font-size:50px; } /* mesma proporção da sua sessão 2 anterior no mobile */
+      .s2-sub{ margin-inline:0; }
+      .s2-grid{ justify-content:flex-start; gap:18px; }
+      .s2-item img{ width:min(520px,100%); }
     }
   </style>
 </head>
@@ -621,13 +595,12 @@
       </div>
     </section>
 
-    <!-- =========================
-    FAIXA CONTÍNUA
-    ========================= -->
+    <!-- ====== FAIXA CONTÍNUA ====== -->
     <section class="s-marquee" aria-label="Faixa contínua">
       <div class="marquee">
         <div class="marquee-viewport">
           <div class="marquee-track">
+            <!-- Sequência A -->
             <div class="marquee-item">◆ CONFIANÇA</div>
             <div class="marquee-item">◆ AUTORIDADE</div>
             <div class="marquee-item">◆ NATURALIDADE</div>
@@ -635,6 +608,7 @@
             <div class="marquee-item">◆ PRECISÃO</div>
             <div class="marquee-item">◆ RESULTADOS</div>
 
+            <!-- Sequência B (duplicada para loop perfeito) -->
             <div class="marquee-item">◆ CONFIANÇA</div>
             <div class="marquee-item">◆ AUTORIDADE</div>
             <div class="marquee-item">◆ NATURALIDADE</div>
@@ -646,9 +620,7 @@
       </div>
     </section>
 
-    <!-- =========================
-    SESSÃO 2
-    ========================= -->
+    <!-- ====== SESSÃO 2 ====== -->
     <section class="s2" aria-label="Sessão 2">
       <div class="s2-container">
         <div class="s2-head">
@@ -660,11 +632,9 @@
           <div class="s2-item">
             <img src="assets/Resultados%20reais.svg" alt="Resultados reais">
           </div>
-
           <div class="s2-item">
             <img src="assets/Procedimentos%20de%20excelencia.svg" alt="Procedimentos de excelência">
           </div>
-
           <div class="s2-item">
             <img src="assets/Avalia%C3%A7%C3%A3o%20completa.svg" alt="Avaliação completa">
           </div>
@@ -672,14 +642,14 @@
       </div>
     </section>
 
-    <!-- âncoras (menu não quebra) -->
+    <!-- âncoras -->
     <section id="quem-sou" style="height:1px;"></section>
     <section id="procedimentos" style="height:1px;"></section>
     <section id="contato" style="height:1px;"></section>
   </main>
 
   <script>
-    // Menu mobile
+    // menu mobile
     const btn = document.getElementById("menuBtn");
     const nav = document.getElementById("mNav");
     const overlay = document.getElementById("overlay");
@@ -700,7 +670,7 @@
     overlay.addEventListener("click", closeMenu);
     nav.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
 
-    // Fade in: hero
+    // reveal (hero)
     const revealEls = document.querySelectorAll(".reveal");
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
@@ -712,7 +682,7 @@
     }, { threshold: 0.25 });
     revealEls.forEach(el => io.observe(el));
 
-    // Fade in: Sessão 2
+    // sessão 2 fade-in
     (function(){
       const targets = document.querySelectorAll(".s2-head, .s2-item");
       if(!targets.length) return;
