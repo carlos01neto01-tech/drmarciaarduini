@@ -21,7 +21,6 @@
       --header-h:104px;
       --container:1200px;
 
-      /* @ handle */
       --handle-y: 86%;
       --handle-x: -18px;
       --handle-w-mobile: min(360px, 90vw);
@@ -272,7 +271,6 @@
       text-align:left;
     }
 
-    /* ✅ seu HTML usa hero__subtitle, então estilizamos essa classe */
     .hero__subtitle{
       margin:24px 0 var(--sub-to-btn);
       font-size:22px;
@@ -354,40 +352,57 @@
       .cta{ height:68px; font-size:20px; }
     }
 
-    /* =========================
-       FAIXA CONTÍNUA (CSS PURO)
-       ========================= */
+
+    /* ==============================================
+       ✅ FAIXA MARQUEE — CORRIGIDA (largura total)
+       ===============================================
+       PROBLEMA ORIGINAL:
+         .marquee { max-width:1200px; padding:0 20px }
+         limitava o overflow:hidden e os fade-masks
+         a uma caixa menor que a tela → animação
+         cortada / deformada em desktop.
+
+       SOLUÇÃO:
+         • Removido o wrapper .marquee do HTML
+         • overflow:hidden e position:relative
+           agora ficam direto em .s-marquee (100vw)
+         • Fade-masks ::before/::after migram para
+           .s-marquee, cobrindo toda a largura real
+    ================================================ */
     .s-marquee{
       width:100%;
       background:#3F525A;
       padding:18px 0;
-      overflow:hidden;
+      overflow:hidden;          /* ← clipa em 100vw  */
+      position:relative;        /* ← ancora os fades */
     }
-    .marquee{
-      max-width:1200px;
-      margin:0 auto;
-      padding:0 20px;
-    }
-    .marquee-viewport{
-      overflow:hidden;
-      position:relative;
-    }
-    .marquee-viewport::before,
-    .marquee-viewport::after{
+
+    /* Fade esquerda — cobre toda a altura da faixa */
+    .s-marquee::before{
       content:"";
       position:absolute;
-      top:0; bottom:0;
-      width:90px;
+      top:0; bottom:0; left:0;
+      width:120px;
+      background:linear-gradient(90deg, #3F525A 0%, rgba(63,82,90,0) 100%);
       pointer-events:none;
       z-index:2;
     }
-    .marquee-viewport::before{
-      left:0;
-      background:linear-gradient(90deg,#3F525A,rgba(63,82,90,0));
+
+    /* Fade direita */
+    .s-marquee::after{
+      content:"";
+      position:absolute;
+      top:0; bottom:0; right:0;
+      width:120px;
+      background:linear-gradient(270deg, #3F525A 0%, rgba(63,82,90,0) 100%);
+      pointer-events:none;
+      z-index:2;
     }
-    .marquee-viewport::after{
-      right:0;
-      background:linear-gradient(270deg,#3F525A,rgba(63,82,90,0));
+
+    /* Viewport agora é full-width, sem wrapper intermediário */
+    .marquee-viewport{
+      position:relative;
+      overflow:visible; /* o clip já é feito pelo .s-marquee pai */
     }
 
     .marquee-track{
@@ -396,12 +411,13 @@
       gap:34px;
       width:max-content;
       will-change:transform;
-      animation:marqueeMove 10s linear infinite; /* mais rápido */
+      animation:marqueeMove 10s linear infinite;
     }
     @keyframes marqueeMove{
-      from{transform:translateX(0)}
-      to{transform:translateX(-50%)}
+      from{ transform:translateX(0) }
+      to{   transform:translateX(-50%) }
     }
+
     .marquee-item{
       white-space:nowrap;
       color:#fff;
@@ -412,23 +428,38 @@
       font-size:18px;
       opacity:.95;
     }
+
     @media(max-width:520px){
       .s-marquee{ padding:14px 0; }
+      .s-marquee::before,
+      .s-marquee::after{ width:60px; }
       .marquee-item{ font-size:16px; }
       .marquee-track{ gap:26px; }
-      .marquee-viewport::before,
-      .marquee-viewport::after{ width:60px; }
     }
-    @media (prefers-reduced-motion: reduce){
+
+    @media(prefers-reduced-motion: reduce){
       .marquee-track{ animation:none; transform:translateX(0); }
     }
 
-    /* =========================
-       SESSÃO 2 (SVG + ANIMAÇÕES)
-       ========================= */
+
+    /* ==============================================
+       ✅ SESSÃO 2 — ESPAÇAMENTO CORRIGIDO
+       ===============================================
+       PROBLEMA ORIGINAL:
+         Nenhuma margem entre .s-marquee e .s2.
+         A faixa escura entra direto na seção cinza
+         sem respiro visual — parece colada.
+
+       SOLUÇÃO:
+         • margin-top:60px cria gap branco entre
+           a faixa e a s2 em mobile
+         • Em desktop esse gap sobe para 80px
+         • padding interno mantido generoso
+    ================================================ */
     .s2{
-      padding:110px 20px;
+      padding:100px 20px 110px;
       background:#f5f5f5;
+      margin-top:60px;          /* ← GAP entre faixa e seção */
     }
     .s2-container{
       max-width:1120px;
@@ -450,7 +481,7 @@
     .s2-title{
       font-family:"Cormorant Garamond",serif;
       font-weight:700;
-      font-size:64px; /* padrão desktop */
+      font-size:64px;
       line-height:1.05;
       color:#3B4E57;
       margin:0 0 14px;
@@ -468,16 +499,14 @@
       margin-inline:auto;
     }
 
-    /* MAIS JUNTO + CENTRAL */
     .s2-grid{
       display:flex;
       justify-content:center;
-      gap:14px;             /* mais juntos */
+      gap:14px;
       flex-wrap:wrap;
       margin-top:44px;
     }
 
-    /* SEM CARD: só o SVG */
     .s2-item{
       position:relative;
       opacity:0;
@@ -490,7 +519,7 @@
     }
 
     .s2-item img{
-      width:460px;          /* maior */
+      width:460px;
       max-width:92vw;
       height:auto;
       display:block;
@@ -500,7 +529,6 @@
       filter: drop-shadow(0 18px 35px rgba(0,0,0,.14));
     }
 
-    /* LIGHT SWEEP (desktop hover) */
     .s2-item::after{
       content:"";
       position:absolute;
@@ -516,14 +544,20 @@
     }
     .s2-item:hover::after{ left:130%; }
 
-    /* Mobile: exatamente como você quer (texto à esquerda) */
     @media(max-width:900px){
-      .s2{ padding:80px 20px; }
+      .s2{
+        padding:70px 20px 80px;
+        margin-top:40px;        /* gap menor em mobile */
+      }
       .s2-head{ text-align:left; margin-bottom:34px; }
-      .s2-title{ font-size:50px; } /* mesma proporção da sua sessão 2 anterior no mobile */
+      .s2-title{ font-size:50px; }
       .s2-sub{ margin-inline:0; }
       .s2-grid{ justify-content:flex-start; gap:18px; }
       .s2-item img{ width:min(520px,100%); }
+    }
+
+    @media(min-width:1024px){
+      .s2{ margin-top:80px; }  /* gap maior em desktop */
     }
   </style>
 </head>
@@ -595,30 +629,30 @@
       </div>
     </section>
 
-    <!-- ====== FAIXA CONTÍNUA ====== -->
-    <section class="s-marquee" aria-label="Faixa contínua">
-      <div class="marquee">
-        <div class="marquee-viewport">
-          <div class="marquee-track">
-            <!-- Sequência A -->
-            <div class="marquee-item">◆ CONFIANÇA</div>
-            <div class="marquee-item">◆ AUTORIDADE</div>
-            <div class="marquee-item">◆ NATURALIDADE</div>
-            <div class="marquee-item">◆ SEGURANÇA</div>
-            <div class="marquee-item">◆ PRECISÃO</div>
-            <div class="marquee-item">◆ RESULTADOS</div>
 
-            <!-- Sequência B (duplicada para loop perfeito) -->
-            <div class="marquee-item">◆ CONFIANÇA</div>
-            <div class="marquee-item">◆ AUTORIDADE</div>
-            <div class="marquee-item">◆ NATURALIDADE</div>
-            <div class="marquee-item">◆ SEGURANÇA</div>
-            <div class="marquee-item">◆ PRECISÃO</div>
-            <div class="marquee-item">◆ RESULTADOS</div>
-          </div>
+    <!-- ✅ FAIXA CONTÍNUA — wrapper .marquee REMOVIDO -->
+    <section class="s-marquee" aria-label="Faixa contínua">
+      <!-- sem <div class="marquee"> aqui — era o causador do problema -->
+      <div class="marquee-viewport">
+        <div class="marquee-track">
+          <!-- Sequência A -->
+          <div class="marquee-item">◆ CONFIANÇA</div>
+          <div class="marquee-item">◆ AUTORIDADE</div>
+          <div class="marquee-item">◆ NATURALIDADE</div>
+          <div class="marquee-item">◆ SEGURANÇA</div>
+          <div class="marquee-item">◆ PRECISÃO</div>
+          <div class="marquee-item">◆ RESULTADOS</div>
+          <!-- Sequência B (duplicada para loop perfeito) -->
+          <div class="marquee-item">◆ CONFIANÇA</div>
+          <div class="marquee-item">◆ AUTORIDADE</div>
+          <div class="marquee-item">◆ NATURALIDADE</div>
+          <div class="marquee-item">◆ SEGURANÇA</div>
+          <div class="marquee-item">◆ PRECISÃO</div>
+          <div class="marquee-item">◆ RESULTADOS</div>
         </div>
       </div>
     </section>
+
 
     <!-- ====== SESSÃO 2 ====== -->
     <section class="s2" aria-label="Sessão 2">
@@ -701,3 +735,4 @@
   </script>
 </body>
 </html>
+
