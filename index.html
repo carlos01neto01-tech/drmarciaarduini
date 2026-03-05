@@ -400,7 +400,7 @@
       gap:34px;
       width:max-content;
       will-change:transform;
-      animation:marqueeMove 10s linear infinite;
+      animation:marqueeMove 14s linear infinite; /* Aumentei um pouco o tempo devido ao novo tamanho */
     }
     @keyframes marqueeMove{
       from{ transform:translateX(0) }
@@ -430,13 +430,11 @@
 
     /* ================= SESSÃO 2 ================= */
     .s2{
-      /* 🔴 Espaço em branco resolvido: margin-top zerado */
       padding: 90px 20px 110px;
       background:#f5f5f5;
       margin-top: 0;         
     }
     .s2-container{
-      /* 🔴 Cards maiores no Desktop */
       max-width:1440px;
       margin:0 auto;
     }
@@ -474,20 +472,21 @@
       max-width:900px;
     }
 
+    /* 🔴 MOBILE: Alterado para flex column para centralizar 100% e aproximar os cards */
     .s2-grid{
-      display: grid;
-      grid-template-columns: 1fr;
-      /* 🔴 Cards muito mais juntos no Mobile */
-      gap: 16px;
-      justify-items: center; 
-      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Garante o centro absoluto no mobile */
+      margin-top: 30px;
     }
 
-    /* 🔴 FADE-IN SEQUENCIAL & REMOÇÃO DO LIGHT SWEEP */
     .s2-item{
       position:relative;
       width: 100%;
-      /* Removido o Light Sweep e suas travas */
+      max-width: 340px; /* Impede que cresçam demais e fujam do alinhamento */
+      margin-bottom: -12px; /* 🔴 Margem negativa para deixá-los BEM próximos no mobile */
+      display: flex;
+      justify-content: center;
       opacity:0;
       transform:translateY(30px);
       transition:opacity 0.8s ease, transform 0.8s ease;
@@ -502,11 +501,11 @@
     .s2-item:nth-child(2) { transition-delay: 0.3s; }
     .s2-item:nth-child(3) { transition-delay: 0.5s; }
 
-    /* SVG ocupa o espaço todo, permitindo que fique maior */
     .s2-item img{
       width:100%;
       height:auto;
       display:block;
+      margin: 0 auto; /* Reforça o centro da imagem */
       background:transparent;
       border-radius:0;
       box-shadow:none;
@@ -522,10 +521,16 @@
     }
 
     @media(min-width:901px){
-      /* 🔴 Continua forçando UM LADO DO OUTRO (3 colunas) e permite que cresçam */
+      /* 🔴 DESKTOP: Volta ao Grid padrão de 3 colunas e zera os ajustes de mobile */
       .s2-grid {
+        display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 24px;
+        margin-top: 40px;
+      }
+      .s2-item { 
+        max-width: 100%; /* Deixa expandir livremente na coluna */
+        margin-bottom: 0; /* Tira a margem negativa que aproxima os cards */
       }
       .s2-sub{ font-size: 20px; } 
     }
@@ -614,6 +619,18 @@
           <div class="marquee-item">◆ SEGURANÇA</div>
           <div class="marquee-item">◆ PRECISÃO</div>
           <div class="marquee-item">◆ RESULTADOS</div>
+          <div class="marquee-item">◆ CONFIANÇA</div>
+          <div class="marquee-item">◆ AUTORIDADE</div>
+          <div class="marquee-item">◆ NATURALIDADE</div>
+          <div class="marquee-item">◆ SEGURANÇA</div>
+          <div class="marquee-item">◆ PRECISÃO</div>
+          <div class="marquee-item">◆ RESULTADOS</div>
+          <div class="marquee-item">◆ CONFIANÇA</div>
+          <div class="marquee-item">◆ AUTORIDADE</div>
+          <div class="marquee-item">◆ NATURALIDADE</div>
+          <div class="marquee-item">◆ SEGURANÇA</div>
+          <div class="marquee-item">◆ PRECISÃO</div>
+          <div class="marquee-item">◆ RESULTADOS</div>
         </div>
       </div>
     </section>
@@ -690,7 +707,7 @@
             io2.unobserve(e.target);
           }
         });
-      },{threshold:0.15}); // Diminui o threshold pra animação começar um pouco mais cedo
+      },{threshold:0.15});
 
       targets.forEach(el=>io2.observe(el));
     })();
