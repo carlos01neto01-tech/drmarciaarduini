@@ -354,30 +354,15 @@
 
 
     /* ==============================================
-       ✅ FAIXA MARQUEE — CORRIGIDA (largura total)
-       ===============================================
-       PROBLEMA ORIGINAL:
-         .marquee { max-width:1200px; padding:0 20px }
-         limitava o overflow:hidden e os fade-masks
-         a uma caixa menor que a tela → animação
-         cortada / deformada em desktop.
-
-       SOLUÇÃO:
-         • Removido o wrapper .marquee do HTML
-         • overflow:hidden e position:relative
-           agora ficam direto em .s-marquee (100vw)
-         • Fade-masks ::before/::after migram para
-           .s-marquee, cobrindo toda a largura real
-    ================================================ */
+       ✅ FAIXA MARQUEE — FULL WIDTH (OK)
+       ============================================== */
     .s-marquee{
       width:100%;
       background:#3F525A;
       padding:18px 0;
-      overflow:hidden;          /* ← clipa em 100vw  */
-      position:relative;        /* ← ancora os fades */
+      overflow:hidden;
+      position:relative;
     }
-
-    /* Fade esquerda — cobre toda a altura da faixa */
     .s-marquee::before{
       content:"";
       position:absolute;
@@ -387,8 +372,6 @@
       pointer-events:none;
       z-index:2;
     }
-
-    /* Fade direita */
     .s-marquee::after{
       content:"";
       position:absolute;
@@ -398,13 +381,10 @@
       pointer-events:none;
       z-index:2;
     }
-
-    /* Viewport agora é full-width, sem wrapper intermediário */
     .marquee-viewport{
       position:relative;
-      overflow:visible; /* o clip já é feito pelo .s-marquee pai */
+      overflow:visible;
     }
-
     .marquee-track{
       display:flex;
       align-items:center;
@@ -417,7 +397,6 @@
       from{ transform:translateX(0) }
       to{   transform:translateX(-50%) }
     }
-
     .marquee-item{
       white-space:nowrap;
       color:#fff;
@@ -428,7 +407,6 @@
       font-size:18px;
       opacity:.95;
     }
-
     @media(max-width:520px){
       .s-marquee{ padding:14px 0; }
       .s-marquee::before,
@@ -436,30 +414,22 @@
       .marquee-item{ font-size:16px; }
       .marquee-track{ gap:26px; }
     }
-
     @media(prefers-reduced-motion: reduce){
       .marquee-track{ animation:none; transform:translateX(0); }
     }
 
 
     /* ==============================================
-       ✅ SESSÃO 2 — ESPAÇAMENTO CORRIGIDO
-       ===============================================
-       PROBLEMA ORIGINAL:
-         Nenhuma margem entre .s-marquee e .s2.
-         A faixa escura entra direto na seção cinza
-         sem respiro visual — parece colada.
-
-       SOLUÇÃO:
-         • margin-top:60px cria gap branco entre
-           a faixa e a s2 em mobile
-         • Em desktop esse gap sobe para 80px
-         • padding interno mantido generoso
-    ================================================ */
+       ✅ SESSÃO 2 — AJUSTES COMPLETOS:
+       - Desktop: 3 lado a lado (sem quebrar)
+       - SVG maior
+       - Mobile centralizado (não puxa pra esquerda)
+       - Light sweep preso dentro do card (sem faixa solta)
+       ============================================== */
     .s2{
       padding:100px 20px 110px;
       background:#f5f5f5;
-      margin-top:60px;          /* ← GAP entre faixa e seção */
+      margin-top:60px;
     }
     .s2-container{
       max-width:1120px;
@@ -499,10 +469,11 @@
       margin-inline:auto;
     }
 
+    /* ✅ mobile/tablet: centralizado e ocupando mais tela */
     .s2-grid{
       display:flex;
-      justify-content:center;
-      gap:14px;
+      justify-content:center;   /* ✅ centraliza (não fica à esquerda) */
+      gap:18px;
       flex-wrap:wrap;
       margin-top:44px;
     }
@@ -512,52 +483,79 @@
       opacity:0;
       transform:translateY(24px);
       transition:opacity .9s ease, transform .9s ease;
+
+      /* ✅ prende o sweep dentro do item */
+      overflow:hidden;          /* remove a “linha solta” */
+      display:inline-block;
     }
     .s2-item.visible{
       opacity:1;
       transform:translateY(0);
     }
 
+    /* ✅ SVG maior e mais “cheio” no mobile */
     .s2-item img{
-      width:460px;
-      max-width:92vw;
+      width:min(620px, 96vw);  /* ocupa mais tela no mobile */
+      max-width:100%;
       height:auto;
       display:block;
       background:transparent;
       border-radius:0;
       box-shadow:none;
       filter: drop-shadow(0 18px 35px rgba(0,0,0,.14));
+      margin-inline:auto;      /* ✅ garante centralização */
     }
 
+    /* ✅ light sweep agora fica preso no item */
     .s2-item::after{
       content:"";
       position:absolute;
-      top:-10%;
-      left:-120%;
-      width:60%;
-      height:120%;
+      top:-12%;
+      left:-140%;
+      width:70%;
+      height:140%;
       background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.50) 50%, transparent 100%);
       transform:skewX(-25deg);
       transition:left .9s ease;
       pointer-events:none;
       opacity:.95;
     }
-    .s2-item:hover::after{ left:130%; }
+    .s2-item:hover::after{ left:140%; }
 
     @media(max-width:900px){
       .s2{
         padding:70px 20px 80px;
-        margin-top:40px;        /* gap menor em mobile */
+        margin-top:40px;
       }
       .s2-head{ text-align:left; margin-bottom:34px; }
       .s2-title{ font-size:50px; }
       .s2-sub{ margin-inline:0; }
-      .s2-grid{ justify-content:flex-start; gap:18px; }
-      .s2-item img{ width:min(520px,100%); }
+      .s2-grid{
+        justify-content:center; /* ✅ mantém centro no mobile/tablet */
+        gap:18px;
+      }
+      .s2-item img{
+        width:min(680px, 96vw); /* ✅ ainda maior no mobile */
+      }
     }
 
+    /* ✅ Desktop: 3 cards em uma linha */
     @media(min-width:1024px){
-      .s2{ margin-top:80px; }  /* gap maior em desktop */
+      .s2{ margin-top:80px; }
+
+      .s2-grid{
+        flex-wrap:nowrap;        /* ✅ não quebra linha */
+        justify-content:space-between;
+        gap:22px;
+      }
+      .s2-item{
+        flex:1 1 0;
+        max-width: calc((1120px - 44px) / 3);
+      }
+      .s2-item img{
+        width:100%;              /* ✅ preenche o card */
+        max-width:none;
+      }
     }
   </style>
 </head>
@@ -629,10 +627,8 @@
       </div>
     </section>
 
-
-    <!-- ✅ FAIXA CONTÍNUA — wrapper .marquee REMOVIDO -->
+    <!-- ✅ FAIXA CONTÍNUA -->
     <section class="s-marquee" aria-label="Faixa contínua">
-      <!-- sem <div class="marquee"> aqui — era o causador do problema -->
       <div class="marquee-viewport">
         <div class="marquee-track">
           <!-- Sequência A -->
@@ -652,7 +648,6 @@
         </div>
       </div>
     </section>
-
 
     <!-- ====== SESSÃO 2 ====== -->
     <section class="s2" aria-label="Sessão 2">
