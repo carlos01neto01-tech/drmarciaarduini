@@ -536,295 +536,275 @@ gap:26px;
 
 }
 
-</style>
-
-
-<div class="marquee">
-
-<div class="marquee-viewport">
-
-<div class="marquee-track" id="mqTrack">
-
-<!-- SEQUÊNCIA A -->
-
-<div class="marquee-item">◆ CONFIANÇA</div>
-<div class="marquee-item">◆ AUTORIDADE</div>
-<div class="marquee-item">◆ NATURALIDADE</div>
-<div class="marquee-item">◆ SEGURANÇA</div>
-<div class="marquee-item">◆ PRECISÃO</div>
-<div class="marquee-item">◆ RESULTADOS</div>
-
-<!-- SEQUÊNCIA B (duplicada para loop perfeito) -->
-
-<div class="marquee-item">◆ CONFIANÇA</div>
-<div class="marquee-item">◆ AUTORIDADE</div>
-<div class="marquee-item">◆ NATURALIDADE</div>
-<div class="marquee-item">◆ SEGURANÇA</div>
-<div class="marquee-item">◆ PRECISÃO</div>
-<div class="marquee-item">◆ RESULTADOS</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<script>
-
-
-<section class="s2">
-
-<style>
-
-.s2{
-padding:110px 20px;
-background:#f5f5f5;
-}
-
-.s2-container{
-max-width:1120px;
-margin:0 auto;
-}
-
-/* TITULO */
-
-.s2-head{
-text-align:center;
-margin-bottom:60px;
-opacity:0;
-transform:translateY(30px);
-transition:all .9s ease;
-}
-
-.s2-head.visible{
-opacity:1;
-transform:translateY(0);
-}
-
-.s2-title{
-font-family:"Cormorant Garamond",serif;
-font-size:64px;
-line-height:1.05;
-color:#3B4E57;
-margin-bottom:16px;
-letter-spacing:.02em;
-}
-
-.s2-sub{
-font-family:"Inter",sans-serif;
-font-size:18px;
-color:#333;
-}
-
-/* CARDS */
-
-.s2-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:34px;
-}
-
-/* CARD */
-
-.s2-card{
-background:white;
-border-radius:28px;
-padding:26px;
-text-align:center;
-box-shadow:0 18px 40px rgba(0,0,0,.08);
-border:1px solid #d6dde0;
-opacity:0;
-transform:translateY(30px);
-transition:all .9s ease;
-position:relative;
-overflow:hidden;
-}
-
-.s2-card.visible{
-opacity:1;
-transform:translateY(0);
-}
-
-/* SVG */
-
-.s2-card img{
-width:100%;
-border-radius:18px;
-margin-bottom:18px;
-display:block;
-}
-
-/* TEXTO CARD */
-
-.s2-label{
-font-family:"Inter",sans-serif;
-font-size:18px;
-color:#3B4E57;
-}
-
-/* LIGHT SWEEP */
-
-.s2-card::after{
-content:"";
-position:absolute;
-top:0;
-left:-120%;
-width:60%;
-height:100%;
-background:linear-gradient(
-120deg,
-transparent 0%,
-rgba(255,255,255,.55) 50%,
-transparent 100%
-);
-transform:skewX(-25deg);
-transition:all .9s;
-}
-
-.s2-card:hover::after{
-left:130%;
-}
-
-/* MOBILE */
-
-@media(max-width:900px){
-
-.s2-title{
-font-size:50px;
-}
-
-.s2-grid{
-grid-template-columns:1fr;
-gap:28px;
-}
-
-.s2-head{
-text-align:left;
-}
-
-}
-
-</style>
-
-
-<div class="s2-container">
-
-<div class="s2-head">
-
-<h2 class="s2-title">
-NÃO É SÓ ESTÉTICA, É TRANSFORMAÇÃO.
-</h2>
-
-<p class="s2-sub">
-Harmonização facial com planejamento individual, técnica refinada e resultados naturais.
-</p>
-
-</div>
-
-
-<div class="s2-grid">
-
-<div class="s2-card">
-<img src="assets/Resultados reais.svg">
-<div class="s2-label">Resultados reais</div>
-</div>
-
-<div class="s2-card">
-<img src="assets/Procedimentos de excelencia.svg">
-<div class="s2-label">Procedimentos de excelência</div>
-</div>
-
-<div class="s2-card">
-<img src="assets/Avaliação completa.svg">
-<div class="s2-label">Avaliação completa</div>
-</div>
-
-</div>
-
-</div>
-
-
-<script>
-
-const observer=new IntersectionObserver(entries=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.classList.add("visible")
-
-}
-
-})
-
-},{threshold:.25})
-
-document.querySelectorAll(".s2-head,.s2-card").forEach(el=>{
-
-observer.observe(el)
-
-})
-
-</script>
-
+<!-- ====== MARQUEE (carrossel de texto) ====== -->
+<section class="s-marquee">
+  <style>
+    .s-marquee{
+      width:100%;
+      background:#3F525A;
+      padding:18px 0;
+      overflow:hidden;
+    }
+    .marquee{
+      max-width:1200px;
+      margin:0 auto;
+      padding:0 20px;
+    }
+    .marquee-viewport{
+      overflow:hidden;
+      position:relative;
+    }
+    .marquee-viewport::before,
+    .marquee-viewport::after{
+      content:"";
+      position:absolute;
+      top:0; bottom:0;
+      width:90px;
+      pointer-events:none;
+      z-index:2;
+    }
+    .marquee-viewport::before{
+      left:0;
+      background:linear-gradient(90deg,#3F525A,rgba(63,82,90,0));
+    }
+    .marquee-viewport::after{
+      right:0;
+      background:linear-gradient(270deg,#3F525A,rgba(63,82,90,0));
+    }
+    .marquee-track{
+      display:flex;
+      align-items:center;
+      gap:34px;
+      width:max-content;
+      will-change:transform;
+      transform:translateX(0);
+    }
+    .marquee-item{
+      white-space:nowrap;
+      color:#fff;
+      font-family:"Cormorant Garamond",serif;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:18px;
+      opacity:.95;
+    }
+    @media(max-width:520px){
+      .s-marquee{ padding:14px 0; }
+      .marquee-item{ font-size:16px; }
+      .marquee-track{ gap:26px; }
+      .marquee-viewport::before,
+      .marquee-viewport::after{ width:60px; }
+    }
+  </style>
+
+  <div class="marquee">
+    <div class="marquee-viewport">
+      <div class="marquee-track" id="mqTrack">
+        <!-- SEQUÊNCIA A -->
+        <div class="marquee-item">◆ CONFIANÇA</div>
+        <div class="marquee-item">◆ AUTORIDADE</div>
+        <div class="marquee-item">◆ NATURALIDADE</div>
+        <div class="marquee-item">◆ SEGURANÇA</div>
+        <div class="marquee-item">◆ PRECISÃO</div>
+        <div class="marquee-item">◆ RESULTADOS</div>
+
+        <!-- SEQUÊNCIA B (duplicada) -->
+        <div class="marquee-item">◆ CONFIANÇA</div>
+        <div class="marquee-item">◆ AUTORIDADE</div>
+        <div class="marquee-item">◆ NATURALIDADE</div>
+        <div class="marquee-item">◆ SEGURANÇA</div>
+        <div class="marquee-item">◆ PRECISÃO</div>
+        <div class="marquee-item">◆ RESULTADOS</div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- ====== SESSÃO 2 ====== -->
+<section class="s2">
+  <style>
+    .s2{
+      padding:110px 20px;
+      background:#f5f5f5;
+    }
+    .s2-container{
+      max-width:1120px;
+      margin:0 auto;
+    }
+
+    .s2-head{
+      text-align:center;
+      margin-bottom:60px;
+      opacity:0;
+      transform:translateY(30px);
+      transition:opacity .9s ease, transform .9s ease;
+    }
+    .s2-head.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .s2-title{
+      font-family:"Cormorant Garamond",serif;
+      font-size:64px;
+      line-height:1.05;
+      color:#3B4E57;
+      margin:0 0 16px;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+    }
+
+    .s2-sub{
+      font-family:"Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight:300;
+      font-size:18px;
+      color:rgba(0,0,0,.62);
+      margin:0;
+    }
+
+    .s2-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:34px;
+    }
+
+    .s2-card{
+      background:#fff;
+      border-radius:28px;
+      padding:26px;
+      text-align:center;
+      box-shadow:0 18px 40px rgba(0,0,0,.08);
+      border:1px solid #d6dde0;
+      opacity:0;
+      transform:translateY(30px);
+      transition:opacity .9s ease, transform .9s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .s2-card.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .s2-card img{
+      width:100%;
+      border-radius:18px;
+      margin-bottom:18px;
+      display:block;
+    }
+
+    .s2-label{
+      font-family:"Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight:300;
+      font-size:18px;
+      color:#3B4E57;
+    }
+
+    /* light sweep no hover */
+    .s2-card::after{
+      content:"";
+      position:absolute;
+      top:0;
+      left:-120%;
+      width:60%;
+      height:100%;
+      background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.55) 50%, transparent 100%);
+      transform:skewX(-25deg);
+      transition:left .9s ease;
+      pointer-events:none;
+    }
+    .s2-card:hover::after{ left:130%; }
+
+    @media(max-width:900px){
+      .s2-title{ font-size:50px; }
+      .s2-grid{ grid-template-columns:1fr; gap:28px; }
+      .s2-head{ text-align:left; }
+    }
+  </style>
+
+  <div class="s2-container">
+    <div class="s2-head">
+      <h2 class="s2-title">NÃO É SÓ ESTÉTICA, É TRANSFORMAÇÃO.</h2>
+      <p class="s2-sub">Harmonização facial com planejamento individual, técnica refinada e resultados naturais.</p>
+    </div>
+
+    <div class="s2-grid">
+      <div class="s2-card">
+        <img src="assets/Resultados reais.svg" alt="Resultados reais">
+        <div class="s2-label">Resultados reais</div>
+      </div>
+
+      <div class="s2-card">
+        <img src="assets/Procedimentos de excelencia.svg" alt="Procedimentos de excelência">
+        <div class="s2-label">Procedimentos de excelência</div>
+      </div>
+
+      <div class="s2-card">
+        <img src="assets/Avaliação completa.svg" alt="Avaliação completa">
+        <div class="s2-label">Avaliação completa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ✅ JS DO MARQUEE (fora de <section> e sem misturar com HTML) -->
+<script>
 (function(){
+  const track = document.getElementById("mqTrack");
+  if(!track) return;
 
-const track=document.getElementById("mqTrack");
+  let raf=null, last=0, x=0, loopPx=0;
+  const SPEED = 120;
 
-let raf=null;
-let last=0;
-let x=0;
-let loopPx=0;
+  function measure(){
+    loopPx = track.scrollWidth / 2;
+    if(loopPx <= 0) return;
+    x = x % loopPx;
+    track.style.transform = `translateX(${-x}px)`;
+  }
 
-/* velocidade */
+  function tick(t){
+    if(!last) last = t;
+    const dt = (t - last) / 1000;
+    last = t;
 
-const SPEED=120;
+    x += SPEED * dt;
+    if(loopPx > 0 && x >= loopPx) x -= loopPx;
 
-function measure(){
+    track.style.transform = `translateX(${-x}px)`;
+    raf = requestAnimationFrame(tick);
+  }
 
-loopPx=track.scrollWidth/2;
+  window.addEventListener("load", () => {
+    measure();
+    raf = requestAnimationFrame(tick);
+  });
+  window.addEventListener("resize", measure);
 
-if(loopPx<=0) return;
-
-x=x%loopPx;
-
-track.style.transform=`translateX(${-x}px)`;
-
-}
-
-function tick(t){
-
-if(!last) last=t;
-
-const dt=(t-last)/1000;
-
-last=t;
-
-x+=SPEED*dt;
-
-if(loopPx>0 && x>=loopPx) x-=loopPx;
-
-track.style.transform=`translateX(${-x}px)`;
-
-raf=requestAnimationFrame(tick);
-
-}
-
-window.addEventListener("load",()=>{
-
-measure();
-
-raf=requestAnimationFrame(tick);
-
-});
-
-window.addEventListener("resize",measure);
-
+  // fallback caso fontes/imagens alterem a largura depois
+  setTimeout(measure, 150);
 })();
+</script>
+
+<!-- ✅ JS DO FADE-IN DA SESSÃO 2 -->
+<script>
+(function(){
+  const targets = document.querySelectorAll(".s2-head, .s2-card");
+  if(!targets.length) return;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if(e.isIntersecting){
+        e.target.classList.add("visible");
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  targets.forEach(el => io.observe(el));
+})();
+</script>
 
 </script>
 
