@@ -1,7 +1,4 @@
 <!doctype html>
-<div style="position:fixed;bottom:10px;right:10px;z-index:999999;background:#000;color:#fff;padding:8px 10px;border-radius:10px;font:12px/1.2 system-ui;opacity:.85">
-  BUILD: 2026-03-05 13:xx
-</div>
 <html lang="pt-br">
 <head>
   <meta charset="utf-8" />
@@ -99,6 +96,7 @@
     }
     .nav-desktop a:hover{ background:rgba(0,0,0,.05); }
 
+    /* CTA header: não aparece no mobile */
     .cta-top{
       display:none;
       height:46px;
@@ -279,6 +277,17 @@
       margin:0;
       text-align:left;
     }
+
+    /* seu subtítulo do hero (você usou hero__subtitle no HTML) */
+    .hero__subtitle{
+      margin:24px 0 var(--sub-to-btn);
+      font-size:22px;
+      line-height:1.65;
+      color:rgba(0,0,0,.62);
+      text-align:left;
+      max-width:560px;
+    }
+
     .cta{
       width:min(560px, 100%);
       height:76px;
@@ -310,6 +319,10 @@
     .cta:hover::after{ opacity:1; animation:sweep2 1.2s ease-in-out; }
     @keyframes sweep2{ 0%{left:-70%} 100%{left:140%} }
 
+    @media (min-width:768px){
+      .hero .wrap{ padding:28px 20px 60px; }
+    }
+
     @media (min-width:1024px){
       .nav-desktop{ display:flex; }
       .cta-top{ display:flex; }
@@ -319,6 +332,7 @@
         background:url("assets/FUNDO%20DESKTOP.webp") center/cover no-repeat;
         min-height:auto;
       }
+
       .hero .wrap{
         grid-template-areas:"text media";
         grid-template-columns:0.95fr 1.05fr;
@@ -326,15 +340,23 @@
         padding:44px 20px 0;
         align-items:start;
       }
+
       .text{
         margin-top:var(--desktop-text-top);
         max-width:560px;
       }
+
       .media{ justify-content:flex-end; }
       .figure{ width:min(520px, 100%); }
       .figure::before{ bottom:7%; width:92%; height:36%; filter:blur(14px); }
-      .handle{ width:var(--handle-w-desktop); max-width:420px; }
+
+      .handle{
+        width:var(--handle-w-desktop);
+        max-width:420px;
+      }
+
       .title{ font-size:64px; }
+      .hero__subtitle{ font-size:18px; max-width:520px; margin-bottom:44px; }
       .cta{ width:240px; height:56px; font-size:18px; border-radius:16px; }
     }
 
@@ -342,74 +364,154 @@
       :root{ --header-h:96px; }
       .m-logo img{ height:58px; }
       .title{ font-size:46px; }
+      .hero__subtitle{ font-size:19px; }
       .cta{ height:68px; font-size:20px; }
     }
 
     /* =========================
-       FAIXA CONTÍNUA (Marquee)
+       FAIXA CONTÍNUA (CSS PURO)
        ========================= */
-    .s-marquee{width:100%;background:#3F525A;padding:18px 0;overflow:hidden}
-    .marquee{max-width:1200px;margin:0 auto;padding:0 20px}
-    .marquee-viewport{overflow:hidden;position:relative}
-    .marquee-viewport::before,.marquee-viewport::after{
-      content:"";position:absolute;top:0;bottom:0;width:90px;pointer-events:none;z-index:2
+    .s-marquee{
+      width:100%;
+      background:#3F525A;
+      padding:18px 0;
+      overflow:hidden;
     }
-    .marquee-viewport::before{left:0;background:linear-gradient(90deg,#3F525A,rgba(63,82,90,0))}
-    .marquee-viewport::after{right:0;background:linear-gradient(270deg,#3F525A,rgba(63,82,90,0))}
-    .marquee-track{display:flex;align-items:center;gap:34px;width:max-content;will-change:transform;transform:translateX(0)}
+    .marquee{
+      max-width:1200px;
+      margin:0 auto;
+      padding:0 20px;
+    }
+    .marquee-viewport{
+      overflow:hidden;
+      position:relative;
+    }
+    .marquee-viewport::before,
+    .marquee-viewport::after{
+      content:"";
+      position:absolute;
+      top:0;
+      bottom:0;
+      width:90px;
+      pointer-events:none;
+      z-index:2;
+    }
+    .marquee-viewport::before{
+      left:0;
+      background:linear-gradient(90deg,#3F525A,rgba(63,82,90,0));
+    }
+    .marquee-viewport::after{
+      right:0;
+      background:linear-gradient(270deg,#3F525A,rgba(63,82,90,0));
+    }
+    .marquee-track{
+      display:flex;
+      align-items:center;
+      gap:34px;
+      width:max-content;
+      will-change:transform;
+      animation: marqueeMove 10s linear infinite; /* rápido */
+    }
+    @keyframes marqueeMove{
+      from{ transform:translateX(0); }
+      to{ transform:translateX(-50%); } /* funciona porque duplicamos os itens */
+    }
     .marquee-item{
-      white-space:nowrap;color:#fff;font-family:"Cormorant Garamond",serif;font-weight:700;
-      letter-spacing:.08em;text-transform:uppercase;font-size:18px;opacity:.95
+      white-space:nowrap;
+      color:#fff;
+      font-family:"Cormorant Garamond",serif;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:18px;
+      opacity:.95;
     }
     @media(max-width:520px){
-      .s-marquee{padding:14px 0}
-      .marquee-item{font-size:16px}
-      .marquee-track{gap:26px}
-      .marquee-viewport::before,.marquee-viewport::after{width:60px}
+      .s-marquee{ padding:14px 0; }
+      .marquee-item{ font-size:16px; }
+      .marquee-track{ gap:26px; }
+      .marquee-viewport::before,
+      .marquee-viewport::after{ width:60px; }
     }
 
     /* =========================
-       SESSÃO 2
+       SESSÃO 2 (SVG + ANIMAÇÕES)
        ========================= */
-    .s2{padding:110px 20px;background:#f5f5f5}
-    .s2-container{max-width:1120px;margin:0 auto}
-    .s2-head{
-      text-align:center;margin-bottom:64px;opacity:0;transform:translateY(30px);
-      transition:opacity .9s ease,transform .9s ease
+    .s2{
+      padding:110px 20px;
+      background:#f5f5f5;
     }
-    .s2-head.visible{opacity:1;transform:translateY(0)}
+    .s2-container{
+      max-width:1120px;
+      margin:0 auto;
+    }
+
+    .s2-head{
+      text-align:center;
+      margin-bottom:64px;
+      opacity:0;
+      transform:translateY(30px);
+      transition:opacity .9s ease, transform .9s ease;
+    }
+    .s2-head.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
     .s2-title{
-      font-family:"Cormorant Garamond",serif;font-weight:700;
-      font-size:64px;line-height:1.05;color:#3B4E57;margin:0 0 14px;
-      letter-spacing:.02em;text-transform:uppercase
+      font-family:"Cormorant Garamond",serif;
+      font-weight:700;
+      font-size:64px; /* desktop igual padrão */
+      line-height:1.05;
+      color:#3B4E57;
+      margin:0 0 14px;
+      letter-spacing:.02em;
+      text-transform:uppercase;
     }
     .s2-sub{
-      font-family:"Source Sans 3",system-ui;font-weight:300;
-      font-size:18px;line-height:1.65;color:rgba(0,0,0,.62);
-      margin:0;max-width:860px;margin-inline:auto
+      font-family:"Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight:300;
+      font-size:18px;
+      line-height:1.65;
+      color:rgba(0,0,0,.62);
+      margin:0;
+      max-width:860px;
+      margin-inline:auto;
     }
 
-    /* MAIS JUNTO + CENTRALIZADO + MAIOR */
-    .s2-grid{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:44px}
+    /* MAIS JUNTO + CENTRAL */
+    .s2-grid{
+      display:flex;
+      justify-content:center;
+      gap:14px;       /* mais juntos */
+      flex-wrap:wrap;
+      margin-top:44px;
+    }
 
+    /* SEM CARD BRANCO */
     .s2-item{
-      position:relative;opacity:0;transform:translateY(24px);
-      transition:opacity .9s ease,transform .9s ease
+      position:relative;
+      opacity:0;
+      transform:translateY(24px);
+      transition:opacity .9s ease, transform .9s ease;
     }
-    .s2-item.visible{opacity:1;transform:translateY(0)}
+    .s2-item.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
 
-    /* Só o SVG */
+    /* SVG MAIOR */
     .s2-item img{
-      width:460px;
+      width:480px;    /* maior */
       max-width:92vw;
       height:auto;
       display:block;
       background:transparent;
       border-radius:0;
-      filter:drop-shadow(0 18px 35px rgba(0,0,0,.14))
+      filter: drop-shadow(0 18px 35px rgba(0,0,0,.14));
     }
 
-    /* Light sweep */
+    /* LIGHT SWEEP */
     .s2-item::after{
       content:"";
       position:absolute;
@@ -417,20 +519,37 @@
       left:-120%;
       width:60%;
       height:120%;
-      background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,.50) 50%,transparent 100%);
+      background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.50) 50%, transparent 100%);
       transform:skewX(-25deg);
       transition:left .9s ease;
-      pointer-events:none
+      pointer-events:none;
     }
-    .s2-item:hover::after{left:130%}
+    .s2-item:hover::after{
+      left:130%;
+    }
 
+    /* MOBILE: como seu print (tudo à esquerda) */
     @media(max-width:900px){
-      .s2{padding:80px 20px}
-      .s2-head{text-align:left;margin-bottom:34px}
-      .s2-title{font-size:50px}
-      .s2-sub{margin-inline:0}
-      .s2-grid{justify-content:flex-start;gap:22px}
-      .s2-item img{width:min(520px,100%)}
+      .s2{
+        padding:80px 20px;
+      }
+      .s2-head{
+        text-align:left;
+        margin-bottom:34px;
+      }
+      .s2-title{
+        font-size:50px; /* proporcional */
+      }
+      .s2-sub{
+        margin-inline:0;
+      }
+      .s2-grid{
+        justify-content:flex-start;
+        gap:22px;
+      }
+      .s2-item img{
+        width:min(520px, 100%);
+      }
     }
   </style>
 </head>
@@ -482,7 +601,7 @@
         <div class="text">
           <h1 class="title reveal d1">PRECISÃO TÉCNICA E SENSIBILIDADE ESTÉTICA.</h1>
 
-          <p class="hero__subtitle reveal">
+          <p class="hero__subtitle reveal d2">
             Realce sua beleza com naturalidade e confiança, através de procedimentos seguros e personalizados.
           </p>
 
@@ -505,10 +624,10 @@
     <!-- =========================
     FAIXA CONTÍNUA
     ========================= -->
-    <section class="s-marquee">
+    <section class="s-marquee" aria-label="Faixa contínua">
       <div class="marquee">
         <div class="marquee-viewport">
-          <div class="marquee-track" id="mqTrack">
+          <div class="marquee-track">
             <div class="marquee-item">◆ CONFIANÇA</div>
             <div class="marquee-item">◆ AUTORIDADE</div>
             <div class="marquee-item">◆ NATURALIDADE</div>
@@ -541,9 +660,11 @@
           <div class="s2-item">
             <img src="assets/Resultados%20reais.svg" alt="Resultados reais">
           </div>
+
           <div class="s2-item">
             <img src="assets/Procedimentos%20de%20excelencia.svg" alt="Procedimentos de excelência">
           </div>
+
           <div class="s2-item">
             <img src="assets/Avalia%C3%A7%C3%A3o%20completa.svg" alt="Avaliação completa">
           </div>
@@ -551,7 +672,7 @@
       </div>
     </section>
 
-    <!-- âncoras -->
+    <!-- âncoras (menu não quebra) -->
     <section id="quem-sou" style="height:1px;"></section>
     <section id="procedimentos" style="height:1px;"></section>
     <section id="contato" style="height:1px;"></section>
@@ -579,77 +700,33 @@
     overlay.addEventListener("click", closeMenu);
     nav.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
 
-    // Reveal (sessão 1)
+    // Fade in: hero
     const revealEls = document.querySelectorAll(".reveal");
-    const ioReveal = new IntersectionObserver((entries) => {
+    const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
           e.target.classList.add("is-visible");
-          ioReveal.unobserve(e.target);
+          io.unobserve(e.target);
         }
       });
     }, { threshold: 0.25 });
-    revealEls.forEach(el => ioReveal.observe(el));
+    revealEls.forEach(el => io.observe(el));
 
-    // Marquee (faixa contínua)
-    (function(){
-      function startMarquee(){
-        const track = document.getElementById("mqTrack");
-        if(!track) return;
-
-        let last = 0;
-        let x = 0;
-        let loopPx = 0;
-        const SPEED = 140;
-
-        function measure(){
-          loopPx = track.scrollWidth / 2;
-          if(loopPx <= 0) return;
-          x = x % loopPx;
-          track.style.transform = `translateX(${-x}px)`;
-        }
-
-        function tick(t){
-          if(!last) last = t;
-          const dt = (t - last) / 1000;
-          last = t;
-
-          x += SPEED * dt;
-          if(loopPx > 0 && x >= loopPx) x -= loopPx;
-
-          track.style.transform = `translateX(${-x}px)`;
-          requestAnimationFrame(tick);
-        }
-
-        measure();
-        setTimeout(measure, 150);
-        setTimeout(measure, 600);
-        window.addEventListener("resize", measure);
-        requestAnimationFrame(tick);
-      }
-
-      if(document.readyState === "loading"){
-        document.addEventListener("DOMContentLoaded", startMarquee);
-      } else {
-        startMarquee();
-      }
-    })();
-
-    // Fade in (sessão 2)
+    // Fade in: Sessão 2
     (function(){
       const targets = document.querySelectorAll(".s2-head, .s2-item");
       if(!targets.length) return;
 
-      const io = new IntersectionObserver((entries)=>{
+      const io2 = new IntersectionObserver((entries)=>{
         entries.forEach((e)=>{
           if(e.isIntersecting){
             e.target.classList.add("visible");
-            io.unobserve(e.target);
+            io2.unobserve(e.target);
           }
         });
       },{threshold:0.25});
 
-      targets.forEach(el=>io.observe(el));
+      targets.forEach(el=>io2.observe(el));
     })();
   </script>
 </body>
