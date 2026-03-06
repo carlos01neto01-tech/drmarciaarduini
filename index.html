@@ -64,7 +64,7 @@
       position:fixed;
       top:0; left:0; right:0;
       z-index:9999;
-      background:var(--paper);
+    background:#f5f5f5;
       border-bottom:1px solid rgba(0,0,0,.08);
       display:flex;
       justify-content:center;
@@ -433,23 +433,20 @@
 
     /* ================= SESSÃO 3 — CARROSSEL ANTES/DEPOIS ================= */
     .s3{
-      background:#f5f5f5;
+      background:var(--paper);
       padding:90px 0 80px;
       overflow:hidden;
     }
-
     .s3-inner{
       width:100%;
       max-width:1440px;
       margin:0 auto;
       padding:0 20px;
     }
-
     .s3-head{
       text-align:center;
       margin-bottom:60px;
     }
-
     .s3-title{
       font-family:"Cormorant Garamond", serif;
       font-weight:700;
@@ -461,7 +458,6 @@
       text-transform:uppercase;
       text-align:center;
     }
-
     .s3-sub{
       font-family:var(--body);
       font-weight:500;
@@ -472,7 +468,6 @@
       max-width:700px;
       text-align:center;
     }
-
     .s3-fade{
       opacity:0;
       filter:blur(10px);
@@ -498,13 +493,11 @@
       transform:translateY(16px);
       transition:opacity .7s ease .22s, filter .7s ease .22s, transform .7s ease .22s;
     }
-
     .s3-carousel-wrap.s3-visible{
       opacity:1;
       filter:blur(0);
       transform:translateY(0);
     }
-
     .s3-carousel-wrap::before{
       content:"";
       position:absolute;
@@ -512,14 +505,13 @@
       width:160px;
       background:linear-gradient(
         90deg,
-        #f5f5f5 0%,
-        rgba(245,245,245,.80) 40%,
-        rgba(245,245,245,0) 100%
+        var(--paper) 0%,
+        rgba(231,227,220,.80) 40%,
+        rgba(231,227,220,0) 100%
       );
       pointer-events:none;
       z-index:4;
     }
-
     .s3-carousel-wrap::after{
       content:"";
       position:absolute;
@@ -527,14 +519,13 @@
       width:160px;
       background:linear-gradient(
         270deg,
-        #f5f5f5 0%,
-        rgba(245,245,245,.80) 40%,
-        rgba(245,245,245,0) 100%
+        var(--paper) 0%,
+        rgba(231,227,220,.80) 40%,
+        rgba(231,227,220,0) 100%
       );
       pointer-events:none;
       z-index:4;
     }
-
     .s3-track{
       display:flex;
       align-items:stretch;
@@ -545,15 +536,12 @@
       animation:s3Scroll 38s linear infinite;
       animation-play-state:paused;
     }
-
     .s3-track.s3-scrolling{
       animation-play-state:running;
     }
-
     .s3-carousel-wrap:hover .s3-track{
       animation-play-state:paused;
     }
-
     @keyframes s3Scroll{
       from{ transform:translateX(0); }
       to{ transform:translateX(-33.333%); }
@@ -566,7 +554,6 @@
       border-radius:18px;
       overflow:hidden;
       position:relative;
-      background:#e9e6df;
       box-shadow:0 8px 24px rgba(0,0,0,.12);
       opacity:0;
       filter:blur(8px);
@@ -576,7 +563,6 @@
         filter .55s ease,
         transform .55s ease;
     }
-
     .s3-carousel-wrap.s3-visible .s3-item:nth-child(1)  { opacity:1; filter:blur(0); transform:translateY(0) scale(1); transition-delay:.00s; }
     .s3-carousel-wrap.s3-visible .s3-item:nth-child(2)  { opacity:1; filter:blur(0); transform:translateY(0) scale(1); transition-delay:.08s; }
     .s3-carousel-wrap.s3-visible .s3-item:nth-child(3)  { opacity:1; filter:blur(0); transform:translateY(0) scale(1); transition-delay:.16s; }
@@ -588,82 +574,137 @@
     .s3-carousel-wrap.s3-visible .s3-item:nth-child(n+9){ opacity:1; filter:blur(0); transform:translateY(0) scale(1); transition-delay:.10s; }
 
     .s3-item img{
-      width:100%;
-      height:100%;
+      width:100%; height:100%;
       object-fit:cover;
-      object-position:center center;
+      object-position:center top;
       display:block;
       transition:transform .4s ease;
     }
-
     .s3-item:hover img{
       transform:scale(1.04);
     }
-
     .s3-cta-wrap{
       display:flex;
       justify-content:center;
     }
-
     .s3-cta-wrap .cta{
       width:min(340px, 100%);
       height:60px;
       font-size:19px;
       border-radius:16px;
     }
-
     @media(max-width:900px){
-      .s3{
-        padding:70px 0 64px;
-      }
-
-      .s3-head{
-        margin-bottom:44px;
-        padding:0 16px;
-      }
-
-      .s3-title{
-        font-size:40px;
-      }
-
-      .s3-sub{
-        font-size:24px;
-        line-height:1.55;
-        max-width:100%;
-      }
-
-      .s3-item{
-        width:230px;
-        height:304px;
-        border-radius:14px;
-      }
-
-      .s3-carousel-wrap{
-        margin-bottom:48px;
-      }
-
-      .s3-carousel-wrap::before,
-      .s3-carousel-wrap::after{
-        width:80px;
-      }
-
-      .s3-cta-wrap .cta{
-        width:min(300px, calc(100% - 32px));
-        height:56px;
-        font-size:18px;
-      }
+      .s3{ padding:70px 0 64px; }
+      .s3-head{ margin-bottom:44px; padding:0 16px; }
+      .s3-title{ font-size:40px; }
+      .s3-sub{ font-size:18px; }
+      .s3-item{ width:220px; height:290px; border-radius:14px; }
+      .s3-carousel-wrap{ margin-bottom:48px; }
+      .s3-carousel-wrap::before, .s3-carousel-wrap::after{ width:80px; }
+      .s3-cta-wrap .cta{ width:min(300px, calc(100% - 32px)); height:56px; font-size:18px; }
     }
-
     @media(max-width:380px){
       .s3-title{ font-size:34px; }
-      .s3-item{ width:210px; height:278px; }
-      .s3-sub{ font-size:21px; line-height:1.55; }
+      .s3-item{ width:190px; height:252px; }
     }
-
     @media(prefers-reduced-motion: reduce){
       .s3-track{ animation:none; }
       .s3-item{ opacity:1; filter:blur(0); transform:none; }
       .s3-carousel-wrap{ opacity:1; filter:blur(0); transform:none; }
+    }
+
+    /* ================= SESSÃO 4 — PROCEDIMENTOS ================= */
+    .s4{
+      background:#fff;
+      padding:90px 20px 100px;
+      overflow-x:hidden;
+    }
+    .s4-container{
+      max-width:1440px;
+      width:100%;
+      margin:0 auto;
+    }
+    .s4-head{
+      text-align:center; 
+      margin-bottom:60px;
+      opacity:0; 
+      transform:translateY(30px);
+      transition:opacity 0.8s ease, transform 0.8s ease;
+    }
+    .s4-head.visible{
+      opacity:1; 
+      transform:translateY(0);
+    }
+    .s4-title{
+      font-family:"Cormorant Garamond", serif;
+      font-weight:700; 
+      font-size:64px; 
+      line-height:1.05;
+      color:#3B4E57; 
+      margin:0;
+      letter-spacing:.02em; 
+      text-transform:uppercase;
+    }
+    
+    /* Grid padrão (Mobile: 2 colunas) */
+    .s4-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:16px;
+      width:100%;
+    }
+    .s4-item{
+      position:relative;
+      border-radius:18px;
+      overflow:hidden;
+      cursor:pointer;
+      box-shadow:0 8px 24px rgba(0,0,0,.08);
+      
+      /* Animação de entrada na rolagem */
+      opacity:0;
+      transform:translateY(30px);
+      transition:opacity 0.8s ease, transform 0.8s ease;
+    }
+    .s4-item.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+    /* Cascade de entrada */
+    .s4-item:nth-child(1){ transition-delay:.1s; }
+    .s4-item:nth-child(2){ transition-delay:.2s; }
+    .s4-item:nth-child(3){ transition-delay:.3s; }
+    .s4-item:nth-child(4){ transition-delay:.4s; }
+
+    /* Imagem baseada com a animação de escala premium (hover) */
+    .s4-item img{
+      width:100%; 
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change:transform;
+    }
+    .s4-item:hover img{
+      transform:scale(1.08); /* Escala suave */
+    }
+
+    /* Media Queries da S4 */
+    @media(min-width:901px){
+      /* Desktop: 4 colunas lado a lado */
+      .s4-grid{
+        grid-template-columns:repeat(4, 1fr);
+        gap:24px;
+      }
+    }
+    @media(max-width:900px){
+      .s4{ padding:60px 16px 80px; }
+      .s4-head{ margin-bottom:40px; }
+      .s4-title{ font-size:46px; }
+    }
+    @media(max-width:380px){
+      .s4-title{ font-size:34px; }
+      .s4-grid{ gap:12px; }
+      .s4-item{ border-radius:14px; }
     }
   </style>
 </head>
@@ -709,7 +750,6 @@
   </header>
 
   <main>
-    <!-- ===== HERO ===== -->
     <section class="hero" id="inicio" aria-label="Início">
       <div class="wrap">
         <div class="text">
@@ -732,7 +772,6 @@
       </div>
     </section>
 
-    <!-- ===== MARQUEE ===== -->
     <section class="s-marquee" aria-label="Faixa contínua">
       <div class="marquee-viewport">
         <div class="marquee-track">
@@ -758,7 +797,6 @@
       </div>
     </section>
 
-    <!-- ===== SESSÃO 2 ===== -->
     <section class="s2" aria-label="Sessão 2">
       <div class="s2-container">
         <div class="s2-head">
@@ -781,7 +819,6 @@
       </div>
     </section>
 
-    <!-- ===== SESSÃO 3 — CARROSSEL ANTES/DEPOIS ===== -->
     <section class="s3" id="antes-depois" aria-label="Antes e Depois">
       <div class="s3-inner">
         <div class="s3-head s3-fade s3-fd1">
@@ -794,34 +831,32 @@
 
       <div class="s3-carousel-wrap" id="s3CarouselWrap">
         <div class="s3-track" id="s3Track">
+          <img src="assets/ANTES%20E%20DEPOIS%201.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%202.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%203.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%204.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%205.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%206.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%207.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%208.webp">
 
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%201.webp" alt="Antes e depois 1"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%202.webp" alt="Antes e depois 2"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%203.webp" alt="Antes e depois 3"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%204.webp" alt="Antes e depois 4"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%205.webp" alt="Antes e depois 5"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%206.webp" alt="Antes e depois 6"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%207.webp" alt="Antes e depois 7"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%208.webp" alt="Antes e depois 8"></div>
+          <img src="assets/ANTES%20E%20DEPOIS%201.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%202.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%203.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%204.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%205.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%206.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%207.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%208.webp">
 
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%201.webp" alt="Antes e depois 1"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%202.webp" alt="Antes e depois 2"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%203.webp" alt="Antes e depois 3"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%204.webp" alt="Antes e depois 4"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%205.webp" alt="Antes e depois 5"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%206.webp" alt="Antes e depois 6"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%207.webp" alt="Antes e depois 7"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%208.webp" alt="Antes e depois 8"></div>
-
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%201.webp" alt="Antes e depois 1"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%202.webp" alt="Antes e depois 2"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%203.webp" alt="Antes e depois 3"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%204.webp" alt="Antes e depois 4"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%205.webp" alt="Antes e depois 5"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%206.webp" alt="Antes e depois 6"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%207.webp" alt="Antes e depois 7"></div>
-          <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%208.webp" alt="Antes e depois 8"></div>
-
+          <img src="assets/ANTES%20E%20DEPOIS%201.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%202.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%203.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%204.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%205.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%206.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%207.webp">
+          <img src="assets/ANTES%20E%20DEPOIS%208.webp">
         </div>
       </div>
 
@@ -833,13 +868,40 @@
         </a>
       </div>
     </section>
-
     <section id="quem-sou" style="height:1px;"></section>
-    <section id="procedimentos" style="height:1px;"></section>
+    
+    <section class="s4" id="procedimentos" aria-label="Procedimentos">
+      <div class="s4-container">
+        
+        <div class="s4-head">
+          <h2 class="s4-title">PROCEDIMENTOS</h2>
+        </div>
+        
+        <div class="s4-grid">
+          <div class="s4-item">
+            <img src="assets/PROCEDIMENTO 1.webp" alt="Procedimento 1">
+          </div>
+          
+          <div class="s4-item">
+            <img src="assets/PROCEDIMENTO 2.webp" alt="Procedimento 2">
+          </div>
+          
+          <div class="s4-item">
+            <img src="assets/PROCEDIMENTO 3.webp" alt="Procedimento 3">
+          </div>
+          
+          <div class="s4-item">
+            <img src="assets/PROCEDIMENTO 4.webp" alt="Procedimento 4">
+          </div>
+        </div>
+
+      </div>
+    </section>
     <section id="contato" style="height:1px;"></section>
   </main>
 
   <script>
+    /* ── Menu mobile ── */
     const btn     = document.getElementById("menuBtn");
     const nav     = document.getElementById("mNav");
     const overlay = document.getElementById("overlay");
@@ -858,6 +920,7 @@
     overlay.addEventListener("click", closeMenu);
     nav.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
 
+    /* ── Reveal hero (blur + fade) ── */
     const revealEls = document.querySelectorAll(".reveal");
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
@@ -869,8 +932,10 @@
     }, { threshold: 0.25 });
     revealEls.forEach(el => io.observe(el));
 
+    /* ── Reveal s2 e s4 (Fade in ao scrollar) ── */
     (function(){
-      const targets = document.querySelectorAll(".s2-head, .s2-item");
+      /* Adicionadas as classes .s4-head e .s4-item para ativar o JS na nova sessão também */
+      const targets = document.querySelectorAll(".s2-head, .s2-item, .s4-head, .s4-item");
       if(!targets.length) return;
       const io2 = new IntersectionObserver((entries)=>{
         entries.forEach((e)=>{
@@ -883,6 +948,7 @@
       targets.forEach(el => io2.observe(el));
     })();
 
+    /* ── Reveal s3 — cascade + carrossel ── */
     (function(){
       const s3Fades   = document.querySelectorAll(".s3-fade");
       const s3Wrap    = document.getElementById("s3CarouselWrap");
@@ -890,6 +956,7 @@
 
       if(!s3Wrap || !s3Track) return;
 
+      /* Observer para os elementos .s3-fade (título, subtítulo, botão) */
       const ioFade = new IntersectionObserver((entries) => {
         entries.forEach(e => {
           if(e.isIntersecting){
@@ -900,11 +967,16 @@
       }, { threshold: 0.2 });
       s3Fades.forEach(el => ioFade.observe(el));
 
+      /* Observer para o carrossel:
+         1. Revela os itens em cascata (via CSS nth-child)
+         2. Inicia o scroll após a cascata terminar (~1.3 s) */
       const ioCarousel = new IntersectionObserver((entries) => {
         entries.forEach(e => {
           if(e.isIntersecting){
+            /* Ativa classe → CSS faz a cascata dos itens */
             s3Wrap.classList.add("s3-visible");
 
+            /* Inicia o scroll do carrossel após a cascata */
             setTimeout(() => {
               s3Track.classList.add("s3-scrolling");
             }, 1350);
