@@ -14,18 +14,14 @@
     :root{
       --title:"Cormorant Garamond", serif;
       --body:"Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-
       --paper:#E7E3DC;
       --ink:#3B4E57;
-
       --header-h:104px;
       --container:1200px;
-
       --handle-y: 86%;
       --handle-x: -18px;
       --handle-w-mobile: min(360px, 90vw);
       --handle-w-desktop: 380px;
-
       --mobile-text-mt: -12px;
       --desktop-text-top: 110px;
       --sub-to-btn: 62px;
@@ -207,7 +203,7 @@
       grid-template-areas:"media" "text";
       gap:10px;
     }
-    
+
     .text{
       grid-area:text;
       width: 100%;
@@ -231,7 +227,7 @@
 
     .hero__subtitle{
       margin:24px 0 36px;
-      font-size:24px; 
+      font-size:24px;
       line-height:1.55;
       color:rgba(0,0,0,.62);
       text-align:center;
@@ -333,7 +329,7 @@
         padding:44px 20px 0;
         align-items:start;
       }
-      
+
       .text{
         align-items: flex-start;
         text-align: left;
@@ -341,14 +337,14 @@
         max-width:560px;
       }
       .title{ text-align: left; font-size:64px; }
-      .hero__subtitle{ 
-        text-align: left; 
-        font-size:20px; 
-        max-width:520px; 
-        margin-bottom:44px; 
+      .hero__subtitle{
+        text-align: left;
+        font-size:20px;
+        max-width:520px;
+        margin-bottom:44px;
       }
       .cta{ width:240px; height:56px; font-size:18px; border-radius:16px; margin: 0; }
-      
+
       .media{ justify-content:flex-end; }
       .figure{ width:min(520px, 100%); }
       .figure::before{ bottom:7%; width:92%; height:36%; filter:blur(14px); }
@@ -363,14 +359,13 @@
       .cta{ height:68px; font-size:20px; }
     }
 
-
     /* ================= MARQUEE ================= */
     .s-marquee{
       width:100%;
       background:#3F525A;
       padding:18px 0;
-      overflow:hidden;         
-      position:relative;       
+      overflow:hidden;
+      position:relative;
     }
     .s-marquee::before{
       content:"";
@@ -392,7 +387,7 @@
     }
     .marquee-viewport{
       position:relative;
-      overflow:visible; 
+      overflow:visible;
     }
     .marquee-track{
       display:flex;
@@ -427,15 +422,17 @@
       .marquee-track{ animation:none; transform:translateX(0); }
     }
 
-
     /* ================= SESSÃO 2 ================= */
     .s2{
+      /* overflow-x hidden elimina qualquer scroll lateral */
+      overflow-x: hidden;
       padding: 90px 16px 110px;
       background:#f5f5f5;
       margin-top: 0;
     }
     .s2-container{
       max-width:1440px;
+      width: 100%;
       margin:0 auto;
     }
 
@@ -472,19 +469,17 @@
       max-width:900px;
     }
 
-    /* ===== MOBILE: Cards grandes, centralizados, gap uniforme ===== */
+    /* ===== MOBILE: flex coluna, cards 100%, gap compacto ===== */
     .s2-grid{
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 32px;
+      align-items: stretch;   /* stretch: cada item ocupa a largura total do pai */
+      gap: 16px;              /* gap menor — o espaço branco do SVG já cria a separação visual */
+      width: 100%;
     }
 
     .s2-item{
-      /* CORREÇÃO MOBILE: ocupa quase toda a largura da tela */
-      width: 100%;
-      max-width: calc(100vw - 32px);
-
+      width: 100%;            /* 100% do pai — sem vw, sem calc, sem overflow */
       opacity:0;
       transform:translateY(30px);
       transition:opacity 0.8s ease, transform 0.8s ease;
@@ -508,7 +503,7 @@
       box-shadow:none;
     }
 
-    /* ===== TABLET: ajuste de título ===== */
+    /* ===== TABLET ===== */
     @media(max-width:900px){
       .s2{
         padding: 60px 16px 80px;
@@ -518,20 +513,18 @@
       .s2-sub{ font-size:18px; }
     }
 
-    /* ===== DESKTOP: 3 colunas alinhadas pelo topo ===== */
+    /* ===== DESKTOP: 3 colunas, ancoradas no topo ===== */
     @media(min-width:901px){
       .s2-grid{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        /* CORREÇÃO DESKTOP: ancora todos os cards no topo da linha */
-        align-items: start;
+        align-items: start;   /* ancora todos no topo */
         gap: 28px;
       }
       .s2-item{
         width: 100%;
         max-width: 100%;
-        /* CORREÇÃO DESKTOP: cada item individual também ancorado no topo */
-        align-self: start;
+        align-self: start;    /* reforça ancoragem individual no topo */
       }
       .s2-sub{ font-size: 20px; }
     }
@@ -684,7 +677,7 @@
     }, { threshold: 0.25 });
     revealEls.forEach(el => io.observe(el));
 
-    // sessão 2 fade-in (com efeito cascata aplicado no CSS)
+    // sessão 2 fade-in
     (function(){
       const targets = document.querySelectorAll(".s2-head, .s2-item");
       if(!targets.length) return;
