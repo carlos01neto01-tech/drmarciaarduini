@@ -511,33 +511,57 @@
     }
 
     /* ===== MOBILE / TABLET ===== */
-    @media(max-width:900px){
-      .s2{
-        padding:60px 16px 80px;
-      }
+   @media(max-width:900px){
+  .s2{
+    padding:60px 16px 80px;
+  }
 
-      .s2-head{
-        margin-bottom:44px;
-      }
+  .s2-head{
+    margin-bottom:44px;
+  }
 
-      .s2-title{
-        font-size:46px;
-      }
+  .s2-title{
+    font-size:46px;
+  }
 
-      .s2-sub{
-        font-size:24px;
-        line-height:1.55;
-        max-width:100%;
-      }
+  .s2-sub{
+    font-size:24px;
+    line-height:1.55;
+    max-width:100%;
+  }
 
-      /* AJUSTE FINAL DE ALINHAMENTO E CENTRALIZAÇÃO MOBILE */
-      .s2-item:nth-child(2) {
-        margin-top: -32px; /* Subi mais o Card 2 conforme solicitado */
-      }
-      .s2-item:nth-child(3) {
-        margin-top: -12px; /* Ajuste leve no 3 para manter a proporção */
-      }
-    }
+  /* CENTRALIZA TODOS OS CARDS NO MOBILE */
+  .s2-grid{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:22px;
+  }
+
+  .s2-item{
+    width:100%;
+    max-width:480px;
+    margin-left:auto;
+    margin-right:auto;
+    display:flex;
+    justify-content:center;
+  }
+
+  /* SOBE SÓ O CARD 2 */
+  .s2-item:nth-child(2){
+    margin-top:-18px;
+  }
+
+  /* CARD 3 FICA NORMAL */
+  .s2-item:nth-child(3){
+    margin-top:0;
+  }
+
+  .s2-item img{
+    margin:0 auto;
+  }
+}
 
     /* ===== MOBILE PEQUENO ===== */
     @media(max-width:380px){
