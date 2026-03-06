@@ -484,11 +484,12 @@
     }
 
     .s2-item{
-      width:100%;
-      max-width:480px;
-      margin:0 auto;
-      display:flex;
-      justify-content:center;
+  width:100%;
+  max-width:560px;
+  margin:0 auto;
+  display:flex;
+  justify-content:center;
+}
       opacity:0;
       transform:translateY(30px);
       transition:opacity 0.8s ease, transform 0.8s ease;
@@ -582,15 +583,15 @@
 
     /* ===== DESKTOP ===== */
     @media(min-width:901px){
-      .s2-grid{
-        display:grid;
-        grid-template-columns:repeat(3, minmax(280px, 360px));
-        justify-content:center;
-        align-items:start;
-        gap:34px;
-        width:100%;
-        margin-top:0;
-      }
+  s2-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(340px, 430px));
+  justify-content:center;
+  align-items:start;
+  gap:42px;
+  width:100%;
+  margin-top:0;
+}
 
       .s2-item{
         width:100%;
