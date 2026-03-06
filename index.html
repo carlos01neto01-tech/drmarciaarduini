@@ -206,13 +206,13 @@
 
     .text{
       grid-area:text;
-      width: 100%;
-      max-width: 100%;
+      width:100%;
+      max-width:100%;
       margin-top:var(--mobile-text-mt);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
     }
     .title{
       font-family:var(--title);
@@ -231,7 +231,7 @@
       line-height:1.55;
       color:rgba(0,0,0,.62);
       text-align:center;
-      max-width: 100%;
+      max-width:100%;
     }
 
     .cta{
@@ -331,19 +331,19 @@
       }
 
       .text{
-        align-items: flex-start;
-        text-align: left;
+        align-items:flex-start;
+        text-align:left;
         margin-top:var(--desktop-text-top);
         max-width:560px;
       }
-      .title{ text-align: left; font-size:64px; }
+      .title{ text-align:left; font-size:64px; }
       .hero__subtitle{
-        text-align: left;
+        text-align:left;
         font-size:20px;
         max-width:520px;
         margin-bottom:44px;
       }
-      .cta{ width:240px; height:56px; font-size:18px; border-radius:16px; margin: 0; }
+      .cta{ width:240px; height:56px; font-size:18px; border-radius:16px; margin:0; }
 
       .media{ justify-content:flex-end; }
       .figure{ width:min(520px, 100%); }
@@ -399,7 +399,7 @@
     }
     @keyframes marqueeMove{
       from{ transform:translateX(0) }
-      to{   transform:translateX(-50%) }
+      to{ transform:translateX(-50%) }
     }
     .marquee-item{
       white-space:nowrap;
@@ -473,7 +473,7 @@
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap:16px;
+      gap:28px;
       width:100%;
     }
 
@@ -491,26 +491,9 @@
       transform:translateY(0);
     }
 
-.s2-grid{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:16px;
-  width:100%;
-}
-
-.s2-item:nth-child(1){
-  transition-delay:0.1s;
-}
-
-.s2-item:nth-child(2){
-  transition-delay:0.3s;
-  margin-top:-35px;
-}
-
-.s2-item:nth-child(3){
-  transition-delay:0.5s;
-  margin-top:-35px;
+    .s2-item:nth-child(1){ transition-delay:0.1s; }
+    .s2-item:nth-child(2){ transition-delay:0.3s; }
+    .s2-item:nth-child(3){ transition-delay:0.5s; }
 
     .s2-item img{
       width:100%;
@@ -523,17 +506,28 @@
       box-shadow:none;
     }
 
-    /* ===== TABLET ===== */
+    /* ===== MOBILE / TABLET ===== */
     @media(max-width:900px){
       .s2{
         padding:60px 16px 80px;
       }
-      .s2-head{ margin-bottom:44px; }
-      .s2-title{ font-size:46px; }
+
+      .s2-head{
+        margin-bottom:44px;
+      }
+
+      .s2-title{
+        font-size:46px;
+      }
+
       .s2-sub{
         font-size:24px;
         line-height:1.55;
         max-width:100%;
+      }
+
+      .s2-grid{
+        margin-top:-28px;
       }
     }
 
@@ -552,15 +546,15 @@
         grid-template-columns:repeat(3, 1fr);
         align-items:start;
         gap:28px;
+        margin-top:0;
       }
+
       .s2-item{
         width:100%;
         max-width:100%;
         align-self:start;
       }
-      .s2-item:nth-child(1){
-        margin-top:0;
-      }
+
       .s2-sub{
         font-size:20px;
         line-height:1.5;
@@ -601,7 +595,7 @@
       <a href="#contato">Contato</a>
 
       <a class="m-wa"
-         href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20alia%C3%A7%C3%A3o."
+         href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
          target="_blank" rel="noopener">
         WhatsApp — Quero agendar
       </a>
