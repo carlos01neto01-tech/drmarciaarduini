@@ -400,8 +400,7 @@
       gap:34px;
       width:max-content;
       will-change:transform;
-      /* 🔴 Aumentamos o tempo de animação (35s) porque agora a faixa é muito maior */
-      animation:marqueeMove 35s linear infinite; 
+      animation:marqueeMove 10s linear infinite;
     }
     @keyframes marqueeMove{
       from{ transform:translateX(0) }
@@ -473,29 +472,35 @@
       max-width:900px;
     }
 
+    /* 🔴 AQUI MUDA A ESTRUTURA PARA MOBILE */
     .s2-grid{
-      display: flex;
+      display: flex; /* Flexbox empilha e permite crescer melhor */
       flex-direction: column;
       align-items: center; 
-      margin-top: 30px;
+      margin-top: 40px;
     }
 
     .s2-item{
       position:relative;
-      width: 100%;
-      max-width: 340px; 
-      margin-bottom: -12px; 
-      display: flex;
-      justify-content: center;
+      /* 🔴 AGORA ELES VÃO FICAR GIGANTES NO MOBILE (95% da tela) */
+      width: 95%; 
+      max-width: 500px; 
+
       opacity:0;
       transform:translateY(30px);
       transition:opacity 0.8s ease, transform 0.8s ease;
     }
+
+    /* 🔴 AQUI ESTÁ A SOBREPOSIÇÃO/ENCAIXE QUE VOCÊ DESENHOU! */
+    .s2-item:nth-child(2) { margin-top: -30px; }
+    .s2-item:nth-child(3) { margin-top: -30px; }
+
     .s2-item.visible{
       opacity:1;
       transform:translateY(0);
     }
     
+    /* Sequência de animação (Cascata) */
     .s2-item:nth-child(1) { transition-delay: 0.1s; }
     .s2-item:nth-child(2) { transition-delay: 0.3s; }
     .s2-item:nth-child(3) { transition-delay: 0.5s; }
@@ -504,7 +509,6 @@
       width:100%;
       height:auto;
       display:block;
-      margin: 0 auto; 
       background:transparent;
       border-radius:0;
       box-shadow:none;
@@ -519,16 +523,16 @@
       .s2-title{ font-size:46px; }
     }
 
+    /* 🔴 MANTÉM OS 3 LADO A LADO NO DESKTOP */
     @media(min-width:901px){
       .s2-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 24px;
-        margin-top: 40px;
       }
-      .s2-item { 
-        max-width: 100%; 
-        margin-bottom: 0; 
+      .s2-item {
+        width: 100%; /* Reseta tamanho máximo no desktop */
+        margin-top: 0 !important; /* Tira o efeito de empilhamento do mobile */
       }
       .s2-sub{ font-size: 20px; } 
     }
@@ -541,19 +545,38 @@
       <a href="#inicio" class="m-logo" aria-label="Ir para o início">
         <img src="assets/LOGO.svg" alt="Dra. Márcia Arduini">
       </a>
+
       <nav class="nav-desktop" aria-label="Menu principal">
         <a href="#inicio">Início</a>
         <a href="#quem-sou">Quem sou</a>
         <a href="#procedimentos">Procedimentos</a>
         <a href="#contato">Contato</a>
       </nav>
-      <a class="cta-top" href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener">Agendar</a>
-      <button class="m-menuBtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" type="button"><img src="assets/CLICAVEL.svg" alt=""></button>
+
+      <a class="cta-top"
+         href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
+         target="_blank" rel="noopener">
+        Agendar
+      </a>
+
+      <button class="m-menuBtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" type="button">
+        <img src="assets/CLICAVEL.svg" alt="">
+      </button>
     </div>
+
     <nav class="m-nav" id="mNav" aria-label="Menu">
-      <a href="#inicio">Início</a><a href="#quem-sou">Quem sou</a><a href="#procedimentos">Procedimentos</a><a href="#contato">Contato</a>
-      <a class="m-wa" href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener">WhatsApp — Quero agendar</a>
+      <a href="#inicio">Início</a>
+      <a href="#quem-sou">Quem sou</a>
+      <a href="#procedimentos">Procedimentos</a>
+      <a href="#contato">Contato</a>
+
+      <a class="m-wa"
+         href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
+         target="_blank" rel="noopener">
+        WhatsApp — Quero agendar
+      </a>
     </nav>
+
     <div class="m-overlay" id="overlay" aria-hidden="true"></div>
   </header>
 
@@ -562,9 +585,18 @@
       <div class="wrap">
         <div class="text">
           <h1 class="title reveal d1">PRECISÃO TÉCNICA E SENSIBILIDADE ESTÉTICA.</h1>
-          <p class="hero__subtitle reveal d2">Realce sua beleza com naturalidade e confiança, através de procedimentos seguros e personalizados.</p>
-          <a class="cta reveal d3" href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener">Quero agendar</a>
+
+          <p class="hero__subtitle reveal d2">
+            Realce sua beleza com naturalidade e confiança, através de procedimentos seguros e personalizados.
+          </p>
+
+          <a class="cta reveal d3"
+             href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
+             target="_blank" rel="noopener">
+            Quero agendar
+          </a>
         </div>
+
         <div class="media">
           <div class="figure">
             <img src="assets/DOUTORA%20MOBILE.webp" class="doutora" alt="Dra. Márcia Arduini">
@@ -577,16 +609,18 @@
     <section class="s-marquee" aria-label="Faixa contínua">
       <div class="marquee-viewport">
         <div class="marquee-track">
-          <div class="marquee-item">◆ CONFIANÇA</div><div class="marquee-item">◆ AUTORIDADE</div><div class="marquee-item">◆ NATURALIDADE</div><div class="marquee-item">◆ SEGURANÇA</div><div class="marquee-item">◆ PRECISÃO</div><div class="marquee-item">◆ RESULTADOS</div>
-          <div class="marquee-item">◆ CONFIANÇA</div><div class="marquee-item">◆ AUTORIDADE</div><div class="marquee-item">◆ NATURALIDADE</div><div class="marquee-item">◆ SEGURANÇA</div><div class="marquee-item">◆ PRECISÃO</div><div class="marquee-item">◆ RESULTADOS</div>
-          <div class="marquee-item">◆ CONFIANÇA</div><div class="marquee-item">◆ AUTORIDADE</div><div class="marquee-item">◆ NATURALIDADE</div><div class="marquee-item">◆ SEGURANÇA</div><div class="marquee-item">◆ PRECISÃO</div><div class="marquee-item">◆ RESULTADOS</div>
-          <div class="marquee-item">◆ CONFIANÇA</div><div class="marquee-item">◆ AUTORIDADE</div><div class="marquee-item">◆ NATURALIDADE</div><div class="marquee-item">◆ SEGURANÇA</div><div class="marquee-item">◆ PRECISÃO</div><div class="marquee-item">◆ RESULTADOS</div>
-          <div class="marquee-item">◆ CONFIANÇA</div><div class="marquee-item">◆ AUTORIDADE</div><div class="marquee-item">◆ NATURALIDADE</div><div class="marquee-item">◆ SEGURANÇA</div><div class="marquee-item">◆ PRECISÃO</div><div class="marquee-item">◆ RESULTADOS</div>
-          <div class="marquee-item">◆ CONFIANÇA</div><div class="marquee-item">◆ AUTORIDADE</div><div class="marquee-item">◆ NATURALIDADE</div><div class="marquee-item">◆ SEGURANÇA</div><div class="marquee-item">◆ PRECISÃO</div><div class="marquee-item">◆ RESULTADOS</div>
-          <div class="marquee-item">◆ CONFIANÇA</div><div class="marquee-item">◆ AUTORIDADE</div><div class="marquee-item">◆ NATURALIDADE</div><div class="marquee-item">◆ SEGURANÇA</div><div class="marquee-item">◆ PRECISÃO</div><div class="marquee-item">◆ RESULTADOS</div>
-          <div class="marquee-item">◆ CONFIANÇA</div><div class="marquee-item">◆ AUTORIDADE</div><div class="marquee-item">◆ NATURALIDADE</div><div class="marquee-item">◆ SEGURANÇA</div><div class="marquee-item">◆ PRECISÃO</div><div class="marquee-item">◆ RESULTADOS</div>
-          <div class="marquee-item">◆ CONFIANÇA</div><div class="marquee-item">◆ AUTORIDADE</div><div class="marquee-item">◆ NATURALIDADE</div><div class="marquee-item">◆ SEGURANÇA</div><div class="marquee-item">◆ PRECISÃO</div><div class="marquee-item">◆ RESULTADOS</div>
-          <div class="marquee-item">◆ CONFIANÇA</div><div class="marquee-item">◆ AUTORIDADE</div><div class="marquee-item">◆ NATURALIDADE</div><div class="marquee-item">◆ SEGURANÇA</div><div class="marquee-item">◆ PRECISÃO</div><div class="marquee-item">◆ RESULTADOS</div>
+          <div class="marquee-item">◆ CONFIANÇA</div>
+          <div class="marquee-item">◆ AUTORIDADE</div>
+          <div class="marquee-item">◆ NATURALIDADE</div>
+          <div class="marquee-item">◆ SEGURANÇA</div>
+          <div class="marquee-item">◆ PRECISÃO</div>
+          <div class="marquee-item">◆ RESULTADOS</div>
+          <div class="marquee-item">◆ CONFIANÇA</div>
+          <div class="marquee-item">◆ AUTORIDADE</div>
+          <div class="marquee-item">◆ NATURALIDADE</div>
+          <div class="marquee-item">◆ SEGURANÇA</div>
+          <div class="marquee-item">◆ PRECISÃO</div>
+          <div class="marquee-item">◆ RESULTADOS</div>
         </div>
       </div>
     </section>
@@ -618,6 +652,7 @@
   </main>
 
   <script>
+    // menu mobile
     const btn = document.getElementById("menuBtn");
     const nav = document.getElementById("mNav");
     const overlay = document.getElementById("overlay");
@@ -638,6 +673,7 @@
     overlay.addEventListener("click", closeMenu);
     nav.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
 
+    // reveal (hero)
     const revealEls = document.querySelectorAll(".reveal");
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
@@ -649,6 +685,7 @@
     }, { threshold: 0.25 });
     revealEls.forEach(el => io.observe(el));
 
+    // sessão 2 fade-in (com efeito cascata aplicado no CSS)
     (function(){
       const targets = document.querySelectorAll(".s2-head, .s2-item");
       if(!targets.length) return;
@@ -660,7 +697,7 @@
             io2.unobserve(e.target);
           }
         });
-      },{threshold:0.15});
+      },{threshold:0.15}); 
 
       targets.forEach(el=>io2.observe(el));
     })();
