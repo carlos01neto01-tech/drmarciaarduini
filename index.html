@@ -395,7 +395,7 @@
       gap:34px;
       width:max-content;
       will-change:transform;
-      animation:marqueeMove 35s linear infinite;
+      animation:marqueeMove 10s linear infinite;
     }
     @keyframes marqueeMove{
       from{ transform:translateX(0) }
@@ -437,7 +437,7 @@
 
     .s2-head{
       text-align:center;
-      margin-bottom:54px;
+      margin-bottom:64px;
       opacity:0;
       transform:translateY(30px);
       transition:opacity .9s ease, transform .9s ease;
@@ -468,19 +468,17 @@
       max-width:900px;
     }
 
-    /* ===== MOBILE: flex coluna, cards perfeitamente centralizados ===== */
+    /* ===== MOBILE: flex coluna, cards 100%, gap compacto ===== */
     .s2-grid{
       display: flex;
       flex-direction: column;
-      align-items: center; /* Centraliza TUDO no meio absoluto (conserta o card torto) */
+      align-items: stretch;
+      gap: 16px;
       width: 100%;
     }
 
     .s2-item{
       width: 100%;
-      max-width: 360px; /* Força todos os cards a terem a mesma largura exata */
-      display: flex;
-      justify-content: center;
       opacity:0;
       transform:translateY(30px);
       transition:opacity 0.8s ease, transform 0.8s ease;
@@ -492,16 +490,8 @@
     }
 
     .s2-item:nth-child(1){ transition-delay: 0.1s; }
-    
-    /* Puxamos o Card 2 e 3 para cima para igualar a distância com o Card 1 */
-    .s2-item:nth-child(2){ 
-      transition-delay: 0.3s; 
-      margin-top: -18px; /* Valor negativo sobe o card. Ajuste se quiser mais perto */
-    }
-    .s2-item:nth-child(3){ 
-      transition-delay: 0.5s; 
-      margin-top: -18px; /* Mantém a mesma distância do Card 2 */
-    }
+    .s2-item:nth-child(2){ transition-delay: 0.3s; }
+    .s2-item:nth-child(3){ transition-delay: 0.5s; }
 
     .s2-item img{
       width:100%;
@@ -512,12 +502,28 @@
       box-shadow:none;
     }
 
-    /* ===== TABLET ===== */
+    /* ===== TABLET & AJUSTES DE ESPAÇAMENTO DOS CARDS ===== */
     @media(max-width:900px){
       .s2{ padding: 60px 16px 80px; }
       .s2-head{ margin-bottom:44px; }
       .s2-title{ font-size:46px; }
       .s2-sub{ font-size:18px; }
+
+      /* Ajuste milimétrico do alinhamento do card 1 que parecia torto (move levemente para a direita) */
+      .s2-item:nth-child(1) img {
+        transform: translateX(1.5%); 
+      }
+
+      /* Sobe os cards 2 e 3 para a mesma distância */
+      .s2-item:nth-child(2),
+      .s2-item:nth-child(3) {
+        margin-top: -24px;
+      }
+
+      /* Traz o card 3 levemente para a esquerda, mais pro meio */
+      .s2-item:nth-child(3) img {
+        transform: translateX(-1.5%);
+      }
     }
 
     /* ===== DESKTOP: 3 colunas, ancoradas no topo ===== */
@@ -527,18 +533,19 @@
         grid-template-columns: repeat(3, 1fr);
         align-items: start;
         gap: 28px;
-        margin-top: 40px;
       }
       .s2-item{
         width: 100%;
         max-width: 100%;
-      }
-      /* Reseta a margem negativa no desktop para não bugar o alinhamento lado a lado */
-      .s2-item:nth-child(2),
-      .s2-item:nth-child(3) {
-        margin-top: 0;
+        align-self: start;
       }
       .s2-sub{ font-size: 20px; }
+      
+      /* Limpamos os empurrõezinhos no desktop para os 3 ficarem perfeitos lado a lado */
+      .s2-item:nth-child(2),
+      .s2-item:nth-child(3) { margin-top: 0; }
+      .s2-item:nth-child(1) img,
+      .s2-item:nth-child(3) img { transform: translateX(0); }
     }
   </style>
 </head>
@@ -610,12 +617,6 @@
     <section class="s-marquee" aria-label="Faixa contínua">
       <div class="marquee-viewport">
         <div class="marquee-track">
-          <div class="marquee-item">◆ CONFIANÇA</div>
-          <div class="marquee-item">◆ AUTORIDADE</div>
-          <div class="marquee-item">◆ NATURALIDADE</div>
-          <div class="marquee-item">◆ SEGURANÇA</div>
-          <div class="marquee-item">◆ PRECISÃO</div>
-          <div class="marquee-item">◆ RESULTADOS</div>
           <div class="marquee-item">◆ CONFIANÇA</div>
           <div class="marquee-item">◆ AUTORIDADE</div>
           <div class="marquee-item">◆ NATURALIDADE</div>
