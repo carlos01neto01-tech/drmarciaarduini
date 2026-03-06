@@ -510,8 +510,9 @@
       box-shadow:none;
     }
 
-    /* ===== MOBILE / TABLET ===== */
-   @media(max-width:900px){
+ /* ===== MOBILE / TABLET ===== */
+@media(max-width:900px){
+
   .s2{
     padding:60px 16px 80px;
   }
@@ -530,37 +531,41 @@
     max-width:100%;
   }
 
-  /* CENTRALIZA TODOS OS CARDS NO MOBILE */
+  /* CENTRALIZA OS CARDS NO MOBILE */
   .s2-grid{
     display:flex;
     flex-direction:column;
     align-items:center;
-    justify-content:center;
+    justify-content:flex-start;
     gap:22px;
+    width:100%;
   }
 
   .s2-item{
     width:100%;
-    max-width:480px;
+    max-width:380px;
     margin-left:auto;
     margin-right:auto;
     display:flex;
     justify-content:center;
   }
 
-  /* SOBE SÓ O CARD 2 */
-  .s2-item:nth-child(2){
-    margin-top:-18px;
-  }
-
-  /* CARD 3 FICA NORMAL */
-  .s2-item:nth-child(3){
-    margin-top:0;
-  }
-
   .s2-item img{
+    width:100%;
+    display:block;
     margin:0 auto;
   }
+
+  /* SOBE O CARD 2 */
+  .s2-item:nth-child(2){
+    transform:translateY(-28px);
+  }
+
+  /* CARD 3 NORMAL */
+  .s2-item:nth-child(3){
+    transform:none;
+  }
+
 }
 
     /* ===== MOBILE PEQUENO ===== */
