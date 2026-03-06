@@ -395,7 +395,7 @@
       gap:34px;
       width:max-content;
       will-change:transform;
-      animation:marqueeMove 10s linear infinite;
+      animation:marqueeMove 35s linear infinite;
     }
     @keyframes marqueeMove{
       from{ transform:translateX(0) }
@@ -424,7 +424,6 @@
 
     /* ================= SESSÃO 2 ================= */
     .s2{
-      /* overflow-x hidden elimina qualquer scroll lateral */
       overflow-x: hidden;
       padding: 90px 16px 110px;
       background:#f5f5f5;
@@ -438,7 +437,7 @@
 
     .s2-head{
       text-align:center;
-      margin-bottom:64px;
+      margin-bottom:54px;
       opacity:0;
       transform:translateY(30px);
       transition:opacity .9s ease, transform .9s ease;
@@ -469,17 +468,19 @@
       max-width:900px;
     }
 
-    /* ===== MOBILE: flex coluna, cards 100%, gap compacto ===== */
+    /* ===== MOBILE: flex coluna, cards perfeitamente centralizados ===== */
     .s2-grid{
       display: flex;
       flex-direction: column;
-      align-items: stretch;   /* stretch: cada item ocupa a largura total do pai */
-      gap: 16px;              /* gap menor — o espaço branco do SVG já cria a separação visual */
+      align-items: center; /* Centraliza TUDO no meio absoluto (conserta o card torto) */
       width: 100%;
     }
 
     .s2-item{
-      width: 100%;            /* 100% do pai — sem vw, sem calc, sem overflow */
+      width: 100%;
+      max-width: 360px; /* Força todos os cards a terem a mesma largura exata */
+      display: flex;
+      justify-content: center;
       opacity:0;
       transform:translateY(30px);
       transition:opacity 0.8s ease, transform 0.8s ease;
@@ -491,8 +492,16 @@
     }
 
     .s2-item:nth-child(1){ transition-delay: 0.1s; }
-    .s2-item:nth-child(2){ transition-delay: 0.3s; }
-    .s2-item:nth-child(3){ transition-delay: 0.5s; }
+    
+    /* Puxamos o Card 2 e 3 para cima para igualar a distância com o Card 1 */
+    .s2-item:nth-child(2){ 
+      transition-delay: 0.3s; 
+      margin-top: -18px; /* Valor negativo sobe o card. Ajuste se quiser mais perto */
+    }
+    .s2-item:nth-child(3){ 
+      transition-delay: 0.5s; 
+      margin-top: -18px; /* Mantém a mesma distância do Card 2 */
+    }
 
     .s2-item img{
       width:100%;
@@ -505,9 +514,7 @@
 
     /* ===== TABLET ===== */
     @media(max-width:900px){
-      .s2{
-        padding: 60px 16px 80px;
-      }
+      .s2{ padding: 60px 16px 80px; }
       .s2-head{ margin-bottom:44px; }
       .s2-title{ font-size:46px; }
       .s2-sub{ font-size:18px; }
@@ -518,13 +525,18 @@
       .s2-grid{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        align-items: start;   /* ancora todos no topo */
+        align-items: start;
         gap: 28px;
+        margin-top: 40px;
       }
       .s2-item{
         width: 100%;
         max-width: 100%;
-        align-self: start;    /* reforça ancoragem individual no topo */
+      }
+      /* Reseta a margem negativa no desktop para não bugar o alinhamento lado a lado */
+      .s2-item:nth-child(2),
+      .s2-item:nth-child(3) {
+        margin-top: 0;
       }
       .s2-sub{ font-size: 20px; }
     }
@@ -577,18 +589,15 @@
       <div class="wrap">
         <div class="text">
           <h1 class="title reveal d1">PRECISÃO TÉCNICA E SENSIBILIDADE ESTÉTICA.</h1>
-
           <p class="hero__subtitle reveal d2">
             Realce sua beleza com naturalidade e confiança, através de procedimentos seguros e personalizados.
           </p>
-
           <a class="cta reveal d3"
              href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
              target="_blank" rel="noopener">
             Quero agendar
           </a>
         </div>
-
         <div class="media">
           <div class="figure">
             <img src="assets/DOUTORA%20MOBILE.webp" class="doutora" alt="Dra. Márcia Arduini">
@@ -601,6 +610,12 @@
     <section class="s-marquee" aria-label="Faixa contínua">
       <div class="marquee-viewport">
         <div class="marquee-track">
+          <div class="marquee-item">◆ CONFIANÇA</div>
+          <div class="marquee-item">◆ AUTORIDADE</div>
+          <div class="marquee-item">◆ NATURALIDADE</div>
+          <div class="marquee-item">◆ SEGURANÇA</div>
+          <div class="marquee-item">◆ PRECISÃO</div>
+          <div class="marquee-item">◆ RESULTADOS</div>
           <div class="marquee-item">◆ CONFIANÇA</div>
           <div class="marquee-item">◆ AUTORIDADE</div>
           <div class="marquee-item">◆ NATURALIDADE</div>
