@@ -1,3 +1,11 @@
+
+  Entendido! Para subir especificamente o Card 2 (o do meio) no celular, sem mexer no tamanho dele e sem alterar absolutamente nada na versão desktop, a melhor forma é aplicar uma margem negativa no topo apenas desse segundo item dentro da regra do mobile.
+
+Adicionei um margin-top: -16px; no Card 2 na versão de celular para ele subir um pouquinho e ficar mais próximo do primeiro.
+
+Aqui está o código atualizado:
+
+HTML
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -474,7 +482,7 @@
       flex-direction:column;
       align-items:center;
       justify-content:center;
-      gap:32px; /* Ajuste leve para melhor respiro no mobile */
+      gap:32px; 
       width:100%;
     }
 
@@ -528,7 +536,11 @@
         line-height:1.55;
         max-width:100%;
       }
-      /* A margem negativa que desajustava o card 1 foi removida daqui */
+
+      /* Ajuste específico para subir o Card 2 no mobile */
+      .s2-item:nth-child(2) {
+        margin-top: -16px; 
+      }
     }
 
     /* ===== MOBILE PEQUENO ===== */
@@ -553,7 +565,7 @@
         width:100%;
         max-width:100%;
         align-self:start;
-        display:block; /* Retorna ao padrão normal no desktop */
+        display:block; 
       }
 
       .s2-sub{
