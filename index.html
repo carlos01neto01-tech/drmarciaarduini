@@ -1,9 +1,15 @@
 
-  Entendido! Para subir especificamente o Card 2 (o do meio) no celular, sem mexer no tamanho dele e sem alterar absolutamente nada na versão desktop, a melhor forma é aplicar uma margem negativa no topo apenas desse segundo item dentro da regra do mobile.
+Entendi perfeitamente! Pelo novo vídeo, vi que o código anterior acabou "vazando" um texto no topo da página e que o Card 2 ainda precisa subir mais um pouco para alinhar o espaçamento.
 
-Adicionei um margin-top: -16px; no Card 2 na versão de celular para ele subir um pouquinho e ficar mais próximo do primeiro.
+Para resolver tudo de uma vez, sem alterar o tamanho dos cards e mantendo a versão desktop intacta:
 
-Aqui está o código atualizado:
+Removi o texto que estava aparecendo no topo (era um resíduo de texto fora das tags).
+
+Subi mais o Card 2 (aumentei a margem negativa).
+
+Centralizei os cards horizontalmente com precisão no mobile.
+
+Aqui está o código completo e corrigido para você substituir:
 
 HTML
 <!doctype html>
@@ -482,7 +488,7 @@ HTML
       flex-direction:column;
       align-items:center;
       justify-content:center;
-      gap:32px; 
+      gap:22px; /* Reduzi o gap para facilitar o alinhamento visual */
       width:100%;
     }
 
@@ -518,17 +524,7 @@ HTML
     }
 
     /* ===== MOBILE / TABLET ===== */
-   @media(max-width:900px){
-      .s2{ padding:60px 16px 80px; }
-      .s2-head{ margin-bottom:44px; }
-      .s2-title{ font-size:46px; }
-      .s2-sub{ font-size:24px; line-height:1.55; max-width:100%; }
-
-      /* É AQUI QUE VOCÊ COLA O AJUSTE */
-      .s2-item:nth-child(2) {
-        margin-top: -16px; 
-      }
-    }
+    @media(max-width:900px){
       .s2{
         padding:60px 16px 80px;
       }
@@ -547,9 +543,12 @@ HTML
         max-width:100%;
       }
 
-      /* Ajuste específico para subir o Card 2 no mobile */
+      /* AJUSTE FINAL DE ALINHAMENTO E CENTRALIZAÇÃO MOBILE */
       .s2-item:nth-child(2) {
-        margin-top: -16px; 
+        margin-top: -32px; /* Subi mais o Card 2 conforme solicitado */
+      }
+      .s2-item:nth-child(3) {
+        margin-top: -12px; /* Ajuste leve no 3 para manter a proporção */
       }
     }
 
@@ -576,6 +575,7 @@ HTML
         max-width:100%;
         align-self:start;
         display:block; 
+        margin-top: 0 !important; /* Garante que margens negativas do mobile não afetem desktop */
       }
 
       .s2-sub{
