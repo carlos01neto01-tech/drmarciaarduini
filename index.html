@@ -1,3 +1,14 @@
+Caramba, agora eu entendi perfeitamente! Me desculpe, eu cometi um erro na interpretação das suas linhas vermelhas na mensagem anterior. Eu achei que você queria que os cards ficassem sobrepostos (um invadindo o espaço do outro), por isso coloquei margens negativas, e foi isso que deixou tudo torto e "esmagado".
+
+Olhando a sua imagem do Figma (Frame 1) e a do site atual (WhatsApp Image), a diferença é clara: você quer os cards grandes, centralizados, com um espaçamento (gap) uniforme e limpo entre eles, sem nenhuma sobreposição.
+
+Além disso, percebi na sua print do site que está rolando uma sombra ou borda dupla estranha. Isso acontece porque eu tinha colocado um drop-shadow no CSS, mas o seu SVG provavelmente já vem com a sombra desenhada do Figma!
+
+Aqui está a correção definitiva. Limpei as sobreposições, ajustei a largura para ficar grandão como no Figma e deixei o espaçamento exato.
+
+Pode substituir o código todo por este:
+
+HTML
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -472,28 +483,24 @@
       max-width:900px;
     }
 
-    /* 🔴 AQUI MUDA A ESTRUTURA PARA MOBILE */
+    /* 🔴 CORREÇÃO AQUI: Grid arrumado para Mobile */
     .s2-grid{
-      display: flex; /* Flexbox empilha e permite crescer melhor */
+      display: flex; 
       flex-direction: column;
       align-items: center; 
+      gap: 32px; /* Espaçamento exato e padronizado entre os cards, como no Figma */
       margin-top: 40px;
     }
 
     .s2-item{
       position:relative;
-      /* 🔴 AGORA ELES VÃO FICAR GIGANTES NO MOBILE (95% da tela) */
-      width: 95%; 
-      max-width: 500px; 
+      width: 100%; 
+      max-width: 380px; /* Garante que fiquem grandes e proporcionais na tela do celular */
 
       opacity:0;
       transform:translateY(30px);
       transition:opacity 0.8s ease, transform 0.8s ease;
     }
-
-    /* 🔴 AQUI ESTÁ A SOBREPOSIÇÃO/ENCAIXE QUE VOCÊ DESENHOU! */
-    .s2-item:nth-child(2) { margin-top: -30px; }
-    .s2-item:nth-child(3) { margin-top: -30px; }
 
     .s2-item.visible{
       opacity:1;
@@ -509,10 +516,11 @@
       width:100%;
       height:auto;
       display:block;
+      /* 🔴 Retirei o CSS extra que estava causando a borda/sombra feia. 
+         Assim o site renderiza puramente o que vem do seu SVG. */
       background:transparent;
       border-radius:0;
       box-shadow:none;
-      filter: drop-shadow(0 18px 35px rgba(0,0,0,.14));
     }
 
     @media(max-width:900px){
@@ -523,7 +531,7 @@
       .s2-title{ font-size:46px; }
     }
 
-    /* 🔴 MANTÉM OS 3 LADO A LADO NO DESKTOP */
+    /* Comportamento Desktop intacto (3 colunas lado a lado) */
     @media(min-width:901px){
       .s2-grid {
         display: grid;
@@ -531,8 +539,7 @@
         gap: 24px;
       }
       .s2-item {
-        width: 100%; /* Reseta tamanho máximo no desktop */
-        margin-top: 0 !important; /* Tira o efeito de empilhamento do mobile */
+        max-width: 100%; 
       }
       .s2-sub{ font-size: 20px; } 
     }
