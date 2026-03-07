@@ -234,13 +234,13 @@
       text-align:center;
     }
     .hero__subtitle{
-   margin:24px 0 36px;
-  font-size:28px;
-  line-height:1.45;
-  color:rgba(0,0,0,.62);
-  text-align:center;
-  max-width:100%;
-}
+      margin:24px 0 36px;
+      font-size:28px;
+      line-height:1.45;
+      color:rgba(0,0,0,.62);
+      text-align:center;
+      max-width:100%;
+    }
     .cta{
       width:min(560px, 100%);
       height:76px;
@@ -389,8 +389,11 @@
     @media (max-width:380px){
       :root{ --header-h:96px; }
       .m-logo img{ height:58px; }
-      .title{ font-size:44px; }
-      .hero__subtitle{ font-size:21px; }
+      .title{ font-size:44px; line-height:1.04; }
+      .hero__subtitle{
+        font-size:24px;
+        line-height:1.42;
+      }
       .cta{ height:68px; font-size:20px; }
     }
 
@@ -494,7 +497,7 @@
     .s2-title{
       font-family:"Cormorant Garamond", serif;
       font-weight:700;
-      font-size:52px;
+      font-size:64px;
       line-height:1.05;
       color:#3B4E57;
       margin:0 0 14px;
@@ -542,62 +545,66 @@
       box-shadow:none;
     }
 
-@media(max-width:900px){
-  .s2{
-    padding:60px 16px 80px;
-  }
-  .s2-head{ margin-bottom:44px; }
-  .s2-title{
-    font-size:40px;
-    line-height:1.08;
-  }
-  .s2-sub{
-    font-size:18px;
-    line-height:1.55;
-    max-width:100%;
-    text-align:center;
-  }
-  .s2-grid{ gap:14px; }
-  .s2-item{
-    width:100%;
-    max-width:100%;
-  }
-  .s2-item.visible:nth-child(1){ transform:translateY(0); }
-  .s2-item.visible:nth-child(2){ transform:translateY(-16px); }
-  .s2-item.visible:nth-child(3){ transform:translateY(-8px); }
-}
+    @media(max-width:900px){
+      .s2{
+        padding:60px 16px 80px;
+      }
+      .s2-head{ margin-bottom:44px; }
+      .s2-title{
+        font-size:52px;
+        line-height:1.05;
+      }
+      .s2-sub{
+        font-size:18px;
+        line-height:1.55;
+        max-width:100%;
+        text-align:center;
+      }
+      .s2-grid{ gap:14px; }
+      .s2-item{
+        width:100%;
+        max-width:100%;
+      }
+      .s2-item.visible:nth-child(1){ transform:translateY(0); }
+      .s2-item.visible:nth-child(2){ transform:translateY(-16px); }
+      .s2-item.visible:nth-child(3){ transform:translateY(-8px); }
+    }
 
-   @media (max-width:380px){
-  :root{ --header-h:96px; }
-  .m-logo img{ height:58px; }
+    @media(max-width:380px){
+      .s2-title{
+        font-size:44px;
+        line-height:1.08;
+      }
+      .s2-sub{
+        font-size:17px;
+        line-height:1.5;
+      }
+    }
 
-  .title{ font-size:44px; line-height:1.04; }
-
-  .hero__subtitle{
-    font-size:24px;
-    line-height:1.42;
-  }
-
-  .cta{ height:68px; font-size:20px; }
-
-  .s2-title{
-  font-size:52px;
-  line-height:1.05;
-}
-  .s2-sub{ font-size:17px; line-height:1.5; }
-
- .s3-title{
-  font-size:52px;
-  line-height:1.05;
-}
-  .s3-sub{ font-size:17px; line-height:1.5; }
-
-  .s3-item{
-    width:190px;
-    height:252px;
-    border-radius:16px;
-  }
-}
+    @media(min-width:901px){
+      .s2-grid{
+        display:grid;
+        grid-template-columns:repeat(3, 1fr);
+        justify-content:stretch;
+        align-items:start;
+        gap:28px;
+        width:100%;
+      }
+      .s2-item{
+        width:100%;
+        max-width:none;
+        margin:0 !important;
+        display:block;
+      }
+      .s2-item.visible{ transform:translateY(0) !important; }
+      .s2-sub{
+        font-size:20px;
+        line-height:1.5;
+        max-width:900px;
+        text-align:center;
+        margin:0 auto;
+      }
+    }
 
     /* ================= SESSÃO 3 ================= */
     .s3{
@@ -782,51 +789,52 @@
     }
 
     @media(max-width:900px){
-  .s3{
-    padding:70px 0 64px;
-  }
+      .s3{
+        padding:70px 0 64px;
+      }
 
-  .s3-head{
-    margin-bottom:40px;
-    padding:0 16px;
-  }
+      .s3-head{
+        margin-bottom:40px;
+        padding:0 16px;
+      }
 
-  .s3-title{
-    font-size:40px;
-    line-height:1.08;
-  }
+      .s3-title{
+        font-size:52px;
+        line-height:1.05;
+      }
 
-  .s3-sub{
-    font-size:18px;
-    line-height:1.55;
-    max-width:100%;
-  }
+      .s3-sub{
+        font-size:18px;
+        line-height:1.55;
+        max-width:100%;
+      }
 
-  .s3-item{
-    width:220px;
-    height:290px;
-    border-radius:18px;
-  }
+      .s3-item{
+        width:220px;
+        height:290px;
+        border-radius:18px;
+      }
 
-  .s3-carousel-wrap{
-    margin-bottom:46px;
-  }
+      .s3-carousel-wrap{
+        margin-bottom:46px;
+      }
 
-  .s3-carousel-wrap::before,
-  .s3-carousel-wrap::after{
-    width:68px;
-  }
+      .s3-carousel-wrap::before,
+      .s3-carousel-wrap::after{
+        width:68px;
+      }
 
-  .s3-cta-wrap .cta{
-    width:min(300px, calc(100% - 32px));
-    height:56px;
-    font-size:18px;
-  }
-}
+      .s3-cta-wrap .cta{
+        width:min(300px, calc(100% - 32px));
+        height:56px;
+        font-size:18px;
+      }
+    }
 
     @media(max-width:380px){
       .s3-title{
-        font-size:34px;
+        font-size:44px;
+        line-height:1.08;
       }
       .s3-sub{
         font-size:17px;
@@ -976,7 +984,6 @@
       <div class="s3-carousel-wrap" id="s3CarouselWrap">
         <div class="s3-track" id="s3Track">
 
-          <!-- SET 1 -->
           <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%201.webp" alt="Antes e depois 1"></div>
           <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%202.webp" alt="Antes e depois 2"></div>
           <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%203.webp" alt="Antes e depois 3"></div>
@@ -986,7 +993,6 @@
           <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%207.webp" alt="Antes e depois 7"></div>
           <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%208.webp" alt="Antes e depois 8"></div>
 
-          <!-- SET 2 -->
           <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%201.webp" alt="Antes e depois 1"></div>
           <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%202.webp" alt="Antes e depois 2"></div>
           <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%203.webp" alt="Antes e depois 3"></div>
@@ -996,7 +1002,6 @@
           <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%207.webp" alt="Antes e depois 7"></div>
           <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%208.webp" alt="Antes e depois 8"></div>
 
-          <!-- SET 3 -->
           <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%201.webp" alt="Antes e depois 1"></div>
           <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%202.webp" alt="Antes e depois 2"></div>
           <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%203.webp" alt="Antes e depois 3"></div>
