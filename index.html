@@ -1022,9 +1022,119 @@
         </a>
       </div>
     </section>
+    
+
+  
 
     <section id="quem-sou" style="height:1px;"></section>
-    <section id="procedimentos" style="height:1px;"></section>
+    <style>
+  .d5 { transition-delay: .40s; }
+  .d6 { transition-delay: .48s; }
+
+  .s4 {
+    background: #ffffff; 
+    padding: 90px 16px 110px;
+    overflow-x: hidden;
+  }
+  .s4-container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  .s4-head {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .s4-title {
+    font-family: var(--title);
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 1.05;
+    color: var(--ink);
+    margin: 0 0 14px;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+  }
+  .s4-sub {
+    font-family: var(--body);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.55;
+    color: rgba(0,0,0,.62);
+    margin: 0 auto;
+    max-width: 700px;
+  }
+
+  /* Grid Mobile: 2 colunas (2 em cima, 2 embaixo) */
+  .s4-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    width: 100%;
+  }
+  .s4-item {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .s4-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .s4-item:hover img {
+    transform: scale(1.03);
+  }
+
+  /* Desktop: 4 colunas lado a lado */
+  @media(min-width: 901px) {
+    .s4-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+  }
+
+  /* Ajustes Mobile Finos */
+  @media(max-width: 900px) {
+    .s4 { padding: 70px 16px 80px; }
+    .s4-head { margin-bottom: 40px; }
+    .s4-title { font-size: 52px; }
+    .s4-sub { font-size: 18px; }
+  }
+  @media(max-width: 380px) {
+    .s4-title { font-size: 44px; }
+    .s4-sub { font-size: 17px; }
+    .s4-grid { gap: 12px; }
+  }
+</style>
+
+<section class="s4" id="procedimentos" aria-label="Nossos Procedimentos">
+  <div class="s4-container">
+    
+    <div class="s4-head reveal d1">
+      <h2 class="s4-title">PROCEDIMENTOS</h2>
+      <p class="s4-sub">
+        Realce sua beleza com naturalidade. Descubra os tratamentos ideais para você.
+      </p>
+    </div>
+
+    <div class="s4-grid">
+      <div class="s4-item reveal d2">
+        <img src="assets/NOME_DA_SUA_IMAGEM_1.webp" alt="Procedimento 1">
+      </div>
+      <div class="s4-item reveal d3">
+        <img src="assets/NOME_DA_SUA_IMAGEM_2.webp" alt="Procedimento 2">
+      </div>
+      <div class="s4-item reveal d4">
+        <img src="assets/NOME_DA_SUA_IMAGEM_3.webp" alt="Procedimento 3">
+      </div>
+      <div class="s4-item reveal d5">
+        <img src="assets/NOME_DA_SUA_IMAGEM_4.webp" alt="Procedimento 4">
+      </div>
+    </div>
+
+  </div>
+</section>
     <section id="contato" style="height:1px;"></section>
   </main>
 
