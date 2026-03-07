@@ -567,38 +567,31 @@
   .s2-item.visible:nth-child(3){ transform:translateY(-8px); }
 }
 
-    @media(max-width:380px){
-      .s2-title{ font-size:34px; }
-      .s2-sub{
-        font-size:17px;
-        line-height:1.5;
-      }
-    }
+   @media (max-width:380px){
+  :root{ --header-h:96px; }
+  .m-logo img{ height:58px; }
 
-    @media(min-width:901px){
-      .s2-grid{
-        display:grid;
-        grid-template-columns:repeat(3, 1fr);
-        justify-content:stretch;
-        align-items:start;
-        gap:28px;
-        width:100%;
-      }
-      .s2-item{
-        width:100%;
-        max-width:none;
-        margin:0 !important;
-        display:block;
-      }
-      .s2-item.visible{ transform:translateY(0) !important; }
-      .s2-sub{
-        font-size:20px;
-        line-height:1.5;
-        max-width:900px;
-        text-align:center;
-        margin:0 auto;
-      }
-    }
+  .title{ font-size:44px; line-height:1.04; }
+
+  .hero__subtitle{
+    font-size:24px;
+    line-height:1.42;
+  }
+
+  .cta{ height:68px; font-size:20px; }
+
+  .s2-title{ font-size:34px; line-height:1.08; }
+  .s2-sub{ font-size:17px; line-height:1.5; }
+
+  .s3-title{ font-size:34px; line-height:1.08; }
+  .s3-sub{ font-size:17px; line-height:1.5; }
+
+  .s3-item{
+    width:190px;
+    height:252px;
+    border-radius:16px;
+  }
+}
 
     /* ================= SESSÃO 3 ================= */
     .s3{
