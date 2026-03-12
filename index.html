@@ -57,6 +57,8 @@
     .d2{ transition-delay:.16s; }
     .d3{ transition-delay:.24s; }
     .d4{ transition-delay:.32s; }
+    .d5{ transition-delay:.40s; }
+    .d6{ transition-delay:.48s; }
 
     /* ================= HEADER ================= */
     .m-header{
@@ -667,7 +669,7 @@
       position:relative;
       width:100%;
       overflow:hidden;
-      margin:0 0 60px;
+      margin:0 0 40px;
       opacity:0;
       filter:blur(10px);
       transform:translateY(16px);
@@ -776,16 +778,21 @@
       transform:scale(1.04);
     }
 
-    .s3-cta-wrap{
+    .s3-cta-center{
+      width:100%;
       display:flex;
       justify-content:center;
+      align-items:center;
+      padding:0 20px;
+      margin:0 auto;
     }
 
-    .s3-cta-wrap .cta{
+    .s3-cta-center .cta{
       width:min(340px, 100%);
       height:60px;
       font-size:19px;
       border-radius:16px;
+      margin:0 auto;
     }
 
     @media(max-width:900px){
@@ -816,7 +823,7 @@
       }
 
       .s3-carousel-wrap{
-        margin-bottom:46px;
+        margin-bottom:34px;
       }
 
       .s3-carousel-wrap::before,
@@ -824,7 +831,7 @@
         width:68px;
       }
 
-      .s3-cta-wrap .cta{
+      .s3-cta-center .cta{
         width:min(300px, calc(100% - 32px));
         height:56px;
         font-size:18px;
@@ -851,6 +858,79 @@
       .s3-track{ animation:none; }
       .s3-item{ opacity:1; filter:blur(0); transform:none; }
       .s3-carousel-wrap{ opacity:1; filter:blur(0); transform:none; }
+    }
+
+    /* ================= SESSÃO 4 ================= */
+    .s4 {
+      background:#ffffff;
+      padding:90px 16px 110px;
+      overflow-x:hidden;
+    }
+    .s4-container {
+      max-width:1440px;
+      margin:0 auto;
+    }
+    .s4-head {
+      text-align:center;
+      margin-bottom:56px;
+    }
+    .s4-title {
+      font-family:var(--title);
+      font-weight:700;
+      font-size:64px;
+      line-height:1.05;
+      color:var(--ink);
+      margin:0 0 14px;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+    }
+    .s4-sub {
+      font-family:var(--body);
+      font-weight:500;
+      font-size:20px;
+      line-height:1.55;
+      color:rgba(0,0,0,.62);
+      margin:0 auto;
+      max-width:700px;
+    }
+    .s4-grid {
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:16px;
+      width:100%;
+    }
+    .s4-item {
+      width:100%;
+      border-radius:16px;
+      overflow:hidden;
+    }
+    .s4-item img {
+      width:100%;
+      height:auto;
+      display:block;
+      transition:transform 0.4s ease;
+    }
+    .s4-item:hover img {
+      transform:scale(1.03);
+    }
+
+    @media(min-width: 901px) {
+      .s4-grid {
+        grid-template-columns:repeat(4, 1fr);
+        gap:24px;
+      }
+    }
+
+    @media(max-width: 900px) {
+      .s4 { padding:70px 16px 80px; }
+      .s4-head { margin-bottom:40px; }
+      .s4-title { font-size:52px; }
+      .s4-sub { font-size:18px; }
+    }
+    @media(max-width: 380px) {
+      .s4-title { font-size:44px; }
+      .s4-sub { font-size:17px; }
+      .s4-grid { gap:12px; }
     }
   </style>
 </head>
@@ -983,7 +1063,6 @@
 
       <div class="s3-carousel-wrap" id="s3CarouselWrap">
         <div class="s3-track" id="s3Track">
-
           <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%201.webp" alt="Antes e depois 1"></div>
           <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%202.webp" alt="Antes e depois 2"></div>
           <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%203.webp" alt="Antes e depois 3"></div>
@@ -1010,127 +1089,47 @@
           <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%206.webp" alt="Antes e depois 6"></div>
           <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%207.webp" alt="Antes e depois 7"></div>
           <div class="s3-item"><img src="assets/ANTES%20E%20DEPOIS%208.webp" alt="Antes e depois 8"></div>
+        </div>
+      </div>
 
-  
+      <div class="s3-cta-center">
+        <a class="cta s3-fade s3-fd3"
+           href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
+           target="_blank" rel="noopener">
+          Quero agendar
+        </a>
+      </div>
+    </section>
 
     <section id="quem-sou" style="height:1px;"></section>
-    <style>
-  .d5 { transition-delay: .40s; }
-  .d6 { transition-delay: .48s; }
 
-  .s4 {
-    background: #ffffff; 
-    padding: 90px 16px 110px;
-    overflow-x: hidden;
-  }
-  .s4-container {
-    max-width: 1440px;
-    margin: 0 auto;
-  }
-  .s4-head {
-    text-align: center;
-    margin-bottom: 56px;
-  }
-  .s4-title {
-    font-family: var(--title);
-    font-weight: 700;
-    font-size: 64px;
-    line-height: 1.05;
-    color: var(--ink);
-    margin: 0 0 14px;
-    letter-spacing: .02em;
-    text-transform: uppercase;
-  }
-  .s4-sub {
-    font-family: var(--body);
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 1.55;
-    color: rgba(0,0,0,.62);
-    margin: 0 auto;
-    max-width: 700px;
-  }
+    <!-- SESSÃO 4 -->
+    <section class="s4" id="procedimentos" aria-label="Nossos Procedimentos">
+      <div class="s4-container">
+        <div class="s4-head reveal d1">
+          <h2 class="s4-title">PROCEDIMENTOS</h2>
+          <p class="s4-sub">
+            Realce sua beleza com naturalidade. Descubra os tratamentos ideais para você.
+          </p>
+        </div>
 
-  /* Grid Mobile: 2 colunas (2 em cima, 2 embaixo) */
-  .s4-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    width: 100%;
-  }
-  .s4-item {
-    width: 100%;
-    border-radius: 16px;
-    overflow: hidden;
-  }
-  .s4-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.4s ease;
-  }
-  .s4-item:hover img {
-    transform: scale(1.03);
-  }
-
-  /* Desktop: 4 colunas lado a lado */
-  @media(min-width: 901px) {
-    .s4-grid {
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
-  }
-
-  /* Ajustes Mobile Finos */
-  @media(max-width: 900px) {
-    .s4 { padding: 70px 16px 80px; }
-    .s4-head { margin-bottom: 40px; }
-    .s4-title { font-size: 52px; }
-    .s4-sub { font-size: 18px; }
-  }
-  @media(max-width: 380px) {
-    .s4-title { font-size: 44px; }
-    .s4-sub { font-size: 17px; }
-    .s4-grid { gap: 12px; }
-  }
-</style>
-
-<section class="s4" id="procedimentos" aria-label="Nossos Procedimentos">
-  <div class="s4-container">
-    
-    <div class="s4-head reveal d1">
-      <h2 class="s4-title">PROCEDIMENTOS</h2>
-      <p class="s4-sub">
-        Realce sua beleza com naturalidade. Descubra os tratamentos ideais para você.
-      </p>
-    </div>
-
-    <div class="s4-grid">
-      <div class="s4-item reveal d2">
-        <img src="assets/PROCEDIMENTO 1.webp" alt="Procedimento 1">
+        <div class="s4-grid">
+          <div class="s4-item reveal d2">
+            <img src="assets/PROCEDIMENTO 1.webp" alt="Procedimento 1">
+          </div>
+          <div class="s4-item reveal d3">
+            <img src="assets/PROCEDIMENTO 2.webp" alt="Procedimento 2">
+          </div>
+          <div class="s4-item reveal d4">
+            <img src="assets/PROCEDIMENTO 3.webp" alt="Procedimento 3">
+          </div>
+          <div class="s4-item reveal d5">
+            <img src="assets/PROCEDIMENTO 4.webp" alt="Procedimento 4">
+          </div>
+        </div>
       </div>
-      <div class="s4-item reveal d3">
-        <img src="assets/PROCEDIMENTO 2.webp" alt="Procedimento 2">
-      </div>
-      <div class="s4-item reveal d4">
-        <img src="assets/PROCEDIMENTO 3.webp" alt="Procedimento 3">
-      </div>
-      <div class="s4-item reveal d5">
-        <img src="assets/PROCEDIMENTO 4.webp" alt="Procedimento 4">
-      
+    </section>
 
-        
-        <div class="s3-inner s3-cta-wrap" style="display:flex; justify-content:center; align-items:center; width:100%;">
-  <a class="cta s3-fade s3-fd3"
-     href="https://wa.me/5544991212969?text=Ol%C3%A1!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o."
-     target="_blank" rel="noopener">
-    Quero agendar
-  </a>
-</div>
- <section>    
-
-  </div>
-</section>
     <section id="contato" style="height:1px;"></section>
   </main>
 
